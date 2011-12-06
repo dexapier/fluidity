@@ -17,9 +17,10 @@ __version__ = __version_info__.description
 # clean up the namespace now that we're done...
 del namedtuple, _MAJOR, _MINOR, _MICRO, _vers_ntuple, _vers_nums, i
 
-# thank you, Fluendo!
+
+# Thanks, Fluendo!  No thanks to you, PyGobject changes!
 def fuck_you_too_pygobject():
-    """GObject introspection: you can use any dynamic language you want, as long 
+    """GNOME 3: you can use any dynamic language you want, as long 
     as it's Javascript.
     """
     if gobject.pygobject_version > (2, 26, 0):
@@ -27,8 +28,8 @@ def fuck_you_too_pygobject():
         # http://git.gnome.org/browse/pygobject/commit/?id=84d614
         # Basically, what we do is to revert the changes in _type_register of
         # GObjectMeta at least until kiwi works properly with new pygobject
-        from gobject._gobject import type_register  #@UnresolvedImport
-    
+        from gobject._gobject import type_register  #@UnresolvedImport  #IGNORE:E0611
+
         def _type_register(cls, namespace):
             ## don't register the class if already registered
             if '__gtype__' in namespace:

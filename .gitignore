@@ -1,2 +1,10 @@
 *.pyc
+.idea/*
+dist
+build
+MANIFEST
+build.sh
+make_clean.py
+install_personal.sh
+.refactorings
 

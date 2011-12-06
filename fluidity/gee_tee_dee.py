@@ -16,6 +16,9 @@ import calendar
 import datetime
 import os
 import uuid
+import fluidity.models
+import fluidity.interfaces
+
 
 # FIXME: ewww. this should NOT be here.
 import gtk
@@ -244,7 +247,10 @@ class NextAction(GeeTeeDeeData):
         j['summary'] = self.summary
         if self.due_date:
             j['due_date'] = calendar.timegm(self.due_date.timetuple())
-        j['context'] = self.context
+        j['context'] =mess.completion.time = self._completion_date
+        mess.queue_time = self._queue_date
+        mess.due_time = self._due_date
+        return mess.SerializeToString() self.context
         j['time_est'] = self.time_est
         j['energy_est'] = self.energy_est
         j['priority'] = self.priority
@@ -253,7 +259,23 @@ class NextAction(GeeTeeDeeData):
         j['complete'] = self.complete
 
         return j
-
+    
+    def to_protobuf_bytes(self):
+        mess = fluidity.models.NextAction()
+        mess.completion_time = fluidity.models.DateTimeStamp()
+        mess.completion_time.timestamp = calendar.timegm(self.completion_date.timetuple())
+        mess.queue_time = fluidity.models.DateTimeStamp()
+        mess.queue_time.timestamp = calendar.timegm(self.queue_date.timetuple())
+        mess.due_time = fluidity.models.DateTimeStamp()
+        mess.due_time.timestamp = calendar.timegm(self.due_date.timetuple())
+        return mess.SerializeToString()
+    
+    def populate_from_protobuf_bytes(self, protobuf_bytes):
+        mess = fluidity.models.NextAction()
+        mess.CopyFromString(protobuf_bytes)
+        self.completion_date(mess.completion_time.timestamp)
+        self.queue_date(mess.queue_time.timestamp)
+        self.due_date(mess.due_time.timestamp)
 
 class Project(GeeTeeDeeData):
 
@@ -330,4 +352,21 @@ class Project(GeeTeeDeeData):
         formats = {1: '<b>{0}</b>', 2: '{0}', 3: '<span weight="light">{0}</span>'}
         fs = saxutils.escape(self.summary)
         return formats[self.priority].format(fs)
+    
+    def to_protobuf_bytes(self):
+        mess = fluidity.models.Project()
+        mess.completion_time = fluidity.models.DateTimeStamp()
+        mess.completion_time.timestamp = calendar.timegm(self.completion_date.timetuple())
+        mess.queue_time = fluidity.models.DateTimeStamp()
+        mess.queue_time.timestamp = calendar.timegm(self.queue_date.timetuple())
+        mess.due_time = fluidity.models.DateTimeStamp()
+        mess.due_time.timestamp = calendar.timegm(self.due_date.timetuple())
+        return mess.SerializeToString()
+    
+    def populate_from_protobuf_bytes(self, protobuf_bytes):
+        mess = fluidity.models.Project()
+        mess.MergeFromString(self, protobuf_bytes)
+        self.completion_date(mess.completion_time.timestamp)
+        self.queue_date(mess.queue_time.timestamp)
+        self.due_date(mess.due_time.timestamp)
 

@@ -1,0 +1,100 @@
+FAIL-METER AND KWALITEE SCORE
+
+(more info on these metrics, respectively:
+http://spot.livejournal.com/308370.html and http://pycheesecake.org/)
+
+
+=== FAIL METER ===
+0 points of FAIL: Perfect! All signs point to success!
+5-25 points of FAIL: You're probably doing okay, but you could be better.
+30-60 points of FAIL: Babies cry when your code is downloaded
+65-90 points of FAIL: Kittens die when your code is downloaded
+95-130 points of FAIL: HONK HONK. THE FAILBOAT HAS ARRIVED!
+135+ points of FAIL: So much fail, your code should have its own reality TV show.
+
+
+Current FAIL:
+
+    == Building From Source ==
+     * Your code has no "make install" [ +20 points of FAIL ]
+
+    I'm don't believe this means literally "make install" but rather "you have the 
+    equivalent of 'make install'", e.g.: 'python setup.py install'.  On the other
+    hand, if this *does* mean literally "you must use autotools", then I refuse to
+    accept any "FAIL" points for not being that much of a fucking masochist.  Not 
+    only are Python distutils files are extremely common, but using autotools' 
+    brain-damage for *any* (non-C/C++) project might be considered FAIL itself. ;-P
+
+
+=== CURRENT FAIL METER FOR FLUIDITY ===
+0 points of FAIL: Perfect! All signs point to success!
+
+YEAH!!  (I can't believe I'm this excited over just *not failing.*   And that's 
+assuming I'm right in my guess about the 'make install' business...)
+
+
+
+=== KWALITEE SCORE ===
+OVERALL CHEESECAKE INDEX (ABSOLUTE) .... 264
+OVERALL CHEESECAKE INDEX (RELATIVE) ....  45  (264 out of a maximum of 579 points is 45%)
+
+
+== Full PyCheesecake log ==
+
+unpack .................................  25  (package unpacked successfully)
+unpack_dir .............................  15  (unpack directory is Fluidity-0.3.0 as expected)
+setup.py ...............................  25  (setup.py found)
+install ................................  50  (package installed in /tmp/cheesecakefrxnC5/tmp_install_Fluidity-0.3.0)
+generated_files ........................   0  (0 .pyc and 0 .pyo files found)
+---------------------------------------------
+INSTALLABILITY INDEX (ABSOLUTE) ........ 115
+INSTALLABILITY INDEX (RELATIVE) ........ 100  (115 out of a maximum of 115 points is 100%)
+
+[required_files] Package doesn't have file: faq/faq.html/faq.txt.
+[required_files] Package doesn't have file: thanks/thanks.html/thanks.txt.
+[required_files] Package doesn't have important file: announce/announce.html/announce.txt/changelog/changelog.html/changelog.txt/changes/changes.html/changes.txt.
+[required_files] Package doesn't have important file: install/install.html/install.txt.
+[required_files] Package doesn't have file: todo/todo.html/todo.txt.
+[required_files] Package doesn't have critical directory: doc/docs.
+[required_files] Package doesn't have critical directory: test/tests.
+[required_files] Package doesn't have directory: demo/example/examples.
+[required_files] Package has file: news/news.html/news.txt.
+[required_files] Package has file: authors/authors.html/authors.txt.
+[required_files] Package has critical file: readme/readme.html/readme.txt.
+[required_files] Package has critical file: license/license.html/license.txt/copying/copying.html/copying.txt.
+required_files .........................  80  (4 files and 0 required directories found)
+docstrings .............................  14  (found 84/619=13.57% objects with docstrings)
+[formatted_docstrings] 1.78% formatted docstrings found, which is < 25%, no points given.
+formatted_docstrings ...................   0  (found 11/619=1.78% objects with formatted docstrings)
+---------------------------------------------
+DOCUMENTATION INDEX (ABSOLUTE) .........  94
+DOCUMENTATION INDEX (RELATIVE) .........  27  (94 out of a maximum of 350 points is 27%)
+
+[unit_tested] Package includes doctest tests.
+unit_tested ............................  30  (has unit tests)
+[pylint] Score is 0.00/10, which is 0% of maximum 50 points = 0.
+pylint .................................   0  (encountered an error during pylint execution)
+[pep8] Errors:
+[pep8] Count   Details
+[pep8] 77      E301 expected 1 blank line, found 0
+[pep8] 22      E302 expected 2 blank lines, found 1
+[pep8] 1       E303 too many blank lines (5)
+[pep8] 232     E501 line too long (80 characters)
+[pep8] pep8.py found 4 error types; we're scoring -2 per error type
+[pep8] Error score: -8
+[pep8] Warnings:
+[pep8] Count   Details
+[pep8] 140     W291 trailing whitespace
+[pep8] pep8.py found 1 warning types; we're scoring -1 per warning type
+[pep8] Warning score: -1
+[pep8] Total pep8 score: 34 - 9 = 25
+pep8 ...................................  25  (pep8.py check: 4 error types, 1 warning types)
+---------------------------------------------
+CODE KWALITEE INDEX (ABSOLUTE) .........  55
+CODE KWALITEE INDEX (RELATIVE) .........  49  (55 out of a maximum of 114 points is 49%)
+
+
+=============================================
+OVERALL CHEESECAKE INDEX (ABSOLUTE) .... 264
+OVERALL CHEESECAKE INDEX (RELATIVE) ....  45  (264 out of a maximum of 579 points is 45%)
+

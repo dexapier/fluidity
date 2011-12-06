@@ -1,0 +1,40 @@
+Fluidity is GTD software for "black belts", or those aspiring to that level.
+I wrote it for my own use, but maybe it can help you, too.  (And if it does, 
+I would really like to hear from you.)
+
+
+****** ############  VERY IMPORTANT - DO NOT IGNORE!!  ############
+
+Fluidity is currently a BETA release!  I have not personally had 
+any data loss problems in using Fluidity for over a year, but that doesn't mean
+there aren't any data-destroying bugs hiding somewhere.  Don't sweat it too 
+hard - your data files get backed up to ~/.local/share/fluidity/backups/ 
+so if you do regular backups of your home folder, you'll be fine.
+
+(If you don't currently do regular backups, I recommend CrashPlan* or Deja Dup)
+
+* http://crashplan.com -- full disclosure: I work for Code42, the makers of CrashPlan
+******
+
+Now on to less unpleasant things...
+
+INSTALLATION
+See the file "INSTALL" -- includes system requirements 
+
+
+RUNNING THE APP:
+From an install: Look in your GNOME/KDE menus under "Office"
+From source archive extract: just run 'launch_fluidity'
+
+Also, try out Fluidity Slider - it's a tool for ultra-fast input of new inbox 
+notes and next actions.  The notes you input into Slider will automatically
+show up in Fluidity's "Stuff" list in the Clarify section.  Slider is available
+by either clicking "Add Stuff" in the Clarify section, or by launching it 
+directly -- it's in bin/slider.  (If you end up using Fluidity for any length of
+time, I highly recommend binding it to a global hotkey on your desktop.)
+
+
+FINAL NOTES:
+Finally, try not to laugh at my weak hack-fu and I'll try not to laugh 
+at your (possibly) weak GTD-fu. ;-)
+

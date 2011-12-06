@@ -1,0 +1,17 @@
+0.2
+=====
+ - Never happening at this rate.
+
+
+0.1.1
+=====
+ - Bump to 0.1.1
+ - Fix brown paper bag bug - let Slider get past the enforcement of 
+   only 1 copy of Fluidity running at a time.  bleh.
+
+
+0.1
+=====
+
+ - First release
+

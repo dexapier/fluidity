@@ -1,0 +1,35 @@
+INSTALLATION
+
+
+REQUIREMENTS:
+Python 2.6+
+GTK 2.16+
+PyGTK
+PyYAML
+parsedatetime module for Python
+Tomboy, for project notes integration (Gnote not supported: http://goo.gl/SGKl)
+
+
+First, make sure your have the Python module 'parsedatetime' installed.
+
+If you're not sure, run this command:  python -c 'import parsedatetime'
+If it's not installed, you'll get an error that ends with 
+"ImportError: No module named parsedatetime".
+If you get that error, run this as root: pip-python install parsedatetime
+(or, on some Linux distros, just use 'pip' instead of 'pip-python' for the above)
+
+
+Next, install Fluidity itself.  Two main options are available:
+    1. Download and unpack a the source archive, 'cd' to that directory, and then 
+       run as root: ./install.sh
+    2. Use 'pip' -- run the following as root (note that you might need to replace
+       'pip-python' with just 'pip' on some Linux distros):
+           pip-python install fluidity
+           gtk-update-icon-cache /usr/share/icons/hicolor
+    3. There is no third option.  It should be "Install the distro package.", but
+       Fluidity isn't currently packaged anywhere but PyPi (yet?).
+
+
+
+
+

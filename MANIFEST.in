@@ -1,0 +1,17 @@
+graft fluidity/tools
+graft fluidity/ui
+graft data
+graft icons
+include fluidity.desktop
+include install.sh
+include launch_fluidity
+include FAIL-METER
+include AUTHORS
+include ChangeLog
+include COPYING
+include INSTALL
+include LICENSE
+include NEWS
+include README
+include THANKS
+

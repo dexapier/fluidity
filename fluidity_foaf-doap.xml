@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rdf:RDF xmlns="http://usefulinc.com/ns/doap#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Project>
+        <name>Fluidity</name>
+        <shortdesc>Black belt GTD for Linux</shortdesc>
+        <description>If you have ever spent an hour or more trying to process ALL your 
+          inboxes (like the sign says, this is for *black belts*, people!), or gotten 
+          frustrated with the nitpicky details of shuffling projects between your 
+          Active and Someday/Maybe lists while still keeping your system current and 
+          air-tight, Fluidity might just be what you're looking for.  If you like it,
+          or have any constructive feedback, I would really love to hear it.</description>
+        <download-page>http://fluidity.googlecode.com/</download-page>
+        <homepage rdf:resource="http://fluidity.googlecode.com/" />
+        <maintainer>
+            <foaf:Person>
+                <foaf:name>Jens Knutson</foaf:name>
+                <foaf:mbox_sha1sum>9e837cc49c2d924e0ea4f9ed3ef56ab97dad4323</foaf:mbox_sha1sum>
+            </foaf:Person></maintainer>
+        <release>
+            <Version>
+                <revision>0.3.0</revision>
+            </Version></release>
+    </Project>
+</rdf:RDF>
+

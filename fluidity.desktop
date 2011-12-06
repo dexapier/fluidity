@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name[en_US]=Fluidity
+Name=Fluidity
+Comment=Black-belt or bust!
+Comment[en_US]=Black-belt or bust!
+Exec=fluidity
+Icon=fluidity
+Terminal=false
+#StartupNotify=true
+Categories=GNOME;GTK;Office;
+

@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+#
+# Copyright (C) 2011 - Jens Knutson <jens.knutson at gmail dot com>
+# This software is licensed under the GNU General Public License
+# version 3 or later (see the file COPYING).
+
+
+__author__ = 'Jens Knutson'
+
+
+import os
+import time
+
+
+def run_slider():
+    import fluidity
+    from fluidity import slider
+
+
+profile_path = os.path.join(os.path.expanduser('~'), 'profile.out')
+start_time = time.time()
+import cProfile
+cProfile.run("run_slider()", profile_path)
+run_slider()
+end_time = time.time()
+
+print "Total seconds: " + str(end_time - start_time)

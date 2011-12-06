@@ -1,0 +1,135 @@
+// "GLOBALLY COMMON" DATA TYPES
+message DateTimeStamp {
+    required int32 timestamp = 1;  // UNIX timestamp    
+}
+
+message Image {
+
+    enum ImageType {
+        PNG = 1;
+        JPEG = 2;
+    }
+    
+    required bytes image_data = 1;
+    required ImageType type = 2;
+}
+
+
+message URI {
+	required string uri = 1;
+	required string description = 2;
+	optional Image favicon = 3;
+}
+
+
+message UUID {
+    // UUIDs are natively 16 bytes long.  The wrapper class for this type should
+    // validate this.
+	required bytes raw_bytes = 1;
+}
+
+
+// APP-COMMON DATATYPES
+message Tag {
+
+    message TagMetadata {
+        required UUID uuid = 1;
+        required DateTimeStamp creation_time = 2;
+    }
+
+    required TagMetadata meta = 1;
+    required string name = 2;
+    // Future use.  I don't actually know what I want to do with this, I just
+    // wanted to put the slot for it here...
+    optional string alt_name = 3;
+}
+
+
+message CommonMetadata {
+    required UUID uuid = 1;    
+    required DateTimeStamp creation_time = 2;
+    repeated UUID tag_uuids = 3;
+}
+
+
+enum Priority {
+    HIGH = 1;
+    MEDIUM = 2;
+    LOW = 3;
+}
+
+
+// APP MODELS
+message AreaOfFocus {
+    required CommonMetadata metadata = 1;
+    required string name = 2;
+}
+
+
+message NextAction {
+
+	enum Status {
+		ACTIVE = 1;
+		INCUBATING = 2;
+		COMPLETE = 3;
+	}
+
+	message Context {
+		required CommonMetadata metadata = 1;
+		required string name = 2;  // i.e. formatted for human use '@Online' or maybe just 'Online'
+	}
+
+	enum EnergyEstimate {
+		LOW = 1;
+		MEDIUM = 2;
+		HIGH = 3;		
+	}
+	
+	// These first fields are the same as in Project
+    required CommonMetadata metadata = 1;
+    required string summary = 2;
+    required Priority priority = 3 [default = MEDIUM];
+    required DateTimeStamp completion_time = 4;  // should this have a default...?
+    required DateTimeStamp queue_time = 5;  // should this have a default...?
+	required DateTimeStamp due_time = 6;  // should this have a default...?
+
+	required UUID context = 7;
+	required int32 time_estimate_minutes = 8;
+	required EnergyEstimate energy_estimate = 9;
+
+	optional string notes = 10;
+
+	repeated URI related_resources = 11;
+}
+
+
+message Project {
+
+	enum Status {
+		ACTIVE = 1;
+		INCUBATING = 2;
+		WAITING_FOR = 3;
+		COMPLETE = 4;
+	}
+	
+	message WaitingForData {
+		required string summary = 1;
+		required DateTimeStamp waiting_since = 2;
+	}
+
+	// These first fields are the same as in NextAction
+    required CommonMetadata metadata = 1;
+    required string summary = 2;
+    required Priority priority = 3 [default = MEDIUM];
+    required DateTimeStamp completion_time = 4;  // should this have a default...?
+    required DateTimeStamp queue_time = 5;  // should this have a default...?
+	required DateTimeStamp due_time = 6;  // should this have a default...?
+
+	required Status status = 7;
+    optional WaitingForData waiting_for_data = 8;
+	
+	repeated UUID subprojects = 9;
+	repeated UUID areas_of_focus = 10;
+	repeated UUID sequential_next_actions = 11;
+	repeated UUID unordered_next_actions = 12;
+}

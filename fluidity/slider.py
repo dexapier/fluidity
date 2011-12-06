@@ -30,7 +30,7 @@ from kiwi.ui.widgets.combobox import ProxyComboBox #pylint: disable-msg=W0611
 from fluidity import defs
 from fluidity import gee_tee_dee
 from fluidity import ui
-from fluidity import utils
+from fluidity import app_utils
 from fluidity.magic_machine import MagicMachine
 from fluidity.managers import DataManager
 
@@ -44,7 +44,7 @@ class Slider(object):
             separate_process: If True, gtk.main_quit() will be called when the
                 window closes.
         """
-        utils.log_line("Starting Slider", datetime.datetime.now())
+        app_utils.log_line("Starting Slider", datetime.datetime.now())
 
         self._is_separate_process = separate_process
 
@@ -246,7 +246,7 @@ class Slider(object):
         self.priority_w.select_item_by_label(label)
 
     def _quit(self):
-        utils.log_line("Exiting Slider normally.", datetime.datetime.now())
+        app_utils.log_line("Exiting Slider normally.", datetime.datetime.now())
         # don't quit if we're not actually running as a separate process.. heh.
         if self._is_separate_process:
             gtk.main_quit()
@@ -323,7 +323,7 @@ class Slider(object):
 
     def _write_na(self, na, prj_key, ext):
         to_dump = {'prj_key': prj_key, 'na_obj': na}
-        fname = "".join((utils.format_for_dict_key(na.summary)[:50],
+        fname = "".join((app_utils.format_for_dict_key(na.summary)[:50],
                          str(time.time()), ext))
         with open(os.path.join(defs.NOTE_SLIDER_FOLDER, fname), 'wb') as pfile:
             pickle.dump(to_dump, pfile, pickle.HIGHEST_PROTOCOL)

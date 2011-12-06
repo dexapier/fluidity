@@ -28,10 +28,10 @@ from xml.sax import saxutils
 
 from xdg import BaseDirectory
 
+from fluidity import app_utils
 from fluidity import defs
 from fluidity import dbus_misc
 from fluidity import gio_fml
-from fluidity import utils
 
 
 INBOXES = ()
@@ -102,12 +102,12 @@ class LocalFilesystemInbox(Inbox):
     def consolidate(self):
         for child in self._this_inbox.get_children():
             try:
-                utils.log_line("Moving file {0} to inbox...".format(child.path),
+                app_utils.log_line("Moving file {0} to inbox...".format(child.path),
                                datetime.datetime.now())
                 inbox = self.SLIDER_INBOX if child.ext == ".pkl" else self.MAIN_INBOX
                 child.move(inbox.get_child(child.basename))
             except gio_fml.MoveError as m_err:
-                utils.log_line(str(m_err), datetime.datetime.now())
+                app_utils.log_line(str(m_err), datetime.datetime.now())
 
 
 class MountableInbox(LocalFilesystemInbox):
@@ -120,7 +120,7 @@ class MountableInbox(LocalFilesystemInbox):
             except (gio.Error, ConsolidateInboxError) as error:
                 msg = "Unable to consolidate from {0} - message: {1}".format(
                     self._this_inbox, error)
-                utils.log_line(msg, datetime.datetime.now())
+                app_utils.log_line(msg, datetime.datetime.now())
             self._unmount_volume()
 
     def _mount_volume(self, obj=None, async_result=None, user_data=None):
@@ -140,7 +140,7 @@ class MountableInbox(LocalFilesystemInbox):
             except (gio.Error, glib.GError) as err:
                 msg = "unable to mount: {0}.  Error: {1}".format(self._this_inbox,
                                                                  err)
-                utils.log_line(msg, datetime.datetime.now())
+                app_utils.log_line(msg, datetime.datetime.now())
                 msg = "Unable to mount the requested volume: " + msg
                 raise ConsolidateInboxError(msg)
             user_data['cb']()
@@ -157,7 +157,7 @@ class MountableInbox(LocalFilesystemInbox):
             except gio.Error as err:
                 msg = "Unable to UNmount: {0}.  Error: {1}".format(self._this_inbox,
                                                                    err)
-                utils.log_line(msg, datetime.datetime.now())
+                app_utils.log_line(msg, datetime.datetime.now())
 
 
 class RESTInbox(Inbox):
@@ -173,11 +173,11 @@ class RESTInbox(Inbox):
     def _retrieve_inbox_items(self):
         url = 'http://anvil.solemnsilence.org:9395/fluidity_mobile/inbox/pull_all/'
         response = requests.post(url, auth=('app_root', 'st00pid'))
-        return [i['fields'] for i in json.loads(response.content)]
+        return [i['fields'] for i in json.loads(response.content)]  # IGNORE:E1103
     
     def _create_inbox_note(self, note_dict, parent_dir):
         if note_dict['summary'] is None:
-            utils.log_line("Blank summary line in REST inbox...")
+            app_utils.log_line("Blank summary line in REST inbox...")
         else:
             file_name = "{0}_{1}-{2}".format(
                 note_dict['summary'][:50].replace(os.sep, ''),
@@ -218,7 +218,7 @@ class TomboyInbox(Inbox):
         new_sh_xml = self.build_SH_replacement_xml(agg_xml)
         msg = "".join(("Boxidate is adding this to your Start Here note:\n",
                       new_sh_xml, "\n\n\n"))
-        utils.log_line(msg, datetime.datetime.now(),
+        app_utils.log_line(msg, datetime.datetime.now(),
                        '/home/jensck/fity-data/boxidate.log')
         self.set_SH_xml(new_sh_xml)
         self.delete_notes(notelist)
@@ -409,7 +409,7 @@ class BoxidatorOld(object):
             print("Problem unmounting an inbox.  Error: ", error)
 
     def consolidate(self):
-        utils.log_line("Running boxidate.Boxidator.consolidate()",
+        app_utils.log_line("Running boxidate.Boxidator.consolidate()",
                         datetime.datetime.now())
         #put us in the right folder to start off with, just in case...
         os.chdir(self.MAIN_INBOX)
@@ -425,7 +425,7 @@ class BoxidatorOld(object):
         time.sleep(2)
         msg = "".join(("Boxidate is adding this to your Start Here note:\n",
                       new_sh_xml, "\n\n\n"))
-        utils.log_line(msg, datetime.datetime.now(),
+        app_utils.log_line(msg, datetime.datetime.now(),
                        '/home/jensck/fity-data/boxidate.log')
         self.set_SH_xml(new_sh_xml)
         self.delete_notes(notelist)

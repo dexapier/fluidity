@@ -22,9 +22,9 @@ import gtk
 
 from xml.sax import saxutils
 
+from fluidity import app_utils
 from fluidity import defs
 from fluidity import utils
-
 
 TOP_LEVEL_PROJECT = '00000000-0000-0000-0000-000000000000'
 
@@ -285,7 +285,7 @@ class Project(GeeTeeDeeData):
 
     @property
     def key_name(self):
-        return utils.format_for_dict_key(self.summary)
+        return app_utils.format_for_dict_key(self.summary)
 
     @property
     def next_actions(self):

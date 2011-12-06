@@ -21,11 +21,11 @@ import pango
 
 from kiwi.ui.objectlist import Column
 
+from fluidity import app_utils
 from fluidity import defs
 from fluidity import gee_tee_dee
 from fluidity import inbox_items
 from fluidity import ui
-from fluidity import utils
 from fluidity.magic_machine import MagicMachine
 from fluidity.note import ProjectNote
 
@@ -133,7 +133,7 @@ class NewProjectDialog(GeeTeeDeeDialog):
         if self._aof_w.get_selected() == defs.NO_AOF_ASSIGNED:
             return []
         else:
-            return [utils.format_for_dict_key(self._aof_w.get_selected())]
+            return [app_utils.format_for_dict_key(self._aof_w.get_selected())]
 
     def _build_due_date(self):
         return self._magical.get_magic_date(self._due_date_w.get_text())

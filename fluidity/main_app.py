@@ -32,6 +32,7 @@ from kiwi.ui.objectlist import Column, ObjectList   #pylint: disable-msg=W0611
 from kiwi.ui.widgets.combobox import ProxyComboBox  #pylint: disable-msg=W0611
 from kiwi.ui.widgets.textview import ProxyTextView  #pylint: disable-msg=W0611
 
+from fluidity import app_utils
 from fluidity import boxidate
 from fluidity import defs
 from fluidity import gee_tee_dee
@@ -39,7 +40,6 @@ from fluidity import inbox_items
 from fluidity import managers
 from fluidity import task_export
 from fluidity import ui
-from fluidity import utils
 from fluidity.magic_machine import MagicMachine
 from fluidity.note import ProjectNote
 
@@ -49,7 +49,7 @@ class Fluidity(object):
 
     def __init__(self):
         # first things first...
-        utils.log_line("Launching Fluidity", datetime.datetime.now())
+        app_utils.log_line("Launching Fluidity", datetime.datetime.now())
         self._enforce_running_as_singleton(defs.DBUS_BUS_NAME,
                                            defs.DBUS_OBJECT_PATH)
         # SAY MY NAME!
@@ -64,7 +64,7 @@ class Fluidity(object):
 
         self.map_fields_to_instance_names()
 
-        utils.validate_paths()
+        app_utils.validate_paths()
 
         self._magical = MagicMachine()
         self._inbox_manager = managers.InboxManager(self, self.stuff_tree_w,
@@ -124,7 +124,7 @@ class Fluidity(object):
             error_label.show()
             fuck_you_gtk.show()
             dialog.run()
-            utils.log_line("Exiting -- found another process with the same "
+            app_utils.log_line("Exiting -- found another process with the same "
                             "D-Bus bus name.", datetime.datetime.now())
             sys.exit("Another process has that bus name; " + error_msg)
 
@@ -655,7 +655,7 @@ class Fluidity(object):
                 self._inbox_manager._row_processed_stuff)
         self.data_lumbergh.dump_processed_stuff_notes(processed)
         self.data_lumbergh.cleanup_before_exit()
-        utils.log_line("Exiting normally.", datetime.datetime.now())
+        app_utils.log_line("Exiting normally.", datetime.datetime.now())
         dbus.SessionBus().release_name(defs.DBUS_BUS_NAME)
         gtk.main_quit()
 
@@ -816,7 +816,7 @@ class Fluidity(object):
         if not path:
             msg = "got bad 'url clicked' event: {0}\nEvent x: {1}\nEvent y: {2}\n"
             msg = msg.format(event, event.x, event.y)
-            utils.log_line(msg, debug=True)
+            app_utils.log_line(msg, debug=True)
         else:
             row_num = path[0][0]
             col = path[1]
@@ -847,7 +847,7 @@ class Fluidity(object):
         # just call ourselves again and keep creating new intervals.
         log_msg = ("Running _run_daily_tasks(), and I am under the "
                    "impression believe there are %s seconds to midnight.")
-        utils.log_line(log_msg % seconds_to_midnight, datetime.datetime.now())
+        app_utils.log_line(log_msg % seconds_to_midnight, datetime.datetime.now())
         gobject.timeout_add_seconds(seconds_to_midnight, self._run_daily_tasks)
         return False
 

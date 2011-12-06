@@ -34,7 +34,7 @@ from fluidity import defs
 from fluidity import gee_tee_dee
 from fluidity import inbox_items
 from fluidity import magic_machine
-from fluidity import utils
+from fluidity import app_utils
 from fluidity.first_time import FirstTimeBot
 from fluidity.note import ProjectNote
 
@@ -73,7 +73,7 @@ class DataManager(object):
 
 # PUBLIC METHODS
     def activate_due_queued(self):
-        utils.log_line("Running activate_due_queued()", datetime.datetime.now())
+        app_utils.log_line("Running activate_due_queued()", datetime.datetime.now())
         for p in self.prjs:
             prj = self.prjs[p]
             if prj.status == "queued":
@@ -151,7 +151,7 @@ class DataManager(object):
         self._file_toady.copy_to_project_folder(file_name, prj.summary, prj.status)
 
     def create_new_aof(self, new_name):
-        key_name = utils.format_for_dict_key(new_name)
+        key_name = app_utils.format_for_dict_key(new_name)
         self.aofs[key_name] = {'name': new_name, 'projects': []}
         self.rebuild_aof_cache()
         self.save_data()
@@ -162,7 +162,7 @@ class DataManager(object):
         self.save_data()
 
     def delete_prj(self, prj):
-        utils.log_line("Deleting project: " + str(prj), datetime.datetime.now())
+        app_utils.log_line("Deleting project: " + str(prj), datetime.datetime.now())
         # trash the folders first
         self._file_toady.trash_project_folder(prj.summary, prj.status)
         # then ditch the project notes
@@ -285,7 +285,7 @@ class DataManager(object):
                     if prj.status == review_filter and len(prj.aofs) == 0:
                         prj_list.append(prj)
             else:
-                area_key = utils.format_for_dict_key(area)
+                area_key = app_utils.format_for_dict_key(area)
                 if self.aofs[area_key]['projects']:
                     prj_keys = self.aofs[area_key]['projects']
                     # FIXME: this is hideous.
@@ -416,9 +416,9 @@ class DataManager(object):
 
     def _parse_aof_text(self, atext):
         if atext == '':
-            return [utils.format_for_dict_key(defs.NO_AOF_ASSIGNED)]
+            return [app_utils.format_for_dict_key(defs.NO_AOF_ASSIGNED)]
         else:
-            return [utils.format_for_dict_key(atext)]
+            return [app_utils.format_for_dict_key(atext)]
 
     def _ploader(self, pfile_path):
         with open(pfile_path, 'r') as pfile:
@@ -631,7 +631,7 @@ class InboxManager(object):
                 except gio.Error as error:
                     msg = ("Can't trash file (called from InboxManager."
                            "complete_processing): {0} -- error: {1}")
-                    utils.log_line(msg.format(obj.summary, error))
+                    app_utils.log_line(msg.format(obj.summary, error))
             self._tree.refresh()
             self._tree.select_paths((selected_row, 0))
             gobject.idle_add(self._tree.grab_focus)
@@ -668,7 +668,7 @@ class RecurrenceManager(object):
         self._data_lumbergh = dm
 
     def place_recurring_tasks(self):
-        utils.log_line("Running place_recurring_tasks()", datetime.datetime.now())        
+        app_utils.log_line("Running place_recurring_tasks()", datetime.datetime.now())        
         self._load_data(defs.RECURRENCE_DATA)
         data = self._recur_data
         today = datetime.date.today()
@@ -822,8 +822,8 @@ class BackupJesus(object):
         doomed = self._delete_doomed_files(kill_list, the_book_of_life, dry_run)
         elderly = [d for d in sorted(doomed) if self._is_senior_citizen(d)]
         message = "Damned {0} backups to the void; {1} were senior citizens."
-        utils.log_line(message.format(len(doomed), len(elderly)),
-                        datetime.datetime.now())
+        app_utils.log_line(message.format(len(doomed), len(elderly)),
+                           datetime.datetime.now())
 
     def _delete_doomed_files(self, klist, saved_indexes, keep_the_safety_on):
         doomed = []

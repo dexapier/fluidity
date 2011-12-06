@@ -18,7 +18,7 @@ from xml.sax import saxutils
 
 from fluidity import defs
 from fluidity import dbus_misc
-from fluidity import utils
+from fluidity import app_utils
 
 
 class JSONEncoder(object):
@@ -87,7 +87,7 @@ class NoteMaker(object):
             task_str = self._create_task_string(na)
             task_str = self.BULLET_T.format(task_str)
             # just use the context name as the dict_key
-            section_key = utils.format_for_dict_key(na.context)
+            section_key = app_utils.format_for_dict_key(na.context)
             if section_key not in sections:
                 sections[section_key] = ""
             sections[section_key] += task_str

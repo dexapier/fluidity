@@ -1,4 +1,4 @@
-#Sat May 21 20:47:07 CDT 2011
+#Mon Dec 05 21:28:49 CST 2011
 eclipse.preferences.version=1
 encoding//bin/fluidity=utf-8
 encoding//fluidity/boxidate.py=utf-8
@@ -20,5 +20,4 @@ encoding//fluidity/tools/fity_data_hunter.py=utf-8
 encoding//fluidity/ui/__init__.py=utf-8
 encoding//fluidity/ui/dialogs.py=utf-8
 encoding//fluidity/utils.py=utf-8
-encoding/make_clean.py=utf-8
 encoding/setup.py=utf-8

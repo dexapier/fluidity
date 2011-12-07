@@ -76,7 +76,8 @@ message NextAction {
 
 	message Context {
 		required CommonMetadata metadata = 1;
-		required string name = 2;  // i.e. formatted for human use '@Online' or maybe just 'Online'
+		// i.e. formatted for human use '@Online' or maybe just 'Online'
+		required string name = 2;
 	}
 
 	enum EnergyEstimate {
@@ -89,9 +90,9 @@ message NextAction {
     required CommonMetadata metadata = 1;
     required string summary = 2;
     required Priority priority = 3 [default = MEDIUM];
-    required DateTimeStamp completion_time = 4;  // should this have a default...?
-    required DateTimeStamp queue_time = 5;  // should this have a default...?
-	required DateTimeStamp due_time = 6;  // should this have a default...?
+    optional DateTimeStamp completion_time = 4;
+    optional DateTimeStamp queue_time = 5;
+	optional DateTimeStamp due_time = 6;
 
 	required UUID context = 7;
 	required int32 time_estimate_minutes = 8;
@@ -121,9 +122,9 @@ message Project {
     required CommonMetadata metadata = 1;
     required string summary = 2;
     required Priority priority = 3 [default = MEDIUM];
-    required DateTimeStamp completion_time = 4;  // should this have a default...?
-    required DateTimeStamp queue_time = 5;  // should this have a default...?
-	required DateTimeStamp due_time = 6;  // should this have a default...?
+    optional DateTimeStamp completion_time = 4;  // should this have a default...?
+    optional DateTimeStamp queue_time = 5;  // should this have a default...?
+	optional DateTimeStamp due_time = 6;  // should this have a default...?
 
 	required Status status = 7;
     optional WaitingForData waiting_for_data = 8;
@@ -132,4 +133,10 @@ message Project {
 	repeated UUID areas_of_focus = 10;
 	repeated UUID sequential_next_actions = 11;
 	repeated UUID unordered_next_actions = 12;
+}
+
+
+message InboxNote {
+    required string summary = 1;
+    optional string details = 2;
 }

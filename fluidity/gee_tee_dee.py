@@ -14,30 +14,21 @@ __author__ = 'Jens Knutson'
 import abc
 import calendar
 import datetime
-import os
 import uuid
-
-# FIXME: ewww. this should NOT be here.
-import gtk
 
 from xml.sax import saxutils
 
 from fluidity import app_utils
 from fluidity import defs
+from fluidity import defs_gui
 from fluidity import utils
 
-TOP_LEVEL_PROJECT = '00000000-0000-0000-0000-000000000000'
+
+TOP_LEVEL_PROJECT_LEGACY = '00000000-0000-0000-0000-000000000000'
+TOP_LEVEL_PROJECT_UUID = uuid.UUID(
+       '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF').bytes
 
 # FIXME: use dependency injection to handle this for now.
-ICON_THEME = gtk.icon_theme_get_for_screen(gtk.gdk.Screen())
-ALERT_ICON_PIXBUF = ICON_THEME.load_icon('gtk-dialog-warning', 16,
-                                         gtk.ICON_LOOKUP_USE_BUILTIN)
-FAKE_ICON_PIXBUF = gtk.gdk.pixbuf_new_from_file(
-                           os.path.join(defs.APP_DATA_PATH, '16x16_trans.png'))
-NOTE_ICON_PIXBUF = ICON_THEME.load_icon('text-x-generic', 16,
-                                        gtk.ICON_LOOKUP_USE_BUILTIN)
-URL_ICON_PIXBUF = ICON_THEME.load_icon('emblem-web', 16,
-                                        gtk.ICON_LOOKUP_USE_BUILTIN)
 
 ENERGY_LABELS_TO_VALUES = {"High": 2, "Normal": 1, "Low": 0}
 ENERGY_VALUES_TO_LABELS = utils.invert_dict(ENERGY_LABELS_TO_VALUES)
@@ -157,10 +148,8 @@ class NextAction(GeeTeeDeeData):
         return self._context
     @context.setter
     def context(self, value):
-        type_error = "Context must be a str"
-        space_error = "Contexts must not contain spaces"
-        assert isinstance(value, basestring), type_error
-        assert " " not in value, space_error
+        assert isinstance(value, basestring), "Context must be a str"
+        assert " " not in value, "Contexts must not contain spaces"
         value = '@' + value.lstrip('@').capitalize()
         self._context = value
 
@@ -222,7 +211,7 @@ class NextAction(GeeTeeDeeData):
 
     @property
     def notes_icon(self):
-        icon = NOTE_ICON_PIXBUF if self.notes else FAKE_ICON_PIXBUF
+        icon = defs_gui.NOTE_ICON_PIXBUF if self.notes else defs_gui.FAKE_ICON_PIXBUF
         return icon
 
     # FIXME: this should really be sort_due_date or something, shouldn't it?
@@ -235,7 +224,7 @@ class NextAction(GeeTeeDeeData):
 
     @property
     def url_icon(self):
-        icon = URL_ICON_PIXBUF if self.url else FAKE_ICON_PIXBUF
+        icon = defs_gui.URL_ICON_PIXBUF if self.url else defs_gui.FAKE_ICON_PIXBUF
         return icon
 
     def to_json(self):
@@ -265,7 +254,7 @@ class Project(GeeTeeDeeData):
         self._aofs = []
         self._incubating_next_actions = []
         self._next_actions = []
-        self.parent_project = TOP_LEVEL_PROJECT
+        self.parent_project = TOP_LEVEL_PROJECT_LEGACY
         self.subprojects = []
         self._waiting_for_since = None
 
@@ -318,12 +307,12 @@ class Project(GeeTeeDeeData):
     def alert(self):
         """Indicate if the project is in an "alert" status."""
         if self._status != "active":
-            return FAKE_ICON_PIXBUF
+            return defs_gui.FAKE_ICON_PIXBUF
         else:
             for na in self.next_actions:
                 if not na.complete:
-                    return FAKE_ICON_PIXBUF
-            return ALERT_ICON_PIXBUF
+                    return defs_gui.FAKE_ICON_PIXBUF
+            return defs_gui.ALERT_ICON_PIXBUF
 
     @property
     def formatted_summary(self):

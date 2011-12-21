@@ -800,8 +800,7 @@ class Fluidity(object):
                                              reverse=True)
         na_list.sort(key=operator.attrgetter('sort_date', 'priority', 'context'))
 
-        json_exporter = task_export.JSONEncoder()
-        json_exporter.export_next_actions(na_list)
+        task_export.ProtobufEncoder().export_next_actions(na_list)
 
     def temporarily_disable_widget(self, widget):
         if widget.get_property('sensitive'):

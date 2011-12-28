@@ -11,6 +11,7 @@ __author__ = "Jens Knutson"
 
 
 import json
+import operator
 import os
 import subprocess
 import time
@@ -67,11 +68,22 @@ class ProtobufEncoder(object):
         with open(self._LOCAL_DUMP_PATH, 'w') as bytes_file:
             bytes_file.write(proto.SerializeToString())
         
-        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, self._REMOTE_HOST,
-                                             self._REMOTE_DUMP_PATH)
+        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, 
+                                              self._REMOTE_HOST,
+                                              self._REMOTE_DUMP_PATH)
         print("Running: ", command)
         subprocess.call(command, shell=True)
-    
+
+    def _sort_na_list(self, na_list):
+        # FIXME: sorting this list should live in ONE place - right now 
+        # it's (at least) in 2 places.
+        na_list = sorted(na_list, key=operator.attrgetter('context'))
+        na_list = sorted(na_list, 
+                         key=operator.attrgetter('age', 'time_est', 'energy_est'), 
+                         reverse=True)
+        na_list = sorted(na_list, key=operator.attrgetter('sort_date', 'priority'))
+        return na_list
+
 
 class NoteMaker(object):
     """Create a Tomboy-format .note file to be sent to Conboy on a Maemo device

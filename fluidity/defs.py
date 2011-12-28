@@ -62,7 +62,8 @@ CREATION_EPOCH = 1262325600.0
 
 # this just indicates "this is not a real context UUID, it's 'faked-out'"
 FAKE_CONTEXT_UUID = uuid.UUID(
-       '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF').bytes
+       bytes='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF')
+
 
 ### NOTES APP STUFF ###
 # FIXME: this is lame.  Figure out /real/ Tomboy vs. Gnote handling later

@@ -26,7 +26,7 @@ from fluidity import utils
 
 TOP_LEVEL_PROJECT_LEGACY = '00000000-0000-0000-0000-000000000000'
 TOP_LEVEL_PROJECT_UUID = uuid.UUID(
-       '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF').bytes
+        bytes='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xCA\xFE\xD0\x0D')
 
 # FIXME: use dependency injection to handle this for now.
 

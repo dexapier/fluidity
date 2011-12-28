@@ -5,7 +5,6 @@ Created on Dec 13, 2011
 '''
 import uuid
 
-from fluidity import app_utils
 from fluidity import models
 from fluidity import utils
 
@@ -56,35 +55,31 @@ class _NextActionToProtoConverter(object):
 
     def convert(self):
         proto = models.NextAction()
-        proto.metadata = self._build_common_metadata()
+        proto.metadata.uuid.raw_bytes = uuid.UUID(self._na.uuid).bytes
+        proto.metadata.creation_time.timestamp = utils.to_timestamp(
+                self._na.creation_date)
         proto.summary = self._na.summary
         proto.priority = _PRIORITY_TO_PROTO_VALUE[self._na.priority]
 
         if self._na.completion_date:
-            proto.completion_time = app_utils.to_model_datetimestamp(
+            proto.completion_time.timestamp = utils.to_timestamp(
                     self._na.completion_date)
 
         if self._na.queue_date:
-            proto.queue_time = app_utils.to_model_datetimestamp(self._na.queue_date)
+            proto.queue_time.timestamp = utils.to_timestamp(self._na.queue_date)
         
         if self._na.due_date:
-            proto.due_time = app_utils.to_model_datetimestamp(self._na.due_date)
+            proto.due_time.timestamp = utils.to_timestamp(self._na.due_date)
         
         proto.HACK_context = self._na.context
         
-        proto.time_estimate_minutes = self._na.time_est
+        proto.time_estimate_minutes = int(self._na.time_est)
         proto.energy_estimate = _ENERGY_TO_PROTO_VALUE[self._na.energy_est]
         
         if self._na.notes:
-            proto.notes = self._na.notes
+            proto.notes = unicode(self._na.notes)
         
         if self._na.url:
-            proto.related_resources.add(models.URI(uri=self._na.url))
+            proto.related_resources.add().uri = self._na.url
 
         return proto
-
-    def _build_common_metadata(self):
-        meta = models.CommonMetadata()
-        meta.uuid = models.UUID(raw_bytes=uuid.UUID(self._na.uuid).bytes)
-        meta.creation_time = app_utils.to_model_datetimestamp(self._na.creation_date)
-        return meta

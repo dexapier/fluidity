@@ -100,8 +100,12 @@ class DataManager(object):
         self.queued_singletons.append(na)
         self.save_data()
 
-    #FIXME: total crap.  fix later.
+    def aof_names(self):
+        return [self.aofs[k]['name'] for k in self.aofs.keys()]
+
     def archive_completed_singletons(self):
+        #FIXME: total crap.  fix later.
+
         # the .format("") below is on purpose - look at the path for
         # defs.USER_DATA_PATH in your filesystem, it'll make more sense.
         pkl_path = os.path.join(defs.USER_DATA_PATH,
@@ -383,7 +387,7 @@ class DataManager(object):
                     self.aofs[aof]['projects'].append(prj.key_name)
                 prj.aofs.append(aof)
         self.save_data()
-#        return self.get_prj_aof_names(prj)
+        return self.get_prj_aof_names(prj)
 
     def add_slider_items(self, na_list, note_list, queued_list):
         self._take_these_fucking_nas(na_list)

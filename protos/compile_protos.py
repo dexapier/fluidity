@@ -22,7 +22,7 @@ def fix_protobuf_warnings():
         models.write(models_text.replace(BASE_HEADER, NEW_HEADER))
 
 
-subprocess.call("protoc --python_out=. *.proto", shell=True)
+subprocess.call("protoc --python_out=. --java_out=. *.proto", shell=True)
 print "Fixing protobuf warning crap..."
 fix_protobuf_warnings()
 

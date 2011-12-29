@@ -13,12 +13,12 @@ from google.protobuf import descriptor_pb2
 
 DESCRIPTOR = descriptor.FileDescriptor(
   name='models.proto',
-  package='',
-  serialized_pb='\n\x0cmodels.proto\"O\n\x18HACK_ExportedNextActions\x12\x10\n\x08\x63ontexts\x18\x01 \x03(\t\x12!\n\x0cnext_actions\x18\x02 \x03(\x0b\x32\x0b.NextAction\">\n\x0b\x41reaOfFocus\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"\x8f\x04\n\nNextAction\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12#\n\x08priority\x18\x03 \x02(\x0e\x32\t.Priority:\x06MEDIUM\x12\'\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32\x0e.DateTimeStamp\x12\"\n\nqueue_time\x18\x05 \x01(\x0b\x32\x0e.DateTimeStamp\x12 \n\x08\x64ue_time\x18\x06 \x01(\x0b\x32\x0e.DateTimeStamp\x12\x14\n\x0cHACK_context\x18\x07 \x02(\t\x12\x1d\n\x15time_estimate_minutes\x18\x08 \x02(\x05\x12\x33\n\x0f\x65nergy_estimate\x18\t \x02(\x0e\x32\x1a.NextAction.EnergyEstimate\x12\r\n\x05notes\x18\n \x01(\t\x12\x1f\n\x11related_resources\x18\x0b \x03(\x0b\x32\x04.URI\x1a:\n\x07\x43ontext\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"2\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0c\n\x08\x43OMPLETE\x10\x03\"/\n\x0e\x45nergyEstimate\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\"\xbe\x04\n\x07Project\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12#\n\x08priority\x18\x03 \x02(\x0e\x32\t.Priority:\x06MEDIUM\x12\'\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32\x0e.DateTimeStamp\x12\"\n\nqueue_time\x18\x05 \x01(\x0b\x32\x0e.DateTimeStamp\x12 \n\x08\x64ue_time\x18\x06 \x01(\x0b\x32\x0e.DateTimeStamp\x12\x1f\n\x06status\x18\x07 \x02(\x0e\x32\x0f.Project.Status\x12\x31\n\x10waiting_for_data\x18\x08 \x01(\x0b\x32\x17.Project.WaitingForData\x12\x1a\n\x0bsubprojects\x18\t \x03(\x0b\x32\x05.UUID\x12\x1d\n\x0e\x61reas_of_focus\x18\n \x03(\x0b\x32\x05.UUID\x12&\n\x17sequential_next_actions\x18\x0b \x03(\x0b\x32\x05.UUID\x12%\n\x16unordered_next_actions\x18\x0c \x03(\x0b\x32\x05.UUID\x1aH\n\x0eWaitingForData\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12%\n\rwaiting_since\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\"C\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0f\n\x0bWAITING_FOR\x10\x03\x12\x0c\n\x08\x43OMPLETE\x10\x04\"-\n\tInboxNote\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x65tails\x18\x02 \x01(\t\"\x90\x01\n\x03Tag\x12\x1e\n\x04meta\x18\x01 \x02(\x0b\x32\x10.Tag.TagMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x10\n\x08\x61lt_name\x18\x03 \x01(\t\x1aI\n\x0bTagMetadata\x12\x13\n\x04uuid\x18\x01 \x02(\x0b\x32\x05.UUID\x12%\n\rcreation_time\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\"f\n\x0e\x43ommonMetadata\x12\x13\n\x04uuid\x18\x01 \x02(\x0b\x32\x05.UUID\x12%\n\rcreation_time\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\x12\x18\n\ttag_uuids\x18\x03 \x03(\x0b\x32\x05.UUID\"\xc8\x01\n\x0f\x41llFluidityData\x12$\n\x0e\x61reas_of_focus\x18\x01 \x03(\x0b\x32\x0c.AreaOfFocus\x12\x1a\n\x08projects\x18\x02 \x03(\x0b\x32\x08.Project\x12!\n\x0cnext_actions\x18\x03 \x03(\x0b\x32\x0b.NextAction\x12\x1f\n\x0binbox_notes\x18\x04 \x03(\x0b\x32\n.InboxNote\x12/\n\x1apre_sorted_current_actions\x18\x05 \x03(\x0b\x32\x0b.NextAction\"\"\n\rDateTimeStamp\x12\x11\n\ttimestamp\x18\x01 \x02(\x05\"[\n\x05Image\x12\x12\n\nimage_data\x18\x01 \x02(\x0c\x12\x1e\n\x04type\x18\x02 \x02(\x0e\x32\x10.Image.ImageType\"\x1e\n\tImageType\x12\x07\n\x03PNG\x10\x01\x12\x08\n\x04JPEG\x10\x02\"@\n\x03URI\x12\x0b\n\x03uri\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x17\n\x07\x66\x61vicon\x18\x03 \x01(\x0b\x32\x06.Image\"\x19\n\x04UUID\x12\x11\n\traw_bytes\x18\x01 \x02(\x0c*)\n\x08Priority\x12\x08\n\x04HIGH\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x07\n\x03LOW\x10\x03')
+  package='org.solemnsilence.fluidity.model',
+  serialized_pb='\n\x0cmodels.proto\x12 org.solemnsilence.fluidity.model\"p\n\x18HACK_ExportedNextActions\x12\x10\n\x08\x63ontexts\x18\x01 \x03(\t\x12\x42\n\x0cnext_actions\x18\x02 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\"_\n\x0b\x41reaOfFocus\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"\x97\x06\n\nNextAction\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12\x44\n\x08priority\x18\x03 \x02(\x0e\x32*.org.solemnsilence.fluidity.model.Priority:\x06MEDIUM\x12H\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x43\n\nqueue_time\x18\x05 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x41\n\x08\x64ue_time\x18\x06 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x14\n\x0cHACK_context\x18\x07 \x02(\t\x12\x1d\n\x15time_estimate_minutes\x18\x08 \x02(\x05\x12T\n\x0f\x65nergy_estimate\x18\t \x02(\x0e\x32;.org.solemnsilence.fluidity.model.NextAction.EnergyEstimate\x12\r\n\x05notes\x18\n \x01(\t\x12@\n\x11related_resources\x18\x0b \x03(\x0b\x32%.org.solemnsilence.fluidity.model.URI\x1a[\n\x07\x43ontext\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"2\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0c\n\x08\x43OMPLETE\x10\x03\"/\n\x0e\x45nergyEstimate\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\"\xca\x07\n\x07Project\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12\x44\n\x08priority\x18\x03 \x02(\x0e\x32*.org.solemnsilence.fluidity.model.Priority:\x06MEDIUM\x12H\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x43\n\nqueue_time\x18\x05 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x41\n\x08\x64ue_time\x18\x06 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12@\n\x06status\x18\x07 \x02(\x0e\x32\x30.org.solemnsilence.fluidity.model.Project.Status\x12R\n\x10waiting_for_data\x18\x08 \x01(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.WaitingForData\x12;\n\x0bsubprojects\x18\t \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12>\n\x0e\x61reas_of_focus\x18\n \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12G\n\x17sequential_next_actions\x18\x0b \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\x16unordered_next_actions\x18\x0c \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x1ai\n\x0eWaitingForData\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x46\n\rwaiting_since\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\"C\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0f\n\x0bWAITING_FOR\x10\x03\x12\x0c\n\x08\x43OMPLETE\x10\x04\"-\n\tInboxNote\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x65tails\x18\x02 \x01(\t\"\xf4\x01\n\x03Tag\x12?\n\x04meta\x18\x01 \x02(\x0b\x32\x31.org.solemnsilence.fluidity.model.Tag.TagMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x10\n\x08\x61lt_name\x18\x03 \x01(\t\x1a\x8b\x01\n\x0bTagMetadata\x12\x34\n\x04uuid\x18\x01 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\rcreation_time\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\"\xc9\x01\n\x0e\x43ommonMetadata\x12\x34\n\x04uuid\x18\x01 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\rcreation_time\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x39\n\ttag_uuids\x18\x03 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\"\xed\x02\n\x0f\x41llFluidityData\x12\x45\n\x0e\x61reas_of_focus\x18\x01 \x03(\x0b\x32-.org.solemnsilence.fluidity.model.AreaOfFocus\x12;\n\x08projects\x18\x02 \x03(\x0b\x32).org.solemnsilence.fluidity.model.Project\x12\x42\n\x0cnext_actions\x18\x03 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\x12@\n\x0binbox_notes\x18\x04 \x03(\x0b\x32+.org.solemnsilence.fluidity.model.InboxNote\x12P\n\x1apre_sorted_current_actions\x18\x05 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\"\"\n\rDateTimeStamp\x12\x11\n\ttimestamp\x18\x01 \x02(\x05\"|\n\x05Image\x12\x12\n\nimage_data\x18\x01 \x02(\x0c\x12?\n\x04type\x18\x02 \x02(\x0e\x32\x31.org.solemnsilence.fluidity.model.Image.ImageType\"\x1e\n\tImageType\x12\x07\n\x03PNG\x10\x01\x12\x08\n\x04JPEG\x10\x02\"a\n\x03URI\x12\x0b\n\x03uri\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x38\n\x07\x66\x61vicon\x18\x03 \x01(\x0b\x32\'.org.solemnsilence.fluidity.model.Image\"\x19\n\x04UUID\x12\x11\n\traw_bytes\x18\x01 \x02(\x0c*)\n\x08Priority\x12\x08\n\x04HIGH\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x07\n\x03LOW\x10\x03')
 
 _PRIORITY = descriptor.EnumDescriptor(
   name='Priority',
-  full_name='Priority',
+  full_name='org.solemnsilence.fluidity.model.Priority',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -37,8 +37,8 @@ _PRIORITY = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1991,
-  serialized_end=2032,
+  serialized_start=3182,
+  serialized_end=3223,
 )
 
 
@@ -49,7 +49,7 @@ LOW = 3
 
 _NEXTACTION_STATUS = descriptor.EnumDescriptor(
   name='Status',
-  full_name='NextAction.Status',
+  full_name='org.solemnsilence.fluidity.model.NextAction.Status',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -68,13 +68,13 @@ _NEXTACTION_STATUS = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=590,
-  serialized_end=640,
+  serialized_start=954,
+  serialized_end=1004,
 )
 
 _NEXTACTION_ENERGYESTIMATE = descriptor.EnumDescriptor(
   name='EnergyEstimate',
-  full_name='NextAction.EnergyEstimate',
+  full_name='org.solemnsilence.fluidity.model.NextAction.EnergyEstimate',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -93,13 +93,13 @@ _NEXTACTION_ENERGYESTIMATE = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=642,
-  serialized_end=689,
+  serialized_start=1006,
+  serialized_end=1053,
 )
 
 _PROJECT_STATUS = descriptor.EnumDescriptor(
   name='Status',
-  full_name='Project.Status',
+  full_name='org.solemnsilence.fluidity.model.Project.Status',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -122,13 +122,13 @@ _PROJECT_STATUS = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1199,
-  serialized_end=1266,
+  serialized_start=1959,
+  serialized_end=2026,
 )
 
 _IMAGE_IMAGETYPE = descriptor.EnumDescriptor(
   name='ImageType',
-  full_name='Image.ImageType',
+  full_name='org.solemnsilence.fluidity.model.Image.ImageType',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -143,27 +143,27 @@ _IMAGE_IMAGETYPE = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1866,
-  serialized_end=1896,
+  serialized_start=3024,
+  serialized_end=3054,
 )
 
 
 _HACK_EXPORTEDNEXTACTIONS = descriptor.Descriptor(
   name='HACK_ExportedNextActions',
-  full_name='HACK_ExportedNextActions',
+  full_name='org.solemnsilence.fluidity.model.HACK_ExportedNextActions',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='contexts', full_name='HACK_ExportedNextActions.contexts', index=0,
+      name='contexts', full_name='org.solemnsilence.fluidity.model.HACK_ExportedNextActions.contexts', index=0,
       number=1, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='next_actions', full_name='HACK_ExportedNextActions.next_actions', index=1,
+      name='next_actions', full_name='org.solemnsilence.fluidity.model.HACK_ExportedNextActions.next_actions', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -178,27 +178,27 @@ _HACK_EXPORTEDNEXTACTIONS = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=16,
-  serialized_end=95,
+  serialized_start=50,
+  serialized_end=162,
 )
 
 
 _AREAOFFOCUS = descriptor.Descriptor(
   name='AreaOfFocus',
-  full_name='AreaOfFocus',
+  full_name='org.solemnsilence.fluidity.model.AreaOfFocus',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='metadata', full_name='AreaOfFocus.metadata', index=0,
+      name='metadata', full_name='org.solemnsilence.fluidity.model.AreaOfFocus.metadata', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='name', full_name='AreaOfFocus.name', index=1,
+      name='name', full_name='org.solemnsilence.fluidity.model.AreaOfFocus.name', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
@@ -213,27 +213,27 @@ _AREAOFFOCUS = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=97,
-  serialized_end=159,
+  serialized_start=164,
+  serialized_end=259,
 )
 
 
 _NEXTACTION_CONTEXT = descriptor.Descriptor(
   name='Context',
-  full_name='NextAction.Context',
+  full_name='org.solemnsilence.fluidity.model.NextAction.Context',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='metadata', full_name='NextAction.Context.metadata', index=0,
+      name='metadata', full_name='org.solemnsilence.fluidity.model.NextAction.Context.metadata', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='name', full_name='NextAction.Context.name', index=1,
+      name='name', full_name='org.solemnsilence.fluidity.model.NextAction.Context.name', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
@@ -248,89 +248,89 @@ _NEXTACTION_CONTEXT = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=530,
-  serialized_end=588,
+  serialized_start=861,
+  serialized_end=952,
 )
 
 _NEXTACTION = descriptor.Descriptor(
   name='NextAction',
-  full_name='NextAction',
+  full_name='org.solemnsilence.fluidity.model.NextAction',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='metadata', full_name='NextAction.metadata', index=0,
+      name='metadata', full_name='org.solemnsilence.fluidity.model.NextAction.metadata', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='summary', full_name='NextAction.summary', index=1,
+      name='summary', full_name='org.solemnsilence.fluidity.model.NextAction.summary', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='priority', full_name='NextAction.priority', index=2,
+      name='priority', full_name='org.solemnsilence.fluidity.model.NextAction.priority', index=2,
       number=3, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=2,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='completion_time', full_name='NextAction.completion_time', index=3,
+      name='completion_time', full_name='org.solemnsilence.fluidity.model.NextAction.completion_time', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='queue_time', full_name='NextAction.queue_time', index=4,
+      name='queue_time', full_name='org.solemnsilence.fluidity.model.NextAction.queue_time', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='due_time', full_name='NextAction.due_time', index=5,
+      name='due_time', full_name='org.solemnsilence.fluidity.model.NextAction.due_time', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='HACK_context', full_name='NextAction.HACK_context', index=6,
+      name='HACK_context', full_name='org.solemnsilence.fluidity.model.NextAction.HACK_context', index=6,
       number=7, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='time_estimate_minutes', full_name='NextAction.time_estimate_minutes', index=7,
+      name='time_estimate_minutes', full_name='org.solemnsilence.fluidity.model.NextAction.time_estimate_minutes', index=7,
       number=8, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='energy_estimate', full_name='NextAction.energy_estimate', index=8,
+      name='energy_estimate', full_name='org.solemnsilence.fluidity.model.NextAction.energy_estimate', index=8,
       number=9, type=14, cpp_type=8, label=2,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='notes', full_name='NextAction.notes', index=9,
+      name='notes', full_name='org.solemnsilence.fluidity.model.NextAction.notes', index=9,
       number=10, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='related_resources', full_name='NextAction.related_resources', index=10,
+      name='related_resources', full_name='org.solemnsilence.fluidity.model.NextAction.related_resources', index=10,
       number=11, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -347,27 +347,27 @@ _NEXTACTION = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=162,
-  serialized_end=689,
+  serialized_start=262,
+  serialized_end=1053,
 )
 
 
 _PROJECT_WAITINGFORDATA = descriptor.Descriptor(
   name='WaitingForData',
-  full_name='Project.WaitingForData',
+  full_name='org.solemnsilence.fluidity.model.Project.WaitingForData',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='summary', full_name='Project.WaitingForData.summary', index=0,
+      name='summary', full_name='org.solemnsilence.fluidity.model.Project.WaitingForData.summary', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='waiting_since', full_name='Project.WaitingForData.waiting_since', index=1,
+      name='waiting_since', full_name='org.solemnsilence.fluidity.model.Project.WaitingForData.waiting_since', index=1,
       number=2, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -382,96 +382,96 @@ _PROJECT_WAITINGFORDATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1125,
-  serialized_end=1197,
+  serialized_start=1852,
+  serialized_end=1957,
 )
 
 _PROJECT = descriptor.Descriptor(
   name='Project',
-  full_name='Project',
+  full_name='org.solemnsilence.fluidity.model.Project',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='metadata', full_name='Project.metadata', index=0,
+      name='metadata', full_name='org.solemnsilence.fluidity.model.Project.metadata', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='summary', full_name='Project.summary', index=1,
+      name='summary', full_name='org.solemnsilence.fluidity.model.Project.summary', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='priority', full_name='Project.priority', index=2,
+      name='priority', full_name='org.solemnsilence.fluidity.model.Project.priority', index=2,
       number=3, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=2,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='completion_time', full_name='Project.completion_time', index=3,
+      name='completion_time', full_name='org.solemnsilence.fluidity.model.Project.completion_time', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='queue_time', full_name='Project.queue_time', index=4,
+      name='queue_time', full_name='org.solemnsilence.fluidity.model.Project.queue_time', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='due_time', full_name='Project.due_time', index=5,
+      name='due_time', full_name='org.solemnsilence.fluidity.model.Project.due_time', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='status', full_name='Project.status', index=6,
+      name='status', full_name='org.solemnsilence.fluidity.model.Project.status', index=6,
       number=7, type=14, cpp_type=8, label=2,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='waiting_for_data', full_name='Project.waiting_for_data', index=7,
+      name='waiting_for_data', full_name='org.solemnsilence.fluidity.model.Project.waiting_for_data', index=7,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='subprojects', full_name='Project.subprojects', index=8,
+      name='subprojects', full_name='org.solemnsilence.fluidity.model.Project.subprojects', index=8,
       number=9, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='areas_of_focus', full_name='Project.areas_of_focus', index=9,
+      name='areas_of_focus', full_name='org.solemnsilence.fluidity.model.Project.areas_of_focus', index=9,
       number=10, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='sequential_next_actions', full_name='Project.sequential_next_actions', index=10,
+      name='sequential_next_actions', full_name='org.solemnsilence.fluidity.model.Project.sequential_next_actions', index=10,
       number=11, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='unordered_next_actions', full_name='Project.unordered_next_actions', index=11,
+      name='unordered_next_actions', full_name='org.solemnsilence.fluidity.model.Project.unordered_next_actions', index=11,
       number=12, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -487,27 +487,27 @@ _PROJECT = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=692,
-  serialized_end=1266,
+  serialized_start=1056,
+  serialized_end=2026,
 )
 
 
 _INBOXNOTE = descriptor.Descriptor(
   name='InboxNote',
-  full_name='InboxNote',
+  full_name='org.solemnsilence.fluidity.model.InboxNote',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='summary', full_name='InboxNote.summary', index=0,
+      name='summary', full_name='org.solemnsilence.fluidity.model.InboxNote.summary', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='details', full_name='InboxNote.details', index=1,
+      name='details', full_name='org.solemnsilence.fluidity.model.InboxNote.details', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
@@ -522,27 +522,27 @@ _INBOXNOTE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1268,
-  serialized_end=1313,
+  serialized_start=2028,
+  serialized_end=2073,
 )
 
 
 _TAG_TAGMETADATA = descriptor.Descriptor(
   name='TagMetadata',
-  full_name='Tag.TagMetadata',
+  full_name='org.solemnsilence.fluidity.model.Tag.TagMetadata',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='uuid', full_name='Tag.TagMetadata.uuid', index=0,
+      name='uuid', full_name='org.solemnsilence.fluidity.model.Tag.TagMetadata.uuid', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='creation_time', full_name='Tag.TagMetadata.creation_time', index=1,
+      name='creation_time', full_name='org.solemnsilence.fluidity.model.Tag.TagMetadata.creation_time', index=1,
       number=2, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -557,33 +557,33 @@ _TAG_TAGMETADATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1387,
-  serialized_end=1460,
+  serialized_start=2181,
+  serialized_end=2320,
 )
 
 _TAG = descriptor.Descriptor(
   name='Tag',
-  full_name='Tag',
+  full_name='org.solemnsilence.fluidity.model.Tag',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='meta', full_name='Tag.meta', index=0,
+      name='meta', full_name='org.solemnsilence.fluidity.model.Tag.meta', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='name', full_name='Tag.name', index=1,
+      name='name', full_name='org.solemnsilence.fluidity.model.Tag.name', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='alt_name', full_name='Tag.alt_name', index=2,
+      name='alt_name', full_name='org.solemnsilence.fluidity.model.Tag.alt_name', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
@@ -598,34 +598,34 @@ _TAG = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1316,
-  serialized_end=1460,
+  serialized_start=2076,
+  serialized_end=2320,
 )
 
 
 _COMMONMETADATA = descriptor.Descriptor(
   name='CommonMetadata',
-  full_name='CommonMetadata',
+  full_name='org.solemnsilence.fluidity.model.CommonMetadata',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='uuid', full_name='CommonMetadata.uuid', index=0,
+      name='uuid', full_name='org.solemnsilence.fluidity.model.CommonMetadata.uuid', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='creation_time', full_name='CommonMetadata.creation_time', index=1,
+      name='creation_time', full_name='org.solemnsilence.fluidity.model.CommonMetadata.creation_time', index=1,
       number=2, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='tag_uuids', full_name='CommonMetadata.tag_uuids', index=2,
+      name='tag_uuids', full_name='org.solemnsilence.fluidity.model.CommonMetadata.tag_uuids', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -640,48 +640,48 @@ _COMMONMETADATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1462,
-  serialized_end=1564,
+  serialized_start=2323,
+  serialized_end=2524,
 )
 
 
 _ALLFLUIDITYDATA = descriptor.Descriptor(
   name='AllFluidityData',
-  full_name='AllFluidityData',
+  full_name='org.solemnsilence.fluidity.model.AllFluidityData',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='areas_of_focus', full_name='AllFluidityData.areas_of_focus', index=0,
+      name='areas_of_focus', full_name='org.solemnsilence.fluidity.model.AllFluidityData.areas_of_focus', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='projects', full_name='AllFluidityData.projects', index=1,
+      name='projects', full_name='org.solemnsilence.fluidity.model.AllFluidityData.projects', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='next_actions', full_name='AllFluidityData.next_actions', index=2,
+      name='next_actions', full_name='org.solemnsilence.fluidity.model.AllFluidityData.next_actions', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='inbox_notes', full_name='AllFluidityData.inbox_notes', index=3,
+      name='inbox_notes', full_name='org.solemnsilence.fluidity.model.AllFluidityData.inbox_notes', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='pre_sorted_current_actions', full_name='AllFluidityData.pre_sorted_current_actions', index=4,
+      name='pre_sorted_current_actions', full_name='org.solemnsilence.fluidity.model.AllFluidityData.pre_sorted_current_actions', index=4,
       number=5, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -696,20 +696,20 @@ _ALLFLUIDITYDATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1567,
-  serialized_end=1767,
+  serialized_start=2527,
+  serialized_end=2892,
 )
 
 
 _DATETIMESTAMP = descriptor.Descriptor(
   name='DateTimeStamp',
-  full_name='DateTimeStamp',
+  full_name='org.solemnsilence.fluidity.model.DateTimeStamp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='timestamp', full_name='DateTimeStamp.timestamp', index=0,
+      name='timestamp', full_name='org.solemnsilence.fluidity.model.DateTimeStamp.timestamp', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -724,27 +724,27 @@ _DATETIMESTAMP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1769,
-  serialized_end=1803,
+  serialized_start=2894,
+  serialized_end=2928,
 )
 
 
 _IMAGE = descriptor.Descriptor(
   name='Image',
-  full_name='Image',
+  full_name='org.solemnsilence.fluidity.model.Image',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='image_data', full_name='Image.image_data', index=0,
+      name='image_data', full_name='org.solemnsilence.fluidity.model.Image.image_data', index=0,
       number=1, type=12, cpp_type=9, label=2,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='type', full_name='Image.type', index=1,
+      name='type', full_name='org.solemnsilence.fluidity.model.Image.type', index=1,
       number=2, type=14, cpp_type=8, label=2,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
@@ -760,34 +760,34 @@ _IMAGE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1805,
-  serialized_end=1896,
+  serialized_start=2930,
+  serialized_end=3054,
 )
 
 
 _URI = descriptor.Descriptor(
   name='URI',
-  full_name='URI',
+  full_name='org.solemnsilence.fluidity.model.URI',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='uri', full_name='URI.uri', index=0,
+      name='uri', full_name='org.solemnsilence.fluidity.model.URI.uri', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='description', full_name='URI.description', index=1,
+      name='description', full_name='org.solemnsilence.fluidity.model.URI.description', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='favicon', full_name='URI.favicon', index=2,
+      name='favicon', full_name='org.solemnsilence.fluidity.model.URI.favicon', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -802,20 +802,20 @@ _URI = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1898,
-  serialized_end=1962,
+  serialized_start=3056,
+  serialized_end=3153,
 )
 
 
 _UUID = descriptor.Descriptor(
   name='UUID',
-  full_name='UUID',
+  full_name='org.solemnsilence.fluidity.model.UUID',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='raw_bytes', full_name='UUID.raw_bytes', index=0,
+      name='raw_bytes', full_name='org.solemnsilence.fluidity.model.UUID.raw_bytes', index=0,
       number=1, type=12, cpp_type=9, label=2,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
@@ -830,8 +830,8 @@ _UUID = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1964,
-  serialized_end=1989,
+  serialized_start=3155,
+  serialized_end=3180,
 )
 
 _HACK_EXPORTEDNEXTACTIONS.fields_by_name['next_actions'].message_type = _NEXTACTION
@@ -893,13 +893,13 @@ class HACK_ExportedNextActions(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _HACK_EXPORTEDNEXTACTIONS
   
-  # @@protoc_insertion_point(class_scope:HACK_ExportedNextActions)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.HACK_ExportedNextActions)
 
 class AreaOfFocus(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _AREAOFFOCUS
   
-  # @@protoc_insertion_point(class_scope:AreaOfFocus)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.AreaOfFocus)
 
 class NextAction(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -908,10 +908,10 @@ class NextAction(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _NEXTACTION_CONTEXT
     
-    # @@protoc_insertion_point(class_scope:NextAction.Context)
+    # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.NextAction.Context)
   DESCRIPTOR = _NEXTACTION
   
-  # @@protoc_insertion_point(class_scope:NextAction)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.NextAction)
 
 class Project(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -920,16 +920,16 @@ class Project(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _PROJECT_WAITINGFORDATA
     
-    # @@protoc_insertion_point(class_scope:Project.WaitingForData)
+    # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Project.WaitingForData)
   DESCRIPTOR = _PROJECT
   
-  # @@protoc_insertion_point(class_scope:Project)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Project)
 
 class InboxNote(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _INBOXNOTE
   
-  # @@protoc_insertion_point(class_scope:InboxNote)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.InboxNote)
 
 class Tag(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -938,45 +938,45 @@ class Tag(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _TAG_TAGMETADATA
     
-    # @@protoc_insertion_point(class_scope:Tag.TagMetadata)
+    # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Tag.TagMetadata)
   DESCRIPTOR = _TAG
   
-  # @@protoc_insertion_point(class_scope:Tag)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Tag)
 
 class CommonMetadata(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _COMMONMETADATA
   
-  # @@protoc_insertion_point(class_scope:CommonMetadata)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.CommonMetadata)
 
 class AllFluidityData(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _ALLFLUIDITYDATA
   
-  # @@protoc_insertion_point(class_scope:AllFluidityData)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.AllFluidityData)
 
 class DateTimeStamp(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _DATETIMESTAMP
   
-  # @@protoc_insertion_point(class_scope:DateTimeStamp)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.DateTimeStamp)
 
 class Image(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _IMAGE
   
-  # @@protoc_insertion_point(class_scope:Image)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Image)
 
 class URI(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _URI
   
-  # @@protoc_insertion_point(class_scope:URI)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.URI)
 
 class UUID(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _UUID
   
-  # @@protoc_insertion_point(class_scope:UUID)
+  # @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.UUID)
 
 # @@protoc_insertion_point(module_scope)

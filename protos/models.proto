@@ -1,3 +1,6 @@
+package org.solemnsilence.fluidity.model;
+
+
 // Fugly hacks to ditch ASAP
 message HACK_ExportedNextActions {
     repeated string contexts = 1;

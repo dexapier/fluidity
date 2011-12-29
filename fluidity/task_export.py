@@ -11,24 +11,28 @@ __author__ = "Jens Knutson"
 
 
 import json
+import operator
+import os
 import subprocess
 import time
 
 from xml.sax import saxutils
 
-from fluidity import defs
-from fluidity import dbus_misc
 from fluidity import app_utils
+from fluidity import dbus_misc
+from fluidity import defs
+from fluidity import models
+from fluidity import model_factory
 
 
 class JSONEncoder(object):
     """Create a JSON array of objects with your mom."""
     
-    DUMP_FNAME = '/fity_engage_data.json'
-    LOCAL_DUMP_PATH = defs.USER_DATA_PATH + '/fity_engage_data.json'
-    REMOTE_HOST = "anvil.solemnsilence.org"
-    REMOTE_DUMP_PATH = "/home/jensck/workspace/FluidityMobile" + DUMP_FNAME
-    UPLOAD_COMMAND = "scp {0} {1}:{2}"
+    _DUMP_FNAME = 'fity_engage_data.json'
+    _LOCAL_DUMP_PATH = defs.USER_DATA_PATH + '/fity_engage_data.json'
+    _REMOTE_HOST = "anvil.solemnsilence.org"
+    _REMOTE_DUMP_PATH = "/home/jensck/workspace/FluidityMobile" + "/" + _DUMP_FNAME
+    _UPLOAD_COMMAND = "scp {0} {1}:{2}"
     
     def export_next_actions(self, na_list):
         contexts = sorted(set([na.context for na in na_list]))
@@ -36,13 +40,49 @@ class JSONEncoder(object):
         
         json_data = {'contexts': contexts, 'nas': nas_as_json}
         
-        with open(self.LOCAL_DUMP_PATH, 'w') as jsonfile:
+        with open(self._LOCAL_DUMP_PATH, 'w') as jsonfile:
             json.dump(json_data, jsonfile)
         
-        command = self.UPLOAD_COMMAND.format(self.LOCAL_DUMP_PATH, self.REMOTE_HOST,
-                                             self.REMOTE_DUMP_PATH)
+        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, self._REMOTE_HOST,
+                                             self._REMOTE_DUMP_PATH)
         print("Running: ", command)
         subprocess.call(command, shell=True)
+
+
+class ProtobufEncoder(object):
+
+    _DUMP_FNAME = 'fity_engage_data.proto_bytes'
+    _LOCAL_DUMP_PATH = os.path.join(defs.USER_DATA_PATH, 
+                                    'fity_engage_data.proto_bytes')
+    _REMOTE_HOST = "anvil.solemnsilence.org"
+    _REMOTE_DUMP_PATH = os.path.join("/home/jensck/workspace/FluidityMobile", 
+                                     _DUMP_FNAME)
+    _UPLOAD_COMMAND = "scp {0} {1}:{2}"
+    
+    def export_next_actions(self, na_list):
+        proto = models.HACK_ExportedNextActions(
+            contexts=sorted(set([na.context for na in na_list])))
+        proto.next_actions.extend([model_factory.next_action_to_protobuf(na) 
+                                   for na in na_list])
+
+        with open(self._LOCAL_DUMP_PATH, 'w') as bytes_file:
+            bytes_file.write(proto.SerializeToString())
+        
+        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, 
+                                              self._REMOTE_HOST,
+                                              self._REMOTE_DUMP_PATH)
+        print("Running: ", command)
+        subprocess.call(command, shell=True)
+
+    def _sort_na_list(self, na_list):
+        # FIXME: sorting this list should live in ONE place - right now 
+        # it's (at least) in 2 places.
+        na_list = sorted(na_list, key=operator.attrgetter('context'))
+        na_list = sorted(na_list, 
+                         key=operator.attrgetter('age', 'time_est', 'energy_est'), 
+                         reverse=True)
+        na_list = sorted(na_list, key=operator.attrgetter('sort_date', 'priority'))
+        return na_list
 
 
 class NoteMaker(object):
@@ -50,7 +90,7 @@ class NoteMaker(object):
 
     Yep, it's that specific. ;P
     """
-    # set up some templates.  Hooray for hardcoded naughtiness!
+    # Set up some templates.  Hooray for hardcoded naughtiness!
     NOTE_TITLE = "@Next Actions from Fluidity__"
     # Note title, list
     NOTE_CONTENT_T = '<note-content version="0.1">{0}\n\n{1}\n\n\n</note-content>'

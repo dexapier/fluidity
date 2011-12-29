@@ -100,8 +100,12 @@ class DataManager(object):
         self.queued_singletons.append(na)
         self.save_data()
 
-#FIXME: total crap.  fix later.
+    def aof_names(self):
+        return [self.aofs[k]['name'] for k in self.aofs.keys()]
+
     def archive_completed_singletons(self):
+        #FIXME: total crap.  fix later.
+
         # the .format("") below is on purpose - look at the path for
         # defs.USER_DATA_PATH in your filesystem, it'll make more sense.
         pkl_path = os.path.join(defs.USER_DATA_PATH,
@@ -383,7 +387,7 @@ class DataManager(object):
                     self.aofs[aof]['projects'].append(prj.key_name)
                 prj.aofs.append(aof)
         self.save_data()
-#        return self.get_prj_aof_names(prj)
+        return self.get_prj_aof_names(prj)
 
     def add_slider_items(self, na_list, note_list, queued_list):
         self._take_these_fucking_nas(na_list)
@@ -393,9 +397,7 @@ class DataManager(object):
         return self.save_data()
 
     def _take_these_fucking_nas(self, na_list):
-        na_objs = []
-        for na_file in na_list:
-            na_objs.append(self._ploader(na_file))
+        na_objs = [self._ploader(na_file) for na_file in na_list]
         for na in na_objs:
             self.prjs[na['prj_key']].next_actions.append(na['na_obj'])
 
@@ -426,15 +428,6 @@ class DataManager(object):
         return pcontent
 
 # PROPERTIES
-    def _get_aof_names(self):
-    # FIXME: now that I think about it... this is a stupid idea.  change this
-    # from a property to a regular method.
-        names = []
-        for i in self.aofs.keys():
-            names.append(self.aofs[i]['name'])
-        return names
-    aof_names = property(_get_aof_names)
-
     def engage_na_deleter(self, uuid):
         """Find the NA with the UID of uid arg, and delete it."""
         for prj in self.prjs.values():

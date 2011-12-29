@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='models.proto',
   package='',
-  serialized_pb='\n\x0cmodels.proto\"\"\n\rDateTimeStamp\x12\x11\n\ttimestamp\x18\x01 \x02(\x05\"[\n\x05Image\x12\x12\n\nimage_data\x18\x01 \x02(\x0c\x12\x1e\n\x04type\x18\x02 \x02(\x0e\x32\x10.Image.ImageType\"\x1e\n\tImageType\x12\x07\n\x03PNG\x10\x01\x12\x08\n\x04JPEG\x10\x02\"@\n\x03URI\x12\x0b\n\x03uri\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x02(\t\x12\x17\n\x07\x66\x61vicon\x18\x03 \x01(\x0b\x32\x06.Image\"\x19\n\x04UUID\x12\x11\n\traw_bytes\x18\x01 \x02(\x0c\"\x90\x01\n\x03Tag\x12\x1e\n\x04meta\x18\x01 \x02(\x0b\x32\x10.Tag.TagMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x10\n\x08\x61lt_name\x18\x03 \x01(\t\x1aI\n\x0bTagMetadata\x12\x13\n\x04uuid\x18\x01 \x02(\x0b\x32\x05.UUID\x12%\n\rcreation_time\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\"f\n\x0e\x43ommonMetadata\x12\x13\n\x04uuid\x18\x01 \x02(\x0b\x32\x05.UUID\x12%\n\rcreation_time\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\x12\x18\n\ttag_uuids\x18\x03 \x03(\x0b\x32\x05.UUID\">\n\x0b\x41reaOfFocus\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"\x91\x04\n\nNextAction\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12#\n\x08priority\x18\x03 \x02(\x0e\x32\t.Priority:\x06MEDIUM\x12\'\n\x0f\x63ompletion_time\x18\x04 \x02(\x0b\x32\x0e.DateTimeStamp\x12\"\n\nqueue_time\x18\x05 \x02(\x0b\x32\x0e.DateTimeStamp\x12 \n\x08\x64ue_time\x18\x06 \x02(\x0b\x32\x0e.DateTimeStamp\x12\x16\n\x07\x63ontext\x18\x07 \x02(\x0b\x32\x05.UUID\x12\x1d\n\x15time_estimate_minutes\x18\x08 \x02(\x05\x12\x33\n\x0f\x65nergy_estimate\x18\t \x02(\x0e\x32\x1a.NextAction.EnergyEstimate\x12\r\n\x05notes\x18\n \x01(\t\x12\x1f\n\x11related_resources\x18\x0b \x03(\x0b\x32\x04.URI\x1a:\n\x07\x43ontext\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"2\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0c\n\x08\x43OMPLETE\x10\x03\"/\n\x0e\x45nergyEstimate\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\"\xbe\x04\n\x07Project\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12#\n\x08priority\x18\x03 \x02(\x0e\x32\t.Priority:\x06MEDIUM\x12\'\n\x0f\x63ompletion_time\x18\x04 \x02(\x0b\x32\x0e.DateTimeStamp\x12\"\n\nqueue_time\x18\x05 \x02(\x0b\x32\x0e.DateTimeStamp\x12 \n\x08\x64ue_time\x18\x06 \x02(\x0b\x32\x0e.DateTimeStamp\x12\x1f\n\x06status\x18\x07 \x02(\x0e\x32\x0f.Project.Status\x12\x31\n\x10waiting_for_data\x18\x08 \x01(\x0b\x32\x17.Project.WaitingForData\x12\x1a\n\x0bsubprojects\x18\t \x03(\x0b\x32\x05.UUID\x12\x1d\n\x0e\x61reas_of_focus\x18\n \x03(\x0b\x32\x05.UUID\x12&\n\x17sequential_next_actions\x18\x0b \x03(\x0b\x32\x05.UUID\x12%\n\x16unordered_next_actions\x18\x0c \x03(\x0b\x32\x05.UUID\x1aH\n\x0eWaitingForData\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12%\n\rwaiting_since\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\"C\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0f\n\x0bWAITING_FOR\x10\x03\x12\x0c\n\x08\x43OMPLETE\x10\x04*)\n\x08Priority\x12\x08\n\x04HIGH\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x07\n\x03LOW\x10\x03')
+  serialized_pb='\n\x0cmodels.proto\"O\n\x18HACK_ExportedNextActions\x12\x10\n\x08\x63ontexts\x18\x01 \x03(\t\x12!\n\x0cnext_actions\x18\x02 \x03(\x0b\x32\x0b.NextAction\">\n\x0b\x41reaOfFocus\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"\x8f\x04\n\nNextAction\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12#\n\x08priority\x18\x03 \x02(\x0e\x32\t.Priority:\x06MEDIUM\x12\'\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32\x0e.DateTimeStamp\x12\"\n\nqueue_time\x18\x05 \x01(\x0b\x32\x0e.DateTimeStamp\x12 \n\x08\x64ue_time\x18\x06 \x01(\x0b\x32\x0e.DateTimeStamp\x12\x14\n\x0cHACK_context\x18\x07 \x02(\t\x12\x1d\n\x15time_estimate_minutes\x18\x08 \x02(\x05\x12\x33\n\x0f\x65nergy_estimate\x18\t \x02(\x0e\x32\x1a.NextAction.EnergyEstimate\x12\r\n\x05notes\x18\n \x01(\t\x12\x1f\n\x11related_resources\x18\x0b \x03(\x0b\x32\x04.URI\x1a:\n\x07\x43ontext\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"2\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0c\n\x08\x43OMPLETE\x10\x03\"/\n\x0e\x45nergyEstimate\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\"\xbe\x04\n\x07Project\x12!\n\x08metadata\x18\x01 \x02(\x0b\x32\x0f.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12#\n\x08priority\x18\x03 \x02(\x0e\x32\t.Priority:\x06MEDIUM\x12\'\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32\x0e.DateTimeStamp\x12\"\n\nqueue_time\x18\x05 \x01(\x0b\x32\x0e.DateTimeStamp\x12 \n\x08\x64ue_time\x18\x06 \x01(\x0b\x32\x0e.DateTimeStamp\x12\x1f\n\x06status\x18\x07 \x02(\x0e\x32\x0f.Project.Status\x12\x31\n\x10waiting_for_data\x18\x08 \x01(\x0b\x32\x17.Project.WaitingForData\x12\x1a\n\x0bsubprojects\x18\t \x03(\x0b\x32\x05.UUID\x12\x1d\n\x0e\x61reas_of_focus\x18\n \x03(\x0b\x32\x05.UUID\x12&\n\x17sequential_next_actions\x18\x0b \x03(\x0b\x32\x05.UUID\x12%\n\x16unordered_next_actions\x18\x0c \x03(\x0b\x32\x05.UUID\x1aH\n\x0eWaitingForData\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12%\n\rwaiting_since\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\"C\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0f\n\x0bWAITING_FOR\x10\x03\x12\x0c\n\x08\x43OMPLETE\x10\x04\"-\n\tInboxNote\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x65tails\x18\x02 \x01(\t\"\x90\x01\n\x03Tag\x12\x1e\n\x04meta\x18\x01 \x02(\x0b\x32\x10.Tag.TagMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x10\n\x08\x61lt_name\x18\x03 \x01(\t\x1aI\n\x0bTagMetadata\x12\x13\n\x04uuid\x18\x01 \x02(\x0b\x32\x05.UUID\x12%\n\rcreation_time\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\"f\n\x0e\x43ommonMetadata\x12\x13\n\x04uuid\x18\x01 \x02(\x0b\x32\x05.UUID\x12%\n\rcreation_time\x18\x02 \x02(\x0b\x32\x0e.DateTimeStamp\x12\x18\n\ttag_uuids\x18\x03 \x03(\x0b\x32\x05.UUID\"\xc8\x01\n\x0f\x41llFluidityData\x12$\n\x0e\x61reas_of_focus\x18\x01 \x03(\x0b\x32\x0c.AreaOfFocus\x12\x1a\n\x08projects\x18\x02 \x03(\x0b\x32\x08.Project\x12!\n\x0cnext_actions\x18\x03 \x03(\x0b\x32\x0b.NextAction\x12\x1f\n\x0binbox_notes\x18\x04 \x03(\x0b\x32\n.InboxNote\x12/\n\x1apre_sorted_current_actions\x18\x05 \x03(\x0b\x32\x0b.NextAction\"\"\n\rDateTimeStamp\x12\x11\n\ttimestamp\x18\x01 \x02(\x05\"[\n\x05Image\x12\x12\n\nimage_data\x18\x01 \x02(\x0c\x12\x1e\n\x04type\x18\x02 \x02(\x0e\x32\x10.Image.ImageType\"\x1e\n\tImageType\x12\x07\n\x03PNG\x10\x01\x12\x08\n\x04JPEG\x10\x02\"@\n\x03URI\x12\x0b\n\x03uri\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x17\n\x07\x66\x61vicon\x18\x03 \x01(\x0b\x32\x06.Image\"\x19\n\x04UUID\x12\x11\n\traw_bytes\x18\x01 \x02(\x0c*)\n\x08Priority\x12\x08\n\x04HIGH\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x07\n\x03LOW\x10\x03')
 
 _PRIORITY = descriptor.EnumDescriptor(
   name='Priority',
@@ -37,8 +37,8 @@ _PRIORITY = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1662,
-  serialized_end=1703,
+  serialized_start=1991,
+  serialized_end=2032,
 )
 
 
@@ -46,27 +46,6 @@ HIGH = 1
 MEDIUM = 2
 LOW = 3
 
-
-_IMAGE_IMAGETYPE = descriptor.EnumDescriptor(
-  name='ImageType',
-  full_name='Image.ImageType',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    descriptor.EnumValueDescriptor(
-      name='PNG', index=0, number=1,
-      options=None,
-      type=None),
-    descriptor.EnumValueDescriptor(
-      name='JPEG', index=1, number=2,
-      options=None,
-      type=None),
-  ],
-  containing_type=None,
-  options=None,
-  serialized_start=113,
-  serialized_end=143,
-)
 
 _NEXTACTION_STATUS = descriptor.EnumDescriptor(
   name='Status',
@@ -89,8 +68,8 @@ _NEXTACTION_STATUS = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=984,
-  serialized_end=1034,
+  serialized_start=590,
+  serialized_end=640,
 )
 
 _NEXTACTION_ENERGYESTIMATE = descriptor.EnumDescriptor(
@@ -114,8 +93,8 @@ _NEXTACTION_ENERGYESTIMATE = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1036,
-  serialized_end=1083,
+  serialized_start=642,
+  serialized_end=689,
 )
 
 _PROJECT_STATUS = descriptor.EnumDescriptor(
@@ -143,245 +122,49 @@ _PROJECT_STATUS = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1593,
-  serialized_end=1660,
+  serialized_start=1199,
+  serialized_end=1266,
 )
 
-
-_DATETIMESTAMP = descriptor.Descriptor(
-  name='DateTimeStamp',
-  full_name='DateTimeStamp',
+_IMAGE_IMAGETYPE = descriptor.EnumDescriptor(
+  name='ImageType',
+  full_name='Image.ImageType',
   filename=None,
   file=DESCRIPTOR,
+  values=[
+    descriptor.EnumValueDescriptor(
+      name='PNG', index=0, number=1,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='JPEG', index=1, number=2,
+      options=None,
+      type=None),
+  ],
   containing_type=None,
-  fields=[
-    descriptor.FieldDescriptor(
-      name='timestamp', full_name='DateTimeStamp.timestamp', index=0,
-      number=1, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
   options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=16,
-  serialized_end=50,
+  serialized_start=1866,
+  serialized_end=1896,
 )
 
 
-_IMAGE = descriptor.Descriptor(
-  name='Image',
-  full_name='Image',
+_HACK_EXPORTEDNEXTACTIONS = descriptor.Descriptor(
+  name='HACK_ExportedNextActions',
+  full_name='HACK_ExportedNextActions',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='image_data', full_name='Image.image_data', index=0,
-      number=1, type=12, cpp_type=9, label=2,
-      has_default_value=False, default_value="",
+      name='contexts', full_name='HACK_ExportedNextActions.contexts', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='type', full_name='Image.type', index=1,
-      number=2, type=14, cpp_type=8, label=2,
-      has_default_value=False, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _IMAGE_IMAGETYPE,
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=52,
-  serialized_end=143,
-)
-
-
-_URI = descriptor.Descriptor(
-  name='URI',
-  full_name='URI',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    descriptor.FieldDescriptor(
-      name='uri', full_name='URI.uri', index=0,
-      number=1, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=unicode("", "utf-8"),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='description', full_name='URI.description', index=1,
-      number=2, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=unicode("", "utf-8"),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='favicon', full_name='URI.favicon', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=145,
-  serialized_end=209,
-)
-
-
-_UUID = descriptor.Descriptor(
-  name='UUID',
-  full_name='UUID',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    descriptor.FieldDescriptor(
-      name='raw_bytes', full_name='UUID.raw_bytes', index=0,
-      number=1, type=12, cpp_type=9, label=2,
-      has_default_value=False, default_value="",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=211,
-  serialized_end=236,
-)
-
-
-_TAG_TAGMETADATA = descriptor.Descriptor(
-  name='TagMetadata',
-  full_name='Tag.TagMetadata',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    descriptor.FieldDescriptor(
-      name='uuid', full_name='Tag.TagMetadata.uuid', index=0,
-      number=1, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='creation_time', full_name='Tag.TagMetadata.creation_time', index=1,
-      number=2, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=310,
-  serialized_end=383,
-)
-
-_TAG = descriptor.Descriptor(
-  name='Tag',
-  full_name='Tag',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    descriptor.FieldDescriptor(
-      name='meta', full_name='Tag.meta', index=0,
-      number=1, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='name', full_name='Tag.name', index=1,
-      number=2, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=unicode("", "utf-8"),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='alt_name', full_name='Tag.alt_name', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=unicode("", "utf-8"),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[_TAG_TAGMETADATA, ],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=239,
-  serialized_end=383,
-)
-
-
-_COMMONMETADATA = descriptor.Descriptor(
-  name='CommonMetadata',
-  full_name='CommonMetadata',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    descriptor.FieldDescriptor(
-      name='uuid', full_name='CommonMetadata.uuid', index=0,
-      number=1, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='creation_time', full_name='CommonMetadata.creation_time', index=1,
-      number=2, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='tag_uuids', full_name='CommonMetadata.tag_uuids', index=2,
-      number=3, type=11, cpp_type=10, label=3,
+      name='next_actions', full_name='HACK_ExportedNextActions.next_actions', index=1,
+      number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -395,8 +178,8 @@ _COMMONMETADATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=385,
-  serialized_end=487,
+  serialized_start=16,
+  serialized_end=95,
 )
 
 
@@ -430,8 +213,8 @@ _AREAOFFOCUS = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=489,
-  serialized_end=551,
+  serialized_start=97,
+  serialized_end=159,
 )
 
 
@@ -465,8 +248,8 @@ _NEXTACTION_CONTEXT = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=924,
-  serialized_end=982,
+  serialized_start=530,
+  serialized_end=588,
 )
 
 _NEXTACTION = descriptor.Descriptor(
@@ -499,29 +282,29 @@ _NEXTACTION = descriptor.Descriptor(
       options=None),
     descriptor.FieldDescriptor(
       name='completion_time', full_name='NextAction.completion_time', index=3,
-      number=4, type=11, cpp_type=10, label=2,
+      number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
       name='queue_time', full_name='NextAction.queue_time', index=4,
-      number=5, type=11, cpp_type=10, label=2,
+      number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
       name='due_time', full_name='NextAction.due_time', index=5,
-      number=6, type=11, cpp_type=10, label=2,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='context', full_name='NextAction.context', index=6,
-      number=7, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
+      name='HACK_context', full_name='NextAction.HACK_context', index=6,
+      number=7, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -564,8 +347,8 @@ _NEXTACTION = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=554,
-  serialized_end=1083,
+  serialized_start=162,
+  serialized_end=689,
 )
 
 
@@ -599,8 +382,8 @@ _PROJECT_WAITINGFORDATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1519,
-  serialized_end=1591,
+  serialized_start=1125,
+  serialized_end=1197,
 )
 
 _PROJECT = descriptor.Descriptor(
@@ -633,21 +416,21 @@ _PROJECT = descriptor.Descriptor(
       options=None),
     descriptor.FieldDescriptor(
       name='completion_time', full_name='Project.completion_time', index=3,
-      number=4, type=11, cpp_type=10, label=2,
+      number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
       name='queue_time', full_name='Project.queue_time', index=4,
-      number=5, type=11, cpp_type=10, label=2,
+      number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
       name='due_time', full_name='Project.due_time', index=5,
-      number=6, type=11, cpp_type=10, label=2,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -704,20 +487,354 @@ _PROJECT = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1086,
-  serialized_end=1660,
+  serialized_start=692,
+  serialized_end=1266,
 )
 
-_IMAGE.fields_by_name['type'].enum_type = _IMAGE_IMAGETYPE
-_IMAGE_IMAGETYPE.containing_type = _IMAGE;
-_URI.fields_by_name['favicon'].message_type = _IMAGE
-_TAG_TAGMETADATA.fields_by_name['uuid'].message_type = _UUID
-_TAG_TAGMETADATA.fields_by_name['creation_time'].message_type = _DATETIMESTAMP
-_TAG_TAGMETADATA.containing_type = _TAG;
-_TAG.fields_by_name['meta'].message_type = _TAG_TAGMETADATA
-_COMMONMETADATA.fields_by_name['uuid'].message_type = _UUID
-_COMMONMETADATA.fields_by_name['creation_time'].message_type = _DATETIMESTAMP
-_COMMONMETADATA.fields_by_name['tag_uuids'].message_type = _UUID
+
+_INBOXNOTE = descriptor.Descriptor(
+  name='InboxNote',
+  full_name='InboxNote',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='summary', full_name='InboxNote.summary', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='details', full_name='InboxNote.details', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1268,
+  serialized_end=1313,
+)
+
+
+_TAG_TAGMETADATA = descriptor.Descriptor(
+  name='TagMetadata',
+  full_name='Tag.TagMetadata',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='uuid', full_name='Tag.TagMetadata.uuid', index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='creation_time', full_name='Tag.TagMetadata.creation_time', index=1,
+      number=2, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1387,
+  serialized_end=1460,
+)
+
+_TAG = descriptor.Descriptor(
+  name='Tag',
+  full_name='Tag',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='meta', full_name='Tag.meta', index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='name', full_name='Tag.name', index=1,
+      number=2, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='alt_name', full_name='Tag.alt_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[_TAG_TAGMETADATA, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1316,
+  serialized_end=1460,
+)
+
+
+_COMMONMETADATA = descriptor.Descriptor(
+  name='CommonMetadata',
+  full_name='CommonMetadata',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='uuid', full_name='CommonMetadata.uuid', index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='creation_time', full_name='CommonMetadata.creation_time', index=1,
+      number=2, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='tag_uuids', full_name='CommonMetadata.tag_uuids', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1462,
+  serialized_end=1564,
+)
+
+
+_ALLFLUIDITYDATA = descriptor.Descriptor(
+  name='AllFluidityData',
+  full_name='AllFluidityData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='areas_of_focus', full_name='AllFluidityData.areas_of_focus', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='projects', full_name='AllFluidityData.projects', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='next_actions', full_name='AllFluidityData.next_actions', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='inbox_notes', full_name='AllFluidityData.inbox_notes', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='pre_sorted_current_actions', full_name='AllFluidityData.pre_sorted_current_actions', index=4,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1567,
+  serialized_end=1767,
+)
+
+
+_DATETIMESTAMP = descriptor.Descriptor(
+  name='DateTimeStamp',
+  full_name='DateTimeStamp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='timestamp', full_name='DateTimeStamp.timestamp', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1769,
+  serialized_end=1803,
+)
+
+
+_IMAGE = descriptor.Descriptor(
+  name='Image',
+  full_name='Image',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='image_data', full_name='Image.image_data', index=0,
+      number=1, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value="",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='type', full_name='Image.type', index=1,
+      number=2, type=14, cpp_type=8, label=2,
+      has_default_value=False, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _IMAGE_IMAGETYPE,
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1805,
+  serialized_end=1896,
+)
+
+
+_URI = descriptor.Descriptor(
+  name='URI',
+  full_name='URI',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='uri', full_name='URI.uri', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='description', full_name='URI.description', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='favicon', full_name='URI.favicon', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1898,
+  serialized_end=1962,
+)
+
+
+_UUID = descriptor.Descriptor(
+  name='UUID',
+  full_name='UUID',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='raw_bytes', full_name='UUID.raw_bytes', index=0,
+      number=1, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value="",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1964,
+  serialized_end=1989,
+)
+
+_HACK_EXPORTEDNEXTACTIONS.fields_by_name['next_actions'].message_type = _NEXTACTION
 _AREAOFFOCUS.fields_by_name['metadata'].message_type = _COMMONMETADATA
 _NEXTACTION_CONTEXT.fields_by_name['metadata'].message_type = _COMMONMETADATA
 _NEXTACTION_CONTEXT.containing_type = _NEXTACTION;
@@ -726,7 +843,6 @@ _NEXTACTION.fields_by_name['priority'].enum_type = _PRIORITY
 _NEXTACTION.fields_by_name['completion_time'].message_type = _DATETIMESTAMP
 _NEXTACTION.fields_by_name['queue_time'].message_type = _DATETIMESTAMP
 _NEXTACTION.fields_by_name['due_time'].message_type = _DATETIMESTAMP
-_NEXTACTION.fields_by_name['context'].message_type = _UUID
 _NEXTACTION.fields_by_name['energy_estimate'].enum_type = _NEXTACTION_ENERGYESTIMATE
 _NEXTACTION.fields_by_name['related_resources'].message_type = _URI
 _NEXTACTION_STATUS.containing_type = _NEXTACTION;
@@ -745,57 +861,39 @@ _PROJECT.fields_by_name['areas_of_focus'].message_type = _UUID
 _PROJECT.fields_by_name['sequential_next_actions'].message_type = _UUID
 _PROJECT.fields_by_name['unordered_next_actions'].message_type = _UUID
 _PROJECT_STATUS.containing_type = _PROJECT;
+_TAG_TAGMETADATA.fields_by_name['uuid'].message_type = _UUID
+_TAG_TAGMETADATA.fields_by_name['creation_time'].message_type = _DATETIMESTAMP
+_TAG_TAGMETADATA.containing_type = _TAG;
+_TAG.fields_by_name['meta'].message_type = _TAG_TAGMETADATA
+_COMMONMETADATA.fields_by_name['uuid'].message_type = _UUID
+_COMMONMETADATA.fields_by_name['creation_time'].message_type = _DATETIMESTAMP
+_COMMONMETADATA.fields_by_name['tag_uuids'].message_type = _UUID
+_ALLFLUIDITYDATA.fields_by_name['areas_of_focus'].message_type = _AREAOFFOCUS
+_ALLFLUIDITYDATA.fields_by_name['projects'].message_type = _PROJECT
+_ALLFLUIDITYDATA.fields_by_name['next_actions'].message_type = _NEXTACTION
+_ALLFLUIDITYDATA.fields_by_name['inbox_notes'].message_type = _INBOXNOTE
+_ALLFLUIDITYDATA.fields_by_name['pre_sorted_current_actions'].message_type = _NEXTACTION
+_IMAGE.fields_by_name['type'].enum_type = _IMAGE_IMAGETYPE
+_IMAGE_IMAGETYPE.containing_type = _IMAGE;
+_URI.fields_by_name['favicon'].message_type = _IMAGE
+DESCRIPTOR.message_types_by_name['HACK_ExportedNextActions'] = _HACK_EXPORTEDNEXTACTIONS
+DESCRIPTOR.message_types_by_name['AreaOfFocus'] = _AREAOFFOCUS
+DESCRIPTOR.message_types_by_name['NextAction'] = _NEXTACTION
+DESCRIPTOR.message_types_by_name['Project'] = _PROJECT
+DESCRIPTOR.message_types_by_name['InboxNote'] = _INBOXNOTE
+DESCRIPTOR.message_types_by_name['Tag'] = _TAG
+DESCRIPTOR.message_types_by_name['CommonMetadata'] = _COMMONMETADATA
+DESCRIPTOR.message_types_by_name['AllFluidityData'] = _ALLFLUIDITYDATA
 DESCRIPTOR.message_types_by_name['DateTimeStamp'] = _DATETIMESTAMP
 DESCRIPTOR.message_types_by_name['Image'] = _IMAGE
 DESCRIPTOR.message_types_by_name['URI'] = _URI
 DESCRIPTOR.message_types_by_name['UUID'] = _UUID
-DESCRIPTOR.message_types_by_name['Tag'] = _TAG
-DESCRIPTOR.message_types_by_name['CommonMetadata'] = _COMMONMETADATA
-DESCRIPTOR.message_types_by_name['AreaOfFocus'] = _AREAOFFOCUS
-DESCRIPTOR.message_types_by_name['NextAction'] = _NEXTACTION
-DESCRIPTOR.message_types_by_name['Project'] = _PROJECT
 
-class DateTimeStamp(message.Message):
+class HACK_ExportedNextActions(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _DATETIMESTAMP
+  DESCRIPTOR = _HACK_EXPORTEDNEXTACTIONS
   
-  # @@protoc_insertion_point(class_scope:DateTimeStamp)
-
-class Image(message.Message):
-  __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _IMAGE
-  
-  # @@protoc_insertion_point(class_scope:Image)
-
-class URI(message.Message):
-  __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _URI
-  
-  # @@protoc_insertion_point(class_scope:URI)
-
-class UUID(message.Message):
-  __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _UUID
-  
-  # @@protoc_insertion_point(class_scope:UUID)
-
-class Tag(message.Message):
-  __metaclass__ = reflection.GeneratedProtocolMessageType
-  
-  class TagMetadata(message.Message):
-    __metaclass__ = reflection.GeneratedProtocolMessageType
-    DESCRIPTOR = _TAG_TAGMETADATA
-    
-    # @@protoc_insertion_point(class_scope:Tag.TagMetadata)
-  DESCRIPTOR = _TAG
-  
-  # @@protoc_insertion_point(class_scope:Tag)
-
-class CommonMetadata(message.Message):
-  __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _COMMONMETADATA
-  
-  # @@protoc_insertion_point(class_scope:CommonMetadata)
+  # @@protoc_insertion_point(class_scope:HACK_ExportedNextActions)
 
 class AreaOfFocus(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -826,5 +924,59 @@ class Project(message.Message):
   DESCRIPTOR = _PROJECT
   
   # @@protoc_insertion_point(class_scope:Project)
+
+class InboxNote(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _INBOXNOTE
+  
+  # @@protoc_insertion_point(class_scope:InboxNote)
+
+class Tag(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  
+  class TagMetadata(message.Message):
+    __metaclass__ = reflection.GeneratedProtocolMessageType
+    DESCRIPTOR = _TAG_TAGMETADATA
+    
+    # @@protoc_insertion_point(class_scope:Tag.TagMetadata)
+  DESCRIPTOR = _TAG
+  
+  # @@protoc_insertion_point(class_scope:Tag)
+
+class CommonMetadata(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _COMMONMETADATA
+  
+  # @@protoc_insertion_point(class_scope:CommonMetadata)
+
+class AllFluidityData(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _ALLFLUIDITYDATA
+  
+  # @@protoc_insertion_point(class_scope:AllFluidityData)
+
+class DateTimeStamp(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _DATETIMESTAMP
+  
+  # @@protoc_insertion_point(class_scope:DateTimeStamp)
+
+class Image(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _IMAGE
+  
+  # @@protoc_insertion_point(class_scope:Image)
+
+class URI(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _URI
+  
+  # @@protoc_insertion_point(class_scope:URI)
+
+class UUID(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _UUID
+  
+  # @@protoc_insertion_point(class_scope:UUID)
 
 # @@protoc_insertion_point(module_scope)

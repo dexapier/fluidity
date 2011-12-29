@@ -1,14 +1,19 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 #Tue Dec 06 00:10:13 CST 2011
 =======
 #Tue Dec 06 00:38:47 GMT-06:00 2011
 >>>>>>> Stashed changes
+=======
+#Sat Dec 10 01:08:23 CST 2011
+>>>>>>> origin/develop
 eclipse.preferences.version=1
 encoding//bin/fluidity=utf-8
 encoding//fluidity/app_utils.py=utf-8
 encoding//fluidity/boxidate.py=utf-8
 encoding//fluidity/dbus_misc.py=utf-8
 encoding//fluidity/defs.py=utf-8
+encoding//fluidity/defs_gui.py=utf-8
 encoding//fluidity/first_time.py=utf-8
 encoding//fluidity/gee_tee_dee.py=utf-8
 encoding//fluidity/gio_fml.py=utf-8

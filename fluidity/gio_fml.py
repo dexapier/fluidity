@@ -30,12 +30,9 @@ class MoveError(Exception):
 
 
 class FityFileProxy(object):
-    """Proxy base class masquerading as gio.File.
-
-    Know what would be great, though?  It'd be great if I could ACTUALLY SUBCLASS
-    gio.File!  NOPE, WAIT, THAT'S IMPOSSIBLE, SORRY.
-    """
-    # FIXME: remove preceding temper tantrum
+    """Proxy base class masquerading as gio.File, because the latter can't be 
+    subclassed, apparently."""
+    
     def __init__(self, gio_file):
         self._gfile = gio_file.dup()
 
@@ -44,14 +41,17 @@ class FityFileProxy(object):
 
 
 class FityFile(FityFileProxy):
-    """Pythonic wrapper for icky, stanky, eat-da-poopoo gio.File & gio.FileInfo."""
+    """Pythonic wrapper gio.File & gio.FileInfo."""
+    
+    # FIXME: replace (at least most) of this with pathlib or unipath or some such.
+    
     # I would have just subclassed this instead of wrapping, but that's somehow
     # not possible.
     #
     # Seriously, try it.  FREE BEERS here in Minneapolis with me for the first
     # person to email me with how to subclass gio.File without resorting to
-    # Total Evil(TM).  Actually, there might still be beer in it for them if
-    # it's a particularly clever or cute flavor of Evil.
+    # Total Evil(TM).  Actually, there might still be beer in it if it's a 
+    # particularly clever or cute flavor of Evil.
 
     def __init__(self, file_name=None, gio_file=None):
         """Initialize this obj, using full path `file_name` or gio.File `gio_file`.

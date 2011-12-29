@@ -58,7 +58,7 @@ def to_model_datetimestamp(date_obj):
     dts = models.DateTimeStamp()
     dts.timestamp = utils.to_timestamp(date_obj)
     return dts
-        
+
 
 def validate_paths():
     # main_prj_support_folder must be first in the list below - have to ensure

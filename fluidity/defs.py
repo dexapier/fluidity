@@ -14,6 +14,7 @@ __author__ = 'Jens Knutson'
 import os
 import string
 import sys
+import uuid
 
 from xdg import BaseDirectory
 
@@ -58,6 +59,11 @@ DBUS_BUS_NAME = 'org.solemnsilence.Fluidity'
 DBUS_OBJECT_PATH = '/org/solemnsilence/Fluidity'
 FITY_EPOCH = 1230768000.0
 CREATION_EPOCH = 1262325600.0
+
+# this just indicates "this is not a real context UUID, it's 'faked-out'"
+FAKE_CONTEXT_UUID = uuid.UUID(
+       bytes='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF')
+
 
 ### NOTES APP STUFF ###
 # FIXME: this is lame.  Figure out /real/ Tomboy vs. Gnote handling later

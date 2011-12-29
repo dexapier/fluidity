@@ -175,9 +175,9 @@ class Fluidity(object):
             aof_name = e.get_text()
             e.set_text("")
             self.data_lumbergh.create_new_aof(aof_name)
-            self.fill_aofs_w(self.aof_filter_w, self.data_lumbergh.aof_names)
+            self.fill_aofs_w(self.aof_filter_w, self.data_lumbergh.aof_names())
             self.fill_aofs_w(self.prj_details_aofs_w,
-                             self.data_lumbergh.aof_names, False)
+                             self.data_lumbergh.aof_names(), False)
         d.hide()
 
     def delete_na(self, na):
@@ -484,10 +484,10 @@ class Fluidity(object):
 
     def init_ui(self):
         """Collection of mostly one-liners to set some UI details."""
-        self.fill_aofs_w(self.prj_details_aofs_w, self.data_lumbergh.aof_names,
+        self.fill_aofs_w(self.prj_details_aofs_w, self.data_lumbergh.aof_names(),
                          False)
         self.init_prj_list_w(self.prj_list_w)
-        self.fill_aofs_w(self.aof_filter_w, self.data_lumbergh.aof_names)
+        self.fill_aofs_w(self.aof_filter_w, self.data_lumbergh.aof_names())
         self.init_prj_details_na_list_w(self.prj_details_na_list_w)
         self.init_prj_details_na_list_w(self.prj_details_incubating_na_list_w)
         self.workflow_nb.set_show_tabs(False)
@@ -800,8 +800,7 @@ class Fluidity(object):
                                              reverse=True)
         na_list.sort(key=operator.attrgetter('sort_date', 'priority', 'context'))
 
-        json_exporter = task_export.JSONEncoder()
-        json_exporter.export_next_actions(na_list)
+        task_export.ProtobufEncoder().export_next_actions(na_list)
 
     def temporarily_disable_widget(self, widget):
         if widget.get_property('sensitive'):

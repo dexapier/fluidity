@@ -7,6 +7,11 @@ message HACK_ExportedNextActions {
     repeated NextAction next_actions = 2;
 }
 
+message HACK_NextActionSelectionCriteria {
+    required string context = 1;
+    required int32 timeAvailableInMins = 2;
+    required NextAction.EnergyEstimate energyAvailable = 3;
+}
 
 // APP MODELS
 message AreaOfFocus {
@@ -37,20 +42,21 @@ message NextAction {
     // These first fields are the same as in Project
     required CommonMetadata metadata = 1;
     required string summary = 2;
-    required Priority priority = 3 [default = MEDIUM];
-    optional DateTimeStamp completion_time = 4;
-    optional DateTimeStamp queue_time = 5;
-    optional DateTimeStamp due_time = 6;
+    required Status status = 3;
+    required Priority priority = 4 [default = MEDIUM];
+    optional DateTimeStamp completion_time = 5;
+    optional DateTimeStamp queue_time = 6;
+    optional DateTimeStamp due_time = 7;
     // Using a hack for now -- I need something to work NOW, and the
     // app isn't set up to support uuids everywhere.
 //    required UUID context = 7;
-    required string HACK_context = 7;
-    required int32 time_estimate_minutes = 8;
-    required EnergyEstimate energy_estimate = 9;
+    required string HACK_context = 8;
+    required int32 time_estimate_minutes = 9;
+    required EnergyEstimate energy_estimate = 10;
 
-    optional string notes = 10;
+    optional string notes = 11;
 
-    repeated URI related_resources = 11;
+    repeated URI related_resources = 12;
 }
 
 

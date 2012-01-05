@@ -754,6 +754,528 @@ public final class Models {
     // @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.HACK_ExportedNextActions)
   }
   
+  public interface HACK_NextActionSelectionCriteriaOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required string context = 1;
+    boolean hasContext();
+    String getContext();
+    
+    // required int32 timeAvailableInMins = 2;
+    boolean hasTimeAvailableInMins();
+    int getTimeAvailableInMins();
+    
+    // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energyAvailable = 3;
+    boolean hasEnergyAvailable();
+    org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate getEnergyAvailable();
+  }
+  public static final class HACK_NextActionSelectionCriteria extends
+      com.google.protobuf.GeneratedMessage
+      implements HACK_NextActionSelectionCriteriaOrBuilder {
+    // Use HACK_NextActionSelectionCriteria.newBuilder() to construct.
+    private HACK_NextActionSelectionCriteria(Builder builder) {
+      super(builder);
+    }
+    private HACK_NextActionSelectionCriteria(boolean noInit) {}
+    
+    private static final HACK_NextActionSelectionCriteria defaultInstance;
+    public static HACK_NextActionSelectionCriteria getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public HACK_NextActionSelectionCriteria getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required string context = 1;
+    public static final int CONTEXT_FIELD_NUMBER = 1;
+    private java.lang.Object context_;
+    public boolean hasContext() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getContext() {
+      java.lang.Object ref = context_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          context_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getContextBytes() {
+      java.lang.Object ref = context_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        context_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required int32 timeAvailableInMins = 2;
+    public static final int TIMEAVAILABLEINMINS_FIELD_NUMBER = 2;
+    private int timeAvailableInMins_;
+    public boolean hasTimeAvailableInMins() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public int getTimeAvailableInMins() {
+      return timeAvailableInMins_;
+    }
+    
+    // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energyAvailable = 3;
+    public static final int ENERGYAVAILABLE_FIELD_NUMBER = 3;
+    private org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate energyAvailable_;
+    public boolean hasEnergyAvailable() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate getEnergyAvailable() {
+      return energyAvailable_;
+    }
+    
+    private void initFields() {
+      context_ = "";
+      timeAvailableInMins_ = 0;
+      energyAvailable_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasContext()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasTimeAvailableInMins()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasEnergyAvailable()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getContextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, timeAvailableInMins_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeEnum(3, energyAvailable_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getContextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, timeAvailableInMins_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, energyAvailable_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteriaOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_fieldAccessorTable;
+      }
+      
+      // Construct using org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        context_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        timeAvailableInMins_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        energyAvailable_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria.getDescriptor();
+      }
+      
+      public org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria getDefaultInstanceForType() {
+        return org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria.getDefaultInstance();
+      }
+      
+      public org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria build() {
+        org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria buildPartial() {
+        org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria result = new org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.context_ = context_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.timeAvailableInMins_ = timeAvailableInMins_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.energyAvailable_ = energyAvailable_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria) {
+          return mergeFrom((org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria other) {
+        if (other == org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria.getDefaultInstance()) return this;
+        if (other.hasContext()) {
+          setContext(other.getContext());
+        }
+        if (other.hasTimeAvailableInMins()) {
+          setTimeAvailableInMins(other.getTimeAvailableInMins());
+        }
+        if (other.hasEnergyAvailable()) {
+          setEnergyAvailable(other.getEnergyAvailable());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasContext()) {
+          
+          return false;
+        }
+        if (!hasTimeAvailableInMins()) {
+          
+          return false;
+        }
+        if (!hasEnergyAvailable()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              context_ = input.readBytes();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              timeAvailableInMins_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+              org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate value = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                bitField0_ |= 0x00000004;
+                energyAvailable_ = value;
+              }
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required string context = 1;
+      private java.lang.Object context_ = "";
+      public boolean hasContext() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getContext() {
+        java.lang.Object ref = context_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          context_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setContext(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        context_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearContext() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        context_ = getDefaultInstance().getContext();
+        onChanged();
+        return this;
+      }
+      void setContext(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        context_ = value;
+        onChanged();
+      }
+      
+      // required int32 timeAvailableInMins = 2;
+      private int timeAvailableInMins_ ;
+      public boolean hasTimeAvailableInMins() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public int getTimeAvailableInMins() {
+        return timeAvailableInMins_;
+      }
+      public Builder setTimeAvailableInMins(int value) {
+        bitField0_ |= 0x00000002;
+        timeAvailableInMins_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTimeAvailableInMins() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        timeAvailableInMins_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energyAvailable = 3;
+      private org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate energyAvailable_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
+      public boolean hasEnergyAvailable() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate getEnergyAvailable() {
+        return energyAvailable_;
+      }
+      public Builder setEnergyAvailable(org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        energyAvailable_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEnergyAvailable() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        energyAvailable_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:org.solemnsilence.fluidity.model.HACK_NextActionSelectionCriteria)
+    }
+    
+    static {
+      defaultInstance = new HACK_NextActionSelectionCriteria(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.HACK_NextActionSelectionCriteria)
+  }
+  
   public interface AreaOfFocusOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -1308,42 +1830,46 @@ public final class Models {
     boolean hasSummary();
     String getSummary();
     
-    // required .org.solemnsilence.fluidity.model.Priority priority = 3 [default = MEDIUM];
+    // required .org.solemnsilence.fluidity.model.NextAction.Status status = 3;
+    boolean hasStatus();
+    org.solemnsilence.fluidity.model.Models.NextAction.Status getStatus();
+    
+    // required .org.solemnsilence.fluidity.model.Priority priority = 4 [default = MEDIUM];
     boolean hasPriority();
     org.solemnsilence.fluidity.model.Models.Priority getPriority();
     
-    // optional .org.solemnsilence.fluidity.model.DateTimeStamp completion_time = 4;
+    // optional .org.solemnsilence.fluidity.model.DateTimeStamp completion_time = 5;
     boolean hasCompletionTime();
     org.solemnsilence.fluidity.model.Models.DateTimeStamp getCompletionTime();
     org.solemnsilence.fluidity.model.Models.DateTimeStampOrBuilder getCompletionTimeOrBuilder();
     
-    // optional .org.solemnsilence.fluidity.model.DateTimeStamp queue_time = 5;
+    // optional .org.solemnsilence.fluidity.model.DateTimeStamp queue_time = 6;
     boolean hasQueueTime();
     org.solemnsilence.fluidity.model.Models.DateTimeStamp getQueueTime();
     org.solemnsilence.fluidity.model.Models.DateTimeStampOrBuilder getQueueTimeOrBuilder();
     
-    // optional .org.solemnsilence.fluidity.model.DateTimeStamp due_time = 6;
+    // optional .org.solemnsilence.fluidity.model.DateTimeStamp due_time = 7;
     boolean hasDueTime();
     org.solemnsilence.fluidity.model.Models.DateTimeStamp getDueTime();
     org.solemnsilence.fluidity.model.Models.DateTimeStampOrBuilder getDueTimeOrBuilder();
     
-    // required string HACK_context = 7;
+    // required string HACK_context = 8;
     boolean hasHACKContext();
     String getHACKContext();
     
-    // required int32 time_estimate_minutes = 8;
+    // required int32 time_estimate_minutes = 9;
     boolean hasTimeEstimateMinutes();
     int getTimeEstimateMinutes();
     
-    // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energy_estimate = 9;
+    // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energy_estimate = 10;
     boolean hasEnergyEstimate();
     org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate getEnergyEstimate();
     
-    // optional string notes = 10;
+    // optional string notes = 11;
     boolean hasNotes();
     String getNotes();
     
-    // repeated .org.solemnsilence.fluidity.model.URI related_resources = 11;
+    // repeated .org.solemnsilence.fluidity.model.URI related_resources = 12;
     java.util.List<org.solemnsilence.fluidity.model.Models.URI> 
         getRelatedResourcesList();
     org.solemnsilence.fluidity.model.Models.URI getRelatedResources(int index);
@@ -2113,21 +2639,31 @@ public final class Models {
       }
     }
     
-    // required .org.solemnsilence.fluidity.model.Priority priority = 3 [default = MEDIUM];
-    public static final int PRIORITY_FIELD_NUMBER = 3;
+    // required .org.solemnsilence.fluidity.model.NextAction.Status status = 3;
+    public static final int STATUS_FIELD_NUMBER = 3;
+    private org.solemnsilence.fluidity.model.Models.NextAction.Status status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public org.solemnsilence.fluidity.model.Models.NextAction.Status getStatus() {
+      return status_;
+    }
+    
+    // required .org.solemnsilence.fluidity.model.Priority priority = 4 [default = MEDIUM];
+    public static final int PRIORITY_FIELD_NUMBER = 4;
     private org.solemnsilence.fluidity.model.Models.Priority priority_;
     public boolean hasPriority() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public org.solemnsilence.fluidity.model.Models.Priority getPriority() {
       return priority_;
     }
     
-    // optional .org.solemnsilence.fluidity.model.DateTimeStamp completion_time = 4;
-    public static final int COMPLETION_TIME_FIELD_NUMBER = 4;
+    // optional .org.solemnsilence.fluidity.model.DateTimeStamp completion_time = 5;
+    public static final int COMPLETION_TIME_FIELD_NUMBER = 5;
     private org.solemnsilence.fluidity.model.Models.DateTimeStamp completionTime_;
     public boolean hasCompletionTime() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public org.solemnsilence.fluidity.model.Models.DateTimeStamp getCompletionTime() {
       return completionTime_;
@@ -2136,11 +2672,11 @@ public final class Models {
       return completionTime_;
     }
     
-    // optional .org.solemnsilence.fluidity.model.DateTimeStamp queue_time = 5;
-    public static final int QUEUE_TIME_FIELD_NUMBER = 5;
+    // optional .org.solemnsilence.fluidity.model.DateTimeStamp queue_time = 6;
+    public static final int QUEUE_TIME_FIELD_NUMBER = 6;
     private org.solemnsilence.fluidity.model.Models.DateTimeStamp queueTime_;
     public boolean hasQueueTime() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public org.solemnsilence.fluidity.model.Models.DateTimeStamp getQueueTime() {
       return queueTime_;
@@ -2149,11 +2685,11 @@ public final class Models {
       return queueTime_;
     }
     
-    // optional .org.solemnsilence.fluidity.model.DateTimeStamp due_time = 6;
-    public static final int DUE_TIME_FIELD_NUMBER = 6;
+    // optional .org.solemnsilence.fluidity.model.DateTimeStamp due_time = 7;
+    public static final int DUE_TIME_FIELD_NUMBER = 7;
     private org.solemnsilence.fluidity.model.Models.DateTimeStamp dueTime_;
     public boolean hasDueTime() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public org.solemnsilence.fluidity.model.Models.DateTimeStamp getDueTime() {
       return dueTime_;
@@ -2162,11 +2698,11 @@ public final class Models {
       return dueTime_;
     }
     
-    // required string HACK_context = 7;
-    public static final int HACK_CONTEXT_FIELD_NUMBER = 7;
+    // required string HACK_context = 8;
+    public static final int HACK_CONTEXT_FIELD_NUMBER = 8;
     private java.lang.Object hACKContext_;
     public boolean hasHACKContext() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     public String getHACKContext() {
       java.lang.Object ref = hACKContext_;
@@ -2194,31 +2730,31 @@ public final class Models {
       }
     }
     
-    // required int32 time_estimate_minutes = 8;
-    public static final int TIME_ESTIMATE_MINUTES_FIELD_NUMBER = 8;
+    // required int32 time_estimate_minutes = 9;
+    public static final int TIME_ESTIMATE_MINUTES_FIELD_NUMBER = 9;
     private int timeEstimateMinutes_;
     public boolean hasTimeEstimateMinutes() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public int getTimeEstimateMinutes() {
       return timeEstimateMinutes_;
     }
     
-    // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energy_estimate = 9;
-    public static final int ENERGY_ESTIMATE_FIELD_NUMBER = 9;
+    // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energy_estimate = 10;
+    public static final int ENERGY_ESTIMATE_FIELD_NUMBER = 10;
     private org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate energyEstimate_;
     public boolean hasEnergyEstimate() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     public org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate getEnergyEstimate() {
       return energyEstimate_;
     }
     
-    // optional string notes = 10;
-    public static final int NOTES_FIELD_NUMBER = 10;
+    // optional string notes = 11;
+    public static final int NOTES_FIELD_NUMBER = 11;
     private java.lang.Object notes_;
     public boolean hasNotes() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     public String getNotes() {
       java.lang.Object ref = notes_;
@@ -2246,8 +2782,8 @@ public final class Models {
       }
     }
     
-    // repeated .org.solemnsilence.fluidity.model.URI related_resources = 11;
-    public static final int RELATED_RESOURCES_FIELD_NUMBER = 11;
+    // repeated .org.solemnsilence.fluidity.model.URI related_resources = 12;
+    public static final int RELATED_RESOURCES_FIELD_NUMBER = 12;
     private java.util.List<org.solemnsilence.fluidity.model.Models.URI> relatedResources_;
     public java.util.List<org.solemnsilence.fluidity.model.Models.URI> getRelatedResourcesList() {
       return relatedResources_;
@@ -2270,6 +2806,7 @@ public final class Models {
     private void initFields() {
       metadata_ = org.solemnsilence.fluidity.model.Models.CommonMetadata.getDefaultInstance();
       summary_ = "";
+      status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
       priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
       completionTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
       queueTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
@@ -2290,6 +2827,10 @@ public final class Models {
         return false;
       }
       if (!hasSummary()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasStatus()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -2351,31 +2892,34 @@ public final class Models {
         output.writeBytes(2, getSummaryBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, priority_.getNumber());
+        output.writeEnum(3, status_.getNumber());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, completionTime_);
+        output.writeEnum(4, priority_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, queueTime_);
+        output.writeMessage(5, completionTime_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, dueTime_);
+        output.writeMessage(6, queueTime_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBytes(7, getHACKContextBytes());
+        output.writeMessage(7, dueTime_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeInt32(8, timeEstimateMinutes_);
+        output.writeBytes(8, getHACKContextBytes());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeEnum(9, energyEstimate_.getNumber());
+        output.writeInt32(9, timeEstimateMinutes_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeBytes(10, getNotesBytes());
+        output.writeEnum(10, energyEstimate_.getNumber());
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeBytes(11, getNotesBytes());
       }
       for (int i = 0; i < relatedResources_.size(); i++) {
-        output.writeMessage(11, relatedResources_.get(i));
+        output.writeMessage(12, relatedResources_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -2396,39 +2940,43 @@ public final class Models {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, priority_.getNumber());
+          .computeEnumSize(3, status_.getNumber());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, completionTime_);
+          .computeEnumSize(4, priority_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, queueTime_);
+          .computeMessageSize(5, completionTime_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, dueTime_);
+          .computeMessageSize(6, queueTime_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(7, getHACKContextBytes());
+          .computeMessageSize(7, dueTime_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, timeEstimateMinutes_);
+          .computeBytesSize(8, getHACKContextBytes());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(9, energyEstimate_.getNumber());
+          .computeInt32Size(9, timeEstimateMinutes_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(10, getNotesBytes());
+          .computeEnumSize(10, energyEstimate_.getNumber());
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(11, getNotesBytes());
       }
       for (int i = 0; i < relatedResources_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, relatedResources_.get(i));
+          .computeMessageSize(12, relatedResources_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2567,37 +3115,39 @@ public final class Models {
         bitField0_ = (bitField0_ & ~0x00000001);
         summary_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
+        status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
         bitField0_ = (bitField0_ & ~0x00000004);
+        priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (completionTimeBuilder_ == null) {
           completionTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
         } else {
           completionTimeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (queueTimeBuilder_ == null) {
           queueTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
         } else {
           queueTimeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (dueTimeBuilder_ == null) {
           dueTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
         } else {
           dueTimeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
-        hACKContext_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
-        timeEstimateMinutes_ = 0;
+        hACKContext_ = "";
         bitField0_ = (bitField0_ & ~0x00000080);
-        energyEstimate_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
+        timeEstimateMinutes_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
-        notes_ = "";
+        energyEstimate_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
         bitField0_ = (bitField0_ & ~0x00000200);
+        notes_ = "";
+        bitField0_ = (bitField0_ & ~0x00000400);
         if (relatedResourcesBuilder_ == null) {
           relatedResources_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
+          bitField0_ = (bitField0_ & ~0x00000800);
         } else {
           relatedResourcesBuilder_.clear();
         }
@@ -2654,51 +3204,55 @@ public final class Models {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.priority_ = priority_;
+        result.status_ = status_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
+        }
+        result.priority_ = priority_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
         }
         if (completionTimeBuilder_ == null) {
           result.completionTime_ = completionTime_;
         } else {
           result.completionTime_ = completionTimeBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
         }
         if (queueTimeBuilder_ == null) {
           result.queueTime_ = queueTime_;
         } else {
           result.queueTime_ = queueTimeBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
         }
         if (dueTimeBuilder_ == null) {
           result.dueTime_ = dueTime_;
         } else {
           result.dueTime_ = dueTimeBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.hACKContext_ = hACKContext_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
-        result.timeEstimateMinutes_ = timeEstimateMinutes_;
+        result.hACKContext_ = hACKContext_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.energyEstimate_ = energyEstimate_;
+        result.timeEstimateMinutes_ = timeEstimateMinutes_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000200;
         }
+        result.energyEstimate_ = energyEstimate_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
+        }
         result.notes_ = notes_;
         if (relatedResourcesBuilder_ == null) {
-          if (((bitField0_ & 0x00000400) == 0x00000400)) {
+          if (((bitField0_ & 0x00000800) == 0x00000800)) {
             relatedResources_ = java.util.Collections.unmodifiableList(relatedResources_);
-            bitField0_ = (bitField0_ & ~0x00000400);
+            bitField0_ = (bitField0_ & ~0x00000800);
           }
           result.relatedResources_ = relatedResources_;
         } else {
@@ -2725,6 +3279,9 @@ public final class Models {
         }
         if (other.hasSummary()) {
           setSummary(other.getSummary());
+        }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
         }
         if (other.hasPriority()) {
           setPriority(other.getPriority());
@@ -2754,7 +3311,7 @@ public final class Models {
           if (!other.relatedResources_.isEmpty()) {
             if (relatedResources_.isEmpty()) {
               relatedResources_ = other.relatedResources_;
-              bitField0_ = (bitField0_ & ~0x00000400);
+              bitField0_ = (bitField0_ & ~0x00000800);
             } else {
               ensureRelatedResourcesIsMutable();
               relatedResources_.addAll(other.relatedResources_);
@@ -2767,7 +3324,7 @@ public final class Models {
               relatedResourcesBuilder_.dispose();
               relatedResourcesBuilder_ = null;
               relatedResources_ = other.relatedResources_;
-              bitField0_ = (bitField0_ & ~0x00000400);
+              bitField0_ = (bitField0_ & ~0x00000800);
               relatedResourcesBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getRelatedResourcesFieldBuilder() : null;
@@ -2786,6 +3343,10 @@ public final class Models {
           return false;
         }
         if (!hasSummary()) {
+          
+          return false;
+        }
+        if (!hasStatus()) {
           
           return false;
         }
@@ -2875,16 +3436,27 @@ public final class Models {
             }
             case 24: {
               int rawValue = input.readEnum();
-              org.solemnsilence.fluidity.model.Models.Priority value = org.solemnsilence.fluidity.model.Models.Priority.valueOf(rawValue);
+              org.solemnsilence.fluidity.model.Models.NextAction.Status value = org.solemnsilence.fluidity.model.Models.NextAction.Status.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(3, rawValue);
               } else {
                 bitField0_ |= 0x00000004;
+                status_ = value;
+              }
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+              org.solemnsilence.fluidity.model.Models.Priority value = org.solemnsilence.fluidity.model.Models.Priority.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
                 priority_ = value;
               }
               break;
             }
-            case 34: {
+            case 42: {
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder subBuilder = org.solemnsilence.fluidity.model.Models.DateTimeStamp.newBuilder();
               if (hasCompletionTime()) {
                 subBuilder.mergeFrom(getCompletionTime());
@@ -2893,7 +3465,7 @@ public final class Models {
               setCompletionTime(subBuilder.buildPartial());
               break;
             }
-            case 42: {
+            case 50: {
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder subBuilder = org.solemnsilence.fluidity.model.Models.DateTimeStamp.newBuilder();
               if (hasQueueTime()) {
                 subBuilder.mergeFrom(getQueueTime());
@@ -2902,7 +3474,7 @@ public final class Models {
               setQueueTime(subBuilder.buildPartial());
               break;
             }
-            case 50: {
+            case 58: {
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder subBuilder = org.solemnsilence.fluidity.model.Models.DateTimeStamp.newBuilder();
               if (hasDueTime()) {
                 subBuilder.mergeFrom(getDueTime());
@@ -2911,33 +3483,33 @@ public final class Models {
               setDueTime(subBuilder.buildPartial());
               break;
             }
-            case 58: {
-              bitField0_ |= 0x00000040;
+            case 66: {
+              bitField0_ |= 0x00000080;
               hACKContext_ = input.readBytes();
               break;
             }
-            case 64: {
-              bitField0_ |= 0x00000080;
+            case 72: {
+              bitField0_ |= 0x00000100;
               timeEstimateMinutes_ = input.readInt32();
               break;
             }
-            case 72: {
+            case 80: {
               int rawValue = input.readEnum();
               org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate value = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(9, rawValue);
+                unknownFields.mergeVarintField(10, rawValue);
               } else {
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000200;
                 energyEstimate_ = value;
               }
               break;
             }
-            case 82: {
-              bitField0_ |= 0x00000200;
+            case 90: {
+              bitField0_ |= 0x00000400;
               notes_ = input.readBytes();
               break;
             }
-            case 90: {
+            case 98: {
               org.solemnsilence.fluidity.model.Models.URI.Builder subBuilder = org.solemnsilence.fluidity.model.Models.URI.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addRelatedResources(subBuilder.buildPartial());
@@ -3075,10 +3647,34 @@ public final class Models {
         onChanged();
       }
       
-      // required .org.solemnsilence.fluidity.model.Priority priority = 3 [default = MEDIUM];
+      // required .org.solemnsilence.fluidity.model.NextAction.Status status = 3;
+      private org.solemnsilence.fluidity.model.Models.NextAction.Status status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public org.solemnsilence.fluidity.model.Models.NextAction.Status getStatus() {
+        return status_;
+      }
+      public Builder setStatus(org.solemnsilence.fluidity.model.Models.NextAction.Status value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
+        onChanged();
+        return this;
+      }
+      
+      // required .org.solemnsilence.fluidity.model.Priority priority = 4 [default = MEDIUM];
       private org.solemnsilence.fluidity.model.Models.Priority priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
       public boolean hasPriority() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public org.solemnsilence.fluidity.model.Models.Priority getPriority() {
         return priority_;
@@ -3087,24 +3683,24 @@ public final class Models {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         priority_ = value;
         onChanged();
         return this;
       }
       public Builder clearPriority() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
         onChanged();
         return this;
       }
       
-      // optional .org.solemnsilence.fluidity.model.DateTimeStamp completion_time = 4;
+      // optional .org.solemnsilence.fluidity.model.DateTimeStamp completion_time = 5;
       private org.solemnsilence.fluidity.model.Models.DateTimeStamp completionTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.solemnsilence.fluidity.model.Models.DateTimeStamp, org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder, org.solemnsilence.fluidity.model.Models.DateTimeStampOrBuilder> completionTimeBuilder_;
       public boolean hasCompletionTime() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public org.solemnsilence.fluidity.model.Models.DateTimeStamp getCompletionTime() {
         if (completionTimeBuilder_ == null) {
@@ -3123,7 +3719,7 @@ public final class Models {
         } else {
           completionTimeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder setCompletionTime(
@@ -3134,12 +3730,12 @@ public final class Models {
         } else {
           completionTimeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder mergeCompletionTime(org.solemnsilence.fluidity.model.Models.DateTimeStamp value) {
         if (completionTimeBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
               completionTime_ != org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance()) {
             completionTime_ =
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.newBuilder(completionTime_).mergeFrom(value).buildPartial();
@@ -3150,7 +3746,7 @@ public final class Models {
         } else {
           completionTimeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder clearCompletionTime() {
@@ -3160,11 +3756,11 @@ public final class Models {
         } else {
           completionTimeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       public org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder getCompletionTimeBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getCompletionTimeFieldBuilder().getBuilder();
       }
@@ -3189,12 +3785,12 @@ public final class Models {
         return completionTimeBuilder_;
       }
       
-      // optional .org.solemnsilence.fluidity.model.DateTimeStamp queue_time = 5;
+      // optional .org.solemnsilence.fluidity.model.DateTimeStamp queue_time = 6;
       private org.solemnsilence.fluidity.model.Models.DateTimeStamp queueTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.solemnsilence.fluidity.model.Models.DateTimeStamp, org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder, org.solemnsilence.fluidity.model.Models.DateTimeStampOrBuilder> queueTimeBuilder_;
       public boolean hasQueueTime() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public org.solemnsilence.fluidity.model.Models.DateTimeStamp getQueueTime() {
         if (queueTimeBuilder_ == null) {
@@ -3213,7 +3809,7 @@ public final class Models {
         } else {
           queueTimeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       public Builder setQueueTime(
@@ -3224,12 +3820,12 @@ public final class Models {
         } else {
           queueTimeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       public Builder mergeQueueTime(org.solemnsilence.fluidity.model.Models.DateTimeStamp value) {
         if (queueTimeBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
               queueTime_ != org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance()) {
             queueTime_ =
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.newBuilder(queueTime_).mergeFrom(value).buildPartial();
@@ -3240,7 +3836,7 @@ public final class Models {
         } else {
           queueTimeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       public Builder clearQueueTime() {
@@ -3250,11 +3846,11 @@ public final class Models {
         } else {
           queueTimeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       public org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder getQueueTimeBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return getQueueTimeFieldBuilder().getBuilder();
       }
@@ -3279,12 +3875,12 @@ public final class Models {
         return queueTimeBuilder_;
       }
       
-      // optional .org.solemnsilence.fluidity.model.DateTimeStamp due_time = 6;
+      // optional .org.solemnsilence.fluidity.model.DateTimeStamp due_time = 7;
       private org.solemnsilence.fluidity.model.Models.DateTimeStamp dueTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.solemnsilence.fluidity.model.Models.DateTimeStamp, org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder, org.solemnsilence.fluidity.model.Models.DateTimeStampOrBuilder> dueTimeBuilder_;
       public boolean hasDueTime() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public org.solemnsilence.fluidity.model.Models.DateTimeStamp getDueTime() {
         if (dueTimeBuilder_ == null) {
@@ -3303,7 +3899,7 @@ public final class Models {
         } else {
           dueTimeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       public Builder setDueTime(
@@ -3314,12 +3910,12 @@ public final class Models {
         } else {
           dueTimeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       public Builder mergeDueTime(org.solemnsilence.fluidity.model.Models.DateTimeStamp value) {
         if (dueTimeBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
               dueTime_ != org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance()) {
             dueTime_ =
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.newBuilder(dueTime_).mergeFrom(value).buildPartial();
@@ -3330,7 +3926,7 @@ public final class Models {
         } else {
           dueTimeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       public Builder clearDueTime() {
@@ -3340,11 +3936,11 @@ public final class Models {
         } else {
           dueTimeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       public org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder getDueTimeBuilder() {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return getDueTimeFieldBuilder().getBuilder();
       }
@@ -3369,10 +3965,10 @@ public final class Models {
         return dueTimeBuilder_;
       }
       
-      // required string HACK_context = 7;
+      // required string HACK_context = 8;
       private java.lang.Object hACKContext_ = "";
       public boolean hasHACKContext() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public String getHACKContext() {
         java.lang.Object ref = hACKContext_;
@@ -3388,48 +3984,48 @@ public final class Models {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000080;
         hACKContext_ = value;
         onChanged();
         return this;
       }
       public Builder clearHACKContext() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         hACKContext_ = getDefaultInstance().getHACKContext();
         onChanged();
         return this;
       }
       void setHACKContext(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         hACKContext_ = value;
         onChanged();
       }
       
-      // required int32 time_estimate_minutes = 8;
+      // required int32 time_estimate_minutes = 9;
       private int timeEstimateMinutes_ ;
       public boolean hasTimeEstimateMinutes() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public int getTimeEstimateMinutes() {
         return timeEstimateMinutes_;
       }
       public Builder setTimeEstimateMinutes(int value) {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         timeEstimateMinutes_ = value;
         onChanged();
         return this;
       }
       public Builder clearTimeEstimateMinutes() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         timeEstimateMinutes_ = 0;
         onChanged();
         return this;
       }
       
-      // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energy_estimate = 9;
+      // required .org.solemnsilence.fluidity.model.NextAction.EnergyEstimate energy_estimate = 10;
       private org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate energyEstimate_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
       public boolean hasEnergyEstimate() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       public org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate getEnergyEstimate() {
         return energyEstimate_;
@@ -3438,22 +4034,22 @@ public final class Models {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         energyEstimate_ = value;
         onChanged();
         return this;
       }
       public Builder clearEnergyEstimate() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         energyEstimate_ = org.solemnsilence.fluidity.model.Models.NextAction.EnergyEstimate.LOW;
         onChanged();
         return this;
       }
       
-      // optional string notes = 10;
+      // optional string notes = 11;
       private java.lang.Object notes_ = "";
       public boolean hasNotes() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       public String getNotes() {
         java.lang.Object ref = notes_;
@@ -3469,30 +4065,30 @@ public final class Models {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000200;
+  bitField0_ |= 0x00000400;
         notes_ = value;
         onChanged();
         return this;
       }
       public Builder clearNotes() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000400);
         notes_ = getDefaultInstance().getNotes();
         onChanged();
         return this;
       }
       void setNotes(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         notes_ = value;
         onChanged();
       }
       
-      // repeated .org.solemnsilence.fluidity.model.URI related_resources = 11;
+      // repeated .org.solemnsilence.fluidity.model.URI related_resources = 12;
       private java.util.List<org.solemnsilence.fluidity.model.Models.URI> relatedResources_ =
         java.util.Collections.emptyList();
       private void ensureRelatedResourcesIsMutable() {
-        if (!((bitField0_ & 0x00000400) == 0x00000400)) {
+        if (!((bitField0_ & 0x00000800) == 0x00000800)) {
           relatedResources_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.URI>(relatedResources_);
-          bitField0_ |= 0x00000400;
+          bitField0_ |= 0x00000800;
          }
       }
       
@@ -3608,7 +4204,7 @@ public final class Models {
       public Builder clearRelatedResources() {
         if (relatedResourcesBuilder_ == null) {
           relatedResources_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
+          bitField0_ = (bitField0_ & ~0x00000800);
           onChanged();
         } else {
           relatedResourcesBuilder_.clear();
@@ -3664,7 +4260,7 @@ public final class Models {
           relatedResourcesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               org.solemnsilence.fluidity.model.Models.URI, org.solemnsilence.fluidity.model.Models.URI.Builder, org.solemnsilence.fluidity.model.Models.URIOrBuilder>(
                   relatedResources_,
-                  ((bitField0_ & 0x00000400) == 0x00000400),
+                  ((bitField0_ & 0x00000800) == 0x00000800),
                   getParentForChildren(),
                   isClean());
           relatedResources_ = null;
@@ -12874,6 +13470,11 @@ public final class Models {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_solemnsilence_fluidity_model_HACK_ExportedNextActions_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_solemnsilence_fluidity_model_AreaOfFocus_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -12956,83 +13557,89 @@ public final class Models {
       "ty.model\"p\n\030HACK_ExportedNextActions\022\020\n\010" +
       "contexts\030\001 \003(\t\022B\n\014next_actions\030\002 \003(\0132,.o" +
       "rg.solemnsilence.fluidity.model.NextActi" +
-      "on\"_\n\013AreaOfFocus\022B\n\010metadata\030\001 \002(\01320.or" +
-      "g.solemnsilence.fluidity.model.CommonMet" +
-      "adata\022\014\n\004name\030\002 \002(\t\"\227\006\n\nNextAction\022B\n\010me" +
-      "tadata\030\001 \002(\01320.org.solemnsilence.fluidit" +
-      "y.model.CommonMetadata\022\017\n\007summary\030\002 \002(\t\022" +
-      "D\n\010priority\030\003 \002(\0162*.org.solemnsilence.fl",
-      "uidity.model.Priority:\006MEDIUM\022H\n\017complet" +
-      "ion_time\030\004 \001(\0132/.org.solemnsilence.fluid" +
-      "ity.model.DateTimeStamp\022C\n\nqueue_time\030\005 " +
+      "on\"\246\001\n HACK_NextActionSelectionCriteria\022" +
+      "\017\n\007context\030\001 \002(\t\022\033\n\023timeAvailableInMins\030" +
+      "\002 \002(\005\022T\n\017energyAvailable\030\003 \002(\0162;.org.sol" +
+      "emnsilence.fluidity.model.NextAction.Ene" +
+      "rgyEstimate\"_\n\013AreaOfFocus\022B\n\010metadata\030\001" +
+      " \002(\01320.org.solemnsilence.fluidity.model.",
+      "CommonMetadata\022\014\n\004name\030\002 \002(\t\"\334\006\n\nNextAct" +
+      "ion\022B\n\010metadata\030\001 \002(\01320.org.solemnsilenc" +
+      "e.fluidity.model.CommonMetadata\022\017\n\007summa" +
+      "ry\030\002 \002(\t\022C\n\006status\030\003 \002(\01623.org.solemnsil" +
+      "ence.fluidity.model.NextAction.Status\022D\n" +
+      "\010priority\030\004 \002(\0162*.org.solemnsilence.flui" +
+      "dity.model.Priority:\006MEDIUM\022H\n\017completio" +
+      "n_time\030\005 \001(\0132/.org.solemnsilence.fluidit" +
+      "y.model.DateTimeStamp\022C\n\nqueue_time\030\006 \001(" +
+      "\0132/.org.solemnsilence.fluidity.model.Dat",
+      "eTimeStamp\022A\n\010due_time\030\007 \001(\0132/.org.solem" +
+      "nsilence.fluidity.model.DateTimeStamp\022\024\n" +
+      "\014HACK_context\030\010 \002(\t\022\035\n\025time_estimate_min" +
+      "utes\030\t \002(\005\022T\n\017energy_estimate\030\n \002(\0162;.or" +
+      "g.solemnsilence.fluidity.model.NextActio" +
+      "n.EnergyEstimate\022\r\n\005notes\030\013 \001(\t\022@\n\021relat" +
+      "ed_resources\030\014 \003(\0132%.org.solemnsilence.f" +
+      "luidity.model.URI\032[\n\007Context\022B\n\010metadata" +
+      "\030\001 \002(\01320.org.solemnsilence.fluidity.mode" +
+      "l.CommonMetadata\022\014\n\004name\030\002 \002(\t\"2\n\006Status",
+      "\022\n\n\006ACTIVE\020\001\022\016\n\nINCUBATING\020\002\022\014\n\010COMPLETE" +
+      "\020\003\"/\n\016EnergyEstimate\022\007\n\003LOW\020\001\022\n\n\006MEDIUM\020" +
+      "\002\022\010\n\004HIGH\020\003\"\312\007\n\007Project\022B\n\010metadata\030\001 \002(" +
+      "\01320.org.solemnsilence.fluidity.model.Com" +
+      "monMetadata\022\017\n\007summary\030\002 \002(\t\022D\n\010priority" +
+      "\030\003 \002(\0162*.org.solemnsilence.fluidity.mode" +
+      "l.Priority:\006MEDIUM\022H\n\017completion_time\030\004 " +
       "\001(\0132/.org.solemnsilence.fluidity.model.D" +
-      "ateTimeStamp\022A\n\010due_time\030\006 \001(\0132/.org.sol" +
-      "emnsilence.fluidity.model.DateTimeStamp\022" +
-      "\024\n\014HACK_context\030\007 \002(\t\022\035\n\025time_estimate_m" +
-      "inutes\030\010 \002(\005\022T\n\017energy_estimate\030\t \002(\0162;." +
-      "org.solemnsilence.fluidity.model.NextAct" +
-      "ion.EnergyEstimate\022\r\n\005notes\030\n \001(\t\022@\n\021rel",
-      "ated_resources\030\013 \003(\0132%.org.solemnsilence" +
-      ".fluidity.model.URI\032[\n\007Context\022B\n\010metada" +
-      "ta\030\001 \002(\01320.org.solemnsilence.fluidity.mo" +
-      "del.CommonMetadata\022\014\n\004name\030\002 \002(\t\"2\n\006Stat" +
-      "us\022\n\n\006ACTIVE\020\001\022\016\n\nINCUBATING\020\002\022\014\n\010COMPLE" +
-      "TE\020\003\"/\n\016EnergyEstimate\022\007\n\003LOW\020\001\022\n\n\006MEDIU" +
-      "M\020\002\022\010\n\004HIGH\020\003\"\312\007\n\007Project\022B\n\010metadata\030\001 " +
-      "\002(\01320.org.solemnsilence.fluidity.model.C" +
-      "ommonMetadata\022\017\n\007summary\030\002 \002(\t\022D\n\010priori" +
-      "ty\030\003 \002(\0162*.org.solemnsilence.fluidity.mo",
-      "del.Priority:\006MEDIUM\022H\n\017completion_time\030" +
-      "\004 \001(\0132/.org.solemnsilence.fluidity.model" +
-      ".DateTimeStamp\022C\n\nqueue_time\030\005 \001(\0132/.org" +
-      ".solemnsilence.fluidity.model.DateTimeSt" +
-      "amp\022A\n\010due_time\030\006 \001(\0132/.org.solemnsilenc" +
-      "e.fluidity.model.DateTimeStamp\022@\n\006status" +
-      "\030\007 \002(\01620.org.solemnsilence.fluidity.mode" +
-      "l.Project.Status\022R\n\020waiting_for_data\030\010 \001" +
-      "(\01328.org.solemnsilence.fluidity.model.Pr" +
-      "oject.WaitingForData\022;\n\013subprojects\030\t \003(",
-      "\0132&.org.solemnsilence.fluidity.model.UUI" +
-      "D\022>\n\016areas_of_focus\030\n \003(\0132&.org.solemnsi" +
-      "lence.fluidity.model.UUID\022G\n\027sequential_" +
-      "next_actions\030\013 \003(\0132&.org.solemnsilence.f" +
-      "luidity.model.UUID\022F\n\026unordered_next_act" +
-      "ions\030\014 \003(\0132&.org.solemnsilence.fluidity." +
-      "model.UUID\032i\n\016WaitingForData\022\017\n\007summary\030" +
-      "\001 \002(\t\022F\n\rwaiting_since\030\002 \002(\0132/.org.solem" +
-      "nsilence.fluidity.model.DateTimeStamp\"C\n" +
-      "\006Status\022\n\n\006ACTIVE\020\001\022\016\n\nINCUBATING\020\002\022\017\n\013W",
-      "AITING_FOR\020\003\022\014\n\010COMPLETE\020\004\"-\n\tInboxNote\022" +
-      "\017\n\007summary\030\001 \002(\t\022\017\n\007details\030\002 \001(\t\"\364\001\n\003Ta" +
-      "g\022?\n\004meta\030\001 \002(\01321.org.solemnsilence.flui" +
-      "dity.model.Tag.TagMetadata\022\014\n\004name\030\002 \002(\t" +
-      "\022\020\n\010alt_name\030\003 \001(\t\032\213\001\n\013TagMetadata\0224\n\004uu" +
-      "id\030\001 \002(\0132&.org.solemnsilence.fluidity.mo" +
-      "del.UUID\022F\n\rcreation_time\030\002 \002(\0132/.org.so" +
-      "lemnsilence.fluidity.model.DateTimeStamp" +
-      "\"\311\001\n\016CommonMetadata\0224\n\004uuid\030\001 \002(\0132&.org." +
-      "solemnsilence.fluidity.model.UUID\022F\n\rcre",
-      "ation_time\030\002 \002(\0132/.org.solemnsilence.flu" +
-      "idity.model.DateTimeStamp\0229\n\ttag_uuids\030\003" +
-      " \003(\0132&.org.solemnsilence.fluidity.model." +
-      "UUID\"\355\002\n\017AllFluidityData\022E\n\016areas_of_foc" +
-      "us\030\001 \003(\0132-.org.solemnsilence.fluidity.mo" +
-      "del.AreaOfFocus\022;\n\010projects\030\002 \003(\0132).org." +
-      "solemnsilence.fluidity.model.Project\022B\n\014" +
-      "next_actions\030\003 \003(\0132,.org.solemnsilence.f" +
-      "luidity.model.NextAction\022@\n\013inbox_notes\030" +
-      "\004 \003(\0132+.org.solemnsilence.fluidity.model",
-      ".InboxNote\022P\n\032pre_sorted_current_actions" +
-      "\030\005 \003(\0132,.org.solemnsilence.fluidity.mode" +
-      "l.NextAction\"\"\n\rDateTimeStamp\022\021\n\ttimesta" +
-      "mp\030\001 \002(\005\"|\n\005Image\022\022\n\nimage_data\030\001 \002(\014\022?\n" +
-      "\004type\030\002 \002(\01621.org.solemnsilence.fluidity" +
-      ".model.Image.ImageType\"\036\n\tImageType\022\007\n\003P" +
-      "NG\020\001\022\010\n\004JPEG\020\002\"a\n\003URI\022\013\n\003uri\030\001 \002(\t\022\023\n\013de" +
-      "scription\030\002 \001(\t\0228\n\007favicon\030\003 \001(\0132\'.org.s" +
-      "olemnsilence.fluidity.model.Image\"\031\n\004UUI" +
-      "D\022\021\n\traw_bytes\030\001 \002(\014*)\n\010Priority\022\010\n\004HIGH",
-      "\020\001\022\n\n\006MEDIUM\020\002\022\007\n\003LOW\020\003"
+      "ateTimeStamp\022C\n\nqueue_time\030\005 \001(\0132/.org.s" +
+      "olemnsilence.fluidity.model.DateTimeStam",
+      "p\022A\n\010due_time\030\006 \001(\0132/.org.solemnsilence." +
+      "fluidity.model.DateTimeStamp\022@\n\006status\030\007" +
+      " \002(\01620.org.solemnsilence.fluidity.model." +
+      "Project.Status\022R\n\020waiting_for_data\030\010 \001(\013" +
+      "28.org.solemnsilence.fluidity.model.Proj" +
+      "ect.WaitingForData\022;\n\013subprojects\030\t \003(\0132" +
+      "&.org.solemnsilence.fluidity.model.UUID\022" +
+      ">\n\016areas_of_focus\030\n \003(\0132&.org.solemnsile" +
+      "nce.fluidity.model.UUID\022G\n\027sequential_ne" +
+      "xt_actions\030\013 \003(\0132&.org.solemnsilence.flu",
+      "idity.model.UUID\022F\n\026unordered_next_actio" +
+      "ns\030\014 \003(\0132&.org.solemnsilence.fluidity.mo" +
+      "del.UUID\032i\n\016WaitingForData\022\017\n\007summary\030\001 " +
+      "\002(\t\022F\n\rwaiting_since\030\002 \002(\0132/.org.solemns" +
+      "ilence.fluidity.model.DateTimeStamp\"C\n\006S" +
+      "tatus\022\n\n\006ACTIVE\020\001\022\016\n\nINCUBATING\020\002\022\017\n\013WAI" +
+      "TING_FOR\020\003\022\014\n\010COMPLETE\020\004\"-\n\tInboxNote\022\017\n" +
+      "\007summary\030\001 \002(\t\022\017\n\007details\030\002 \001(\t\"\364\001\n\003Tag\022" +
+      "?\n\004meta\030\001 \002(\01321.org.solemnsilence.fluidi" +
+      "ty.model.Tag.TagMetadata\022\014\n\004name\030\002 \002(\t\022\020",
+      "\n\010alt_name\030\003 \001(\t\032\213\001\n\013TagMetadata\0224\n\004uuid" +
+      "\030\001 \002(\0132&.org.solemnsilence.fluidity.mode" +
+      "l.UUID\022F\n\rcreation_time\030\002 \002(\0132/.org.sole" +
+      "mnsilence.fluidity.model.DateTimeStamp\"\311" +
+      "\001\n\016CommonMetadata\0224\n\004uuid\030\001 \002(\0132&.org.so" +
+      "lemnsilence.fluidity.model.UUID\022F\n\rcreat" +
+      "ion_time\030\002 \002(\0132/.org.solemnsilence.fluid" +
+      "ity.model.DateTimeStamp\0229\n\ttag_uuids\030\003 \003" +
+      "(\0132&.org.solemnsilence.fluidity.model.UU" +
+      "ID\"\355\002\n\017AllFluidityData\022E\n\016areas_of_focus",
+      "\030\001 \003(\0132-.org.solemnsilence.fluidity.mode" +
+      "l.AreaOfFocus\022;\n\010projects\030\002 \003(\0132).org.so" +
+      "lemnsilence.fluidity.model.Project\022B\n\014ne" +
+      "xt_actions\030\003 \003(\0132,.org.solemnsilence.flu" +
+      "idity.model.NextAction\022@\n\013inbox_notes\030\004 " +
+      "\003(\0132+.org.solemnsilence.fluidity.model.I" +
+      "nboxNote\022P\n\032pre_sorted_current_actions\030\005" +
+      " \003(\0132,.org.solemnsilence.fluidity.model." +
+      "NextAction\"\"\n\rDateTimeStamp\022\021\n\ttimestamp" +
+      "\030\001 \002(\005\"|\n\005Image\022\022\n\nimage_data\030\001 \002(\014\022?\n\004t",
+      "ype\030\002 \002(\01621.org.solemnsilence.fluidity.m" +
+      "odel.Image.ImageType\"\036\n\tImageType\022\007\n\003PNG" +
+      "\020\001\022\010\n\004JPEG\020\002\"a\n\003URI\022\013\n\003uri\030\001 \002(\t\022\023\n\013desc" +
+      "ription\030\002 \001(\t\0228\n\007favicon\030\003 \001(\0132\'.org.sol" +
+      "emnsilence.fluidity.model.Image\"\031\n\004UUID\022" +
+      "\021\n\traw_bytes\030\001 \002(\014*)\n\010Priority\022\010\n\004HIGH\020\001" +
+      "\022\n\n\006MEDIUM\020\002\022\007\n\003LOW\020\003"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -13047,8 +13654,16 @@ public final class Models {
               new java.lang.String[] { "Contexts", "NextActions", },
               org.solemnsilence.fluidity.model.Models.HACK_ExportedNextActions.class,
               org.solemnsilence.fluidity.model.Models.HACK_ExportedNextActions.Builder.class);
-          internal_static_org_solemnsilence_fluidity_model_AreaOfFocus_descriptor =
+          internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_descriptor =
             getDescriptor().getMessageTypes().get(1);
+          internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_solemnsilence_fluidity_model_HACK_NextActionSelectionCriteria_descriptor,
+              new java.lang.String[] { "Context", "TimeAvailableInMins", "EnergyAvailable", },
+              org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria.class,
+              org.solemnsilence.fluidity.model.Models.HACK_NextActionSelectionCriteria.Builder.class);
+          internal_static_org_solemnsilence_fluidity_model_AreaOfFocus_descriptor =
+            getDescriptor().getMessageTypes().get(2);
           internal_static_org_solemnsilence_fluidity_model_AreaOfFocus_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_AreaOfFocus_descriptor,
@@ -13056,11 +13671,11 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.AreaOfFocus.class,
               org.solemnsilence.fluidity.model.Models.AreaOfFocus.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_NextAction_descriptor =
-            getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(3);
           internal_static_org_solemnsilence_fluidity_model_NextAction_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_NextAction_descriptor,
-              new java.lang.String[] { "Metadata", "Summary", "Priority", "CompletionTime", "QueueTime", "DueTime", "HACKContext", "TimeEstimateMinutes", "EnergyEstimate", "Notes", "RelatedResources", },
+              new java.lang.String[] { "Metadata", "Summary", "Status", "Priority", "CompletionTime", "QueueTime", "DueTime", "HACKContext", "TimeEstimateMinutes", "EnergyEstimate", "Notes", "RelatedResources", },
               org.solemnsilence.fluidity.model.Models.NextAction.class,
               org.solemnsilence.fluidity.model.Models.NextAction.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_NextAction_Context_descriptor =
@@ -13072,7 +13687,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.NextAction.Context.class,
               org.solemnsilence.fluidity.model.Models.NextAction.Context.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_Project_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(4);
           internal_static_org_solemnsilence_fluidity_model_Project_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_Project_descriptor,
@@ -13088,7 +13703,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.Project.WaitingForData.class,
               org.solemnsilence.fluidity.model.Models.Project.WaitingForData.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_InboxNote_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_org_solemnsilence_fluidity_model_InboxNote_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_InboxNote_descriptor,
@@ -13096,7 +13711,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.InboxNote.class,
               org.solemnsilence.fluidity.model.Models.InboxNote.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_Tag_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_org_solemnsilence_fluidity_model_Tag_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_Tag_descriptor,
@@ -13112,7 +13727,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.Tag.TagMetadata.class,
               org.solemnsilence.fluidity.model.Models.Tag.TagMetadata.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_CommonMetadata_descriptor =
-            getDescriptor().getMessageTypes().get(6);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_org_solemnsilence_fluidity_model_CommonMetadata_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_CommonMetadata_descriptor,
@@ -13120,7 +13735,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.CommonMetadata.class,
               org.solemnsilence.fluidity.model.Models.CommonMetadata.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_AllFluidityData_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_org_solemnsilence_fluidity_model_AllFluidityData_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_AllFluidityData_descriptor,
@@ -13128,7 +13743,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.AllFluidityData.class,
               org.solemnsilence.fluidity.model.Models.AllFluidityData.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_DateTimeStamp_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_org_solemnsilence_fluidity_model_DateTimeStamp_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_DateTimeStamp_descriptor,
@@ -13136,7 +13751,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.class,
               org.solemnsilence.fluidity.model.Models.DateTimeStamp.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_Image_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_org_solemnsilence_fluidity_model_Image_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_Image_descriptor,
@@ -13144,7 +13759,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.Image.class,
               org.solemnsilence.fluidity.model.Models.Image.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_URI_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_org_solemnsilence_fluidity_model_URI_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_URI_descriptor,
@@ -13152,7 +13767,7 @@ public final class Models {
               org.solemnsilence.fluidity.model.Models.URI.class,
               org.solemnsilence.fluidity.model.Models.URI.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_UUID_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_org_solemnsilence_fluidity_model_UUID_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_UUID_descriptor,

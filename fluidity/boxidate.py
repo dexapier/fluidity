@@ -35,7 +35,7 @@ from fluidity import gio_fml
 
 
 INBOXES = ()
-#           'sftp://jensck@anvil.solemnsilence.org/home/jensck/Inbox')
+#           'sftp://luser@myserver.example.org/home/luser/Inbox')
 # INBOXES MUST BE A SET OF URIs/URLs, NOT JUST PLAIN PATHS
 
 
@@ -172,7 +172,8 @@ class RESTInbox(Inbox):
     
     def _retrieve_inbox_items(self):
         url = 'http://anvil.solemnsilence.org:9395/fluidity_mobile/inbox/pull_all/'
-        response = requests.post(url, auth=('app_root', 'st00pid'))
+        uname, pwd = self._read_auth_info()
+        response = requests.post(url, auth=(uname, pwd))
         return [i['fields'] for i in json.loads(response.content)]  # IGNORE:E1103
     
     def _create_inbox_note(self, note_dict, parent_dir):
@@ -186,6 +187,11 @@ class RESTInbox(Inbox):
             file_path = os.path.join(parent_dir, file_name)
             with open(file_path, 'wb') as pickle_file:
                 pickle.dump(note_dict, pickle_file, pickle.HIGHEST_PROTOCOL)
+
+    def _read_auth_info(self):
+        # TOTAL HACK.  just here for now...
+        with open('/home/jensck/.local/share/fluidity/anvil_auth.json', 'r') as anvil_auth_file:
+            return json.load(anvil_auth_file)
 
 
 class TomboyInbox(Inbox):
@@ -256,8 +262,9 @@ class TomboyInbox(Inbox):
             os.remove(n)
 
     def set_SH_xml(self, xml):
-        with open('/home/jensck/fuckstick.xml', 'w') as fuckstick:
-            fuckstick.write(xml)
+        # FIXME: remove this - testing only
+        with open('/home/jensck/stupid_tomboy_format_changes.xml', 'w') as xmlfile:
+            xmlfile.write(xml)
         self.tbus.SetNoteContentsXml(self.sh_uri, xml)
 
     @property

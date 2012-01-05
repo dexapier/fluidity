@@ -1,4 +1,12 @@
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+#Tue Dec 06 00:10:13 CST 2011
+=======
+#Tue Dec 06 00:38:47 GMT-06:00 2011
+>>>>>>> Stashed changes
+=======
 #Sat Dec 10 01:08:23 CST 2011
+>>>>>>> origin/develop
 eclipse.preferences.version=1
 encoding//bin/fluidity=utf-8
 encoding//fluidity/app_utils.py=utf-8

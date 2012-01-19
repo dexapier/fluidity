@@ -22,12 +22,6 @@ message AreaOfFocus {
 
 message NextAction {
 
-    enum Status {
-        ACTIVE = 1;
-        INCUBATING = 2;
-        COMPLETE = 3;
-    }
-
     message Context {
         required CommonMetadata metadata = 1;
         required string name = 2;
@@ -42,7 +36,7 @@ message NextAction {
     // These first fields are the same as in Project
     required CommonMetadata metadata = 1;
     required string summary = 2;
-    required Status status = 3;
+    required bool complete = 3;
     required Priority priority = 4 [default = MEDIUM];
     optional DateTimeStamp completion_time = 5;
     optional DateTimeStamp queue_time = 6;
@@ -74,6 +68,11 @@ message Project {
         required DateTimeStamp waiting_since = 2;
     }
 
+    message ProjectActions {
+        repeated UUID ordered_actions = 1;
+        repeated UUID anytime_actions = 2;
+    }
+
     // These first fields are the same as in NextAction
     required CommonMetadata metadata = 1;
     required string summary = 2;
@@ -87,9 +86,10 @@ message Project {
 
     repeated UUID subprojects = 9;
     repeated UUID areas_of_focus = 10;
-    repeated UUID sequential_next_actions = 11;
-    repeated UUID unordered_next_actions = 12;
+    repeated ProjectActions active_actions = 11;
+    repeated ProjectActions incubating_actions = 12;
 }
+
 
 
 message InboxNote {

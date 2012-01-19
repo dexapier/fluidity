@@ -1830,9 +1830,9 @@ public final class Models {
     boolean hasSummary();
     String getSummary();
     
-    // required .org.solemnsilence.fluidity.model.NextAction.Status status = 3;
-    boolean hasStatus();
-    org.solemnsilence.fluidity.model.Models.NextAction.Status getStatus();
+    // required bool complete = 3;
+    boolean hasComplete();
+    boolean getComplete();
     
     // required .org.solemnsilence.fluidity.model.Priority priority = 4 [default = MEDIUM];
     boolean hasPriority();
@@ -1907,78 +1907,6 @@ public final class Models {
       return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_NextAction_fieldAccessorTable;
     }
     
-    public enum Status
-        implements com.google.protobuf.ProtocolMessageEnum {
-      ACTIVE(0, 1),
-      INCUBATING(1, 2),
-      COMPLETE(2, 3),
-      ;
-      
-      public static final int ACTIVE_VALUE = 1;
-      public static final int INCUBATING_VALUE = 2;
-      public static final int COMPLETE_VALUE = 3;
-      
-      
-      public final int getNumber() { return value; }
-      
-      public static Status valueOf(int value) {
-        switch (value) {
-          case 1: return ACTIVE;
-          case 2: return INCUBATING;
-          case 3: return COMPLETE;
-          default: return null;
-        }
-      }
-      
-      public static com.google.protobuf.Internal.EnumLiteMap<Status>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static com.google.protobuf.Internal.EnumLiteMap<Status>
-          internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Status>() {
-              public Status findValueByNumber(int number) {
-                return Status.valueOf(number);
-              }
-            };
-      
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(index);
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return org.solemnsilence.fluidity.model.Models.NextAction.getDescriptor().getEnumTypes().get(0);
-      }
-      
-      private static final Status[] VALUES = {
-        ACTIVE, INCUBATING, COMPLETE, 
-      };
-      
-      public static Status valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-      
-      private final int index;
-      private final int value;
-      
-      private Status(int index, int value) {
-        this.index = index;
-        this.value = value;
-      }
-      
-      // @@protoc_insertion_point(enum_scope:org.solemnsilence.fluidity.model.NextAction.Status)
-    }
-    
     public enum EnergyEstimate
         implements com.google.protobuf.ProtocolMessageEnum {
       LOW(0, 1),
@@ -2024,7 +1952,7 @@ public final class Models {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return org.solemnsilence.fluidity.model.Models.NextAction.getDescriptor().getEnumTypes().get(1);
+        return org.solemnsilence.fluidity.model.Models.NextAction.getDescriptor().getEnumTypes().get(0);
       }
       
       private static final EnergyEstimate[] VALUES = {
@@ -2639,14 +2567,14 @@ public final class Models {
       }
     }
     
-    // required .org.solemnsilence.fluidity.model.NextAction.Status status = 3;
-    public static final int STATUS_FIELD_NUMBER = 3;
-    private org.solemnsilence.fluidity.model.Models.NextAction.Status status_;
-    public boolean hasStatus() {
+    // required bool complete = 3;
+    public static final int COMPLETE_FIELD_NUMBER = 3;
+    private boolean complete_;
+    public boolean hasComplete() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public org.solemnsilence.fluidity.model.Models.NextAction.Status getStatus() {
-      return status_;
+    public boolean getComplete() {
+      return complete_;
     }
     
     // required .org.solemnsilence.fluidity.model.Priority priority = 4 [default = MEDIUM];
@@ -2806,7 +2734,7 @@ public final class Models {
     private void initFields() {
       metadata_ = org.solemnsilence.fluidity.model.Models.CommonMetadata.getDefaultInstance();
       summary_ = "";
-      status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
+      complete_ = false;
       priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
       completionTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
       queueTime_ = org.solemnsilence.fluidity.model.Models.DateTimeStamp.getDefaultInstance();
@@ -2830,7 +2758,7 @@ public final class Models {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasStatus()) {
+      if (!hasComplete()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -2892,7 +2820,7 @@ public final class Models {
         output.writeBytes(2, getSummaryBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, status_.getNumber());
+        output.writeBool(3, complete_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeEnum(4, priority_.getNumber());
@@ -2940,7 +2868,7 @@ public final class Models {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, status_.getNumber());
+          .computeBoolSize(3, complete_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3115,7 +3043,7 @@ public final class Models {
         bitField0_ = (bitField0_ & ~0x00000001);
         summary_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
+        complete_ = false;
         bitField0_ = (bitField0_ & ~0x00000004);
         priority_ = org.solemnsilence.fluidity.model.Models.Priority.MEDIUM;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -3204,7 +3132,7 @@ public final class Models {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.status_ = status_;
+        result.complete_ = complete_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -3280,8 +3208,8 @@ public final class Models {
         if (other.hasSummary()) {
           setSummary(other.getSummary());
         }
-        if (other.hasStatus()) {
-          setStatus(other.getStatus());
+        if (other.hasComplete()) {
+          setComplete(other.getComplete());
         }
         if (other.hasPriority()) {
           setPriority(other.getPriority());
@@ -3346,7 +3274,7 @@ public final class Models {
           
           return false;
         }
-        if (!hasStatus()) {
+        if (!hasComplete()) {
           
           return false;
         }
@@ -3435,14 +3363,8 @@ public final class Models {
               break;
             }
             case 24: {
-              int rawValue = input.readEnum();
-              org.solemnsilence.fluidity.model.Models.NextAction.Status value = org.solemnsilence.fluidity.model.Models.NextAction.Status.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(3, rawValue);
-              } else {
-                bitField0_ |= 0x00000004;
-                status_ = value;
-              }
+              bitField0_ |= 0x00000004;
+              complete_ = input.readBool();
               break;
             }
             case 32: {
@@ -3647,26 +3569,23 @@ public final class Models {
         onChanged();
       }
       
-      // required .org.solemnsilence.fluidity.model.NextAction.Status status = 3;
-      private org.solemnsilence.fluidity.model.Models.NextAction.Status status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
-      public boolean hasStatus() {
+      // required bool complete = 3;
+      private boolean complete_ ;
+      public boolean hasComplete() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public org.solemnsilence.fluidity.model.Models.NextAction.Status getStatus() {
-        return status_;
+      public boolean getComplete() {
+        return complete_;
       }
-      public Builder setStatus(org.solemnsilence.fluidity.model.Models.NextAction.Status value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
+      public Builder setComplete(boolean value) {
         bitField0_ |= 0x00000004;
-        status_ = value;
+        complete_ = value;
         onChanged();
         return this;
       }
-      public Builder clearStatus() {
+      public Builder clearComplete() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        status_ = org.solemnsilence.fluidity.model.Models.NextAction.Status.ACTIVE;
+        complete_ = false;
         onChanged();
         return this;
       }
@@ -4339,24 +4258,24 @@ public final class Models {
     org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getAreasOfFocusOrBuilder(
         int index);
     
-    // repeated .org.solemnsilence.fluidity.model.UUID sequential_next_actions = 11;
-    java.util.List<org.solemnsilence.fluidity.model.Models.UUID> 
-        getSequentialNextActionsList();
-    org.solemnsilence.fluidity.model.Models.UUID getSequentialNextActions(int index);
-    int getSequentialNextActionsCount();
-    java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-        getSequentialNextActionsOrBuilderList();
-    org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getSequentialNextActionsOrBuilder(
+    // repeated .org.solemnsilence.fluidity.model.Project.ProjectActions active_actions = 11;
+    java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> 
+        getActiveActionsList();
+    org.solemnsilence.fluidity.model.Models.Project.ProjectActions getActiveActions(int index);
+    int getActiveActionsCount();
+    java.util.List<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+        getActiveActionsOrBuilderList();
+    org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder getActiveActionsOrBuilder(
         int index);
     
-    // repeated .org.solemnsilence.fluidity.model.UUID unordered_next_actions = 12;
-    java.util.List<org.solemnsilence.fluidity.model.Models.UUID> 
-        getUnorderedNextActionsList();
-    org.solemnsilence.fluidity.model.Models.UUID getUnorderedNextActions(int index);
-    int getUnorderedNextActionsCount();
-    java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-        getUnorderedNextActionsOrBuilderList();
-    org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getUnorderedNextActionsOrBuilder(
+    // repeated .org.solemnsilence.fluidity.model.Project.ProjectActions incubating_actions = 12;
+    java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> 
+        getIncubatingActionsList();
+    org.solemnsilence.fluidity.model.Models.Project.ProjectActions getIncubatingActions(int index);
+    int getIncubatingActionsCount();
+    java.util.List<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+        getIncubatingActionsOrBuilderList();
+    org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder getIncubatingActionsOrBuilder(
         int index);
   }
   public static final class Project extends
@@ -5004,6 +4923,854 @@ public final class Models {
       // @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Project.WaitingForData)
     }
     
+    public interface ProjectActionsOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+      
+      // repeated .org.solemnsilence.fluidity.model.UUID ordered_actions = 1;
+      java.util.List<org.solemnsilence.fluidity.model.Models.UUID> 
+          getOrderedActionsList();
+      org.solemnsilence.fluidity.model.Models.UUID getOrderedActions(int index);
+      int getOrderedActionsCount();
+      java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+          getOrderedActionsOrBuilderList();
+      org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getOrderedActionsOrBuilder(
+          int index);
+      
+      // repeated .org.solemnsilence.fluidity.model.UUID anytime_actions = 2;
+      java.util.List<org.solemnsilence.fluidity.model.Models.UUID> 
+          getAnytimeActionsList();
+      org.solemnsilence.fluidity.model.Models.UUID getAnytimeActions(int index);
+      int getAnytimeActionsCount();
+      java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+          getAnytimeActionsOrBuilderList();
+      org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getAnytimeActionsOrBuilder(
+          int index);
+    }
+    public static final class ProjectActions extends
+        com.google.protobuf.GeneratedMessage
+        implements ProjectActionsOrBuilder {
+      // Use ProjectActions.newBuilder() to construct.
+      private ProjectActions(Builder builder) {
+        super(builder);
+      }
+      private ProjectActions(boolean noInit) {}
+      
+      private static final ProjectActions defaultInstance;
+      public static ProjectActions getDefaultInstance() {
+        return defaultInstance;
+      }
+      
+      public ProjectActions getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+      
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_fieldAccessorTable;
+      }
+      
+      // repeated .org.solemnsilence.fluidity.model.UUID ordered_actions = 1;
+      public static final int ORDERED_ACTIONS_FIELD_NUMBER = 1;
+      private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> orderedActions_;
+      public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getOrderedActionsList() {
+        return orderedActions_;
+      }
+      public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+          getOrderedActionsOrBuilderList() {
+        return orderedActions_;
+      }
+      public int getOrderedActionsCount() {
+        return orderedActions_.size();
+      }
+      public org.solemnsilence.fluidity.model.Models.UUID getOrderedActions(int index) {
+        return orderedActions_.get(index);
+      }
+      public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getOrderedActionsOrBuilder(
+          int index) {
+        return orderedActions_.get(index);
+      }
+      
+      // repeated .org.solemnsilence.fluidity.model.UUID anytime_actions = 2;
+      public static final int ANYTIME_ACTIONS_FIELD_NUMBER = 2;
+      private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> anytimeActions_;
+      public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getAnytimeActionsList() {
+        return anytimeActions_;
+      }
+      public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+          getAnytimeActionsOrBuilderList() {
+        return anytimeActions_;
+      }
+      public int getAnytimeActionsCount() {
+        return anytimeActions_.size();
+      }
+      public org.solemnsilence.fluidity.model.Models.UUID getAnytimeActions(int index) {
+        return anytimeActions_.get(index);
+      }
+      public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getAnytimeActionsOrBuilder(
+          int index) {
+        return anytimeActions_.get(index);
+      }
+      
+      private void initFields() {
+        orderedActions_ = java.util.Collections.emptyList();
+        anytimeActions_ = java.util.Collections.emptyList();
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+        
+        for (int i = 0; i < getOrderedActionsCount(); i++) {
+          if (!getOrderedActions(i).isInitialized()) {
+            memoizedIsInitialized = 0;
+            return false;
+          }
+        }
+        for (int i = 0; i < getAnytimeActionsCount(); i++) {
+          if (!getAnytimeActions(i).isInitialized()) {
+            memoizedIsInitialized = 0;
+            return false;
+          }
+        }
+        memoizedIsInitialized = 1;
+        return true;
+      }
+      
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        for (int i = 0; i < orderedActions_.size(); i++) {
+          output.writeMessage(1, orderedActions_.get(i));
+        }
+        for (int i = 0; i < anytimeActions_.size(); i++) {
+          output.writeMessage(2, anytimeActions_.get(i));
+        }
+        getUnknownFields().writeTo(output);
+      }
+      
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+      
+        size = 0;
+        for (int i = 0; i < orderedActions_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, orderedActions_.get(i));
+        }
+        for (int i = 0; i < anytimeActions_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, anytimeActions_.get(i));
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+      
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+      
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        Builder builder = newBuilder();
+        if (builder.mergeDelimitedFrom(input)) {
+          return builder.buildParsed();
+        } else {
+          return null;
+        }
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Builder builder = newBuilder();
+        if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+          return builder.buildParsed();
+        } else {
+          return null;
+        }
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static org.solemnsilence.fluidity.model.Models.Project.ProjectActions parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.solemnsilence.fluidity.model.Models.Project.ProjectActions prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+      
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_descriptor;
+        }
+        
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.solemnsilence.fluidity.model.Models.internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_fieldAccessorTable;
+        }
+        
+        // Construct using org.solemnsilence.fluidity.model.Models.Project.ProjectActions.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+        
+        private Builder(BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+            getOrderedActionsFieldBuilder();
+            getAnytimeActionsFieldBuilder();
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+        
+        public Builder clear() {
+          super.clear();
+          if (orderedActionsBuilder_ == null) {
+            orderedActions_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            orderedActionsBuilder_.clear();
+          }
+          if (anytimeActionsBuilder_ == null) {
+            anytimeActions_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            anytimeActionsBuilder_.clear();
+          }
+          return this;
+        }
+        
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+        
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDescriptor();
+        }
+        
+        public org.solemnsilence.fluidity.model.Models.Project.ProjectActions getDefaultInstanceForType() {
+          return org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDefaultInstance();
+        }
+        
+        public org.solemnsilence.fluidity.model.Models.Project.ProjectActions build() {
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+        
+        private org.solemnsilence.fluidity.model.Models.Project.ProjectActions buildParsed()
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(
+              result).asInvalidProtocolBufferException();
+          }
+          return result;
+        }
+        
+        public org.solemnsilence.fluidity.model.Models.Project.ProjectActions buildPartial() {
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions result = new org.solemnsilence.fluidity.model.Models.Project.ProjectActions(this);
+          int from_bitField0_ = bitField0_;
+          if (orderedActionsBuilder_ == null) {
+            if (((bitField0_ & 0x00000001) == 0x00000001)) {
+              orderedActions_ = java.util.Collections.unmodifiableList(orderedActions_);
+              bitField0_ = (bitField0_ & ~0x00000001);
+            }
+            result.orderedActions_ = orderedActions_;
+          } else {
+            result.orderedActions_ = orderedActionsBuilder_.build();
+          }
+          if (anytimeActionsBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              anytimeActions_ = java.util.Collections.unmodifiableList(anytimeActions_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.anytimeActions_ = anytimeActions_;
+          } else {
+            result.anytimeActions_ = anytimeActionsBuilder_.build();
+          }
+          onBuilt();
+          return result;
+        }
+        
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.solemnsilence.fluidity.model.Models.Project.ProjectActions) {
+            return mergeFrom((org.solemnsilence.fluidity.model.Models.Project.ProjectActions)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+        
+        public Builder mergeFrom(org.solemnsilence.fluidity.model.Models.Project.ProjectActions other) {
+          if (other == org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDefaultInstance()) return this;
+          if (orderedActionsBuilder_ == null) {
+            if (!other.orderedActions_.isEmpty()) {
+              if (orderedActions_.isEmpty()) {
+                orderedActions_ = other.orderedActions_;
+                bitField0_ = (bitField0_ & ~0x00000001);
+              } else {
+                ensureOrderedActionsIsMutable();
+                orderedActions_.addAll(other.orderedActions_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.orderedActions_.isEmpty()) {
+              if (orderedActionsBuilder_.isEmpty()) {
+                orderedActionsBuilder_.dispose();
+                orderedActionsBuilder_ = null;
+                orderedActions_ = other.orderedActions_;
+                bitField0_ = (bitField0_ & ~0x00000001);
+                orderedActionsBuilder_ = 
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                     getOrderedActionsFieldBuilder() : null;
+              } else {
+                orderedActionsBuilder_.addAllMessages(other.orderedActions_);
+              }
+            }
+          }
+          if (anytimeActionsBuilder_ == null) {
+            if (!other.anytimeActions_.isEmpty()) {
+              if (anytimeActions_.isEmpty()) {
+                anytimeActions_ = other.anytimeActions_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureAnytimeActionsIsMutable();
+                anytimeActions_.addAll(other.anytimeActions_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.anytimeActions_.isEmpty()) {
+              if (anytimeActionsBuilder_.isEmpty()) {
+                anytimeActionsBuilder_.dispose();
+                anytimeActionsBuilder_ = null;
+                anytimeActions_ = other.anytimeActions_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                anytimeActionsBuilder_ = 
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                     getAnytimeActionsFieldBuilder() : null;
+              } else {
+                anytimeActionsBuilder_.addAllMessages(other.anytimeActions_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+        
+        public final boolean isInitialized() {
+          for (int i = 0; i < getOrderedActionsCount(); i++) {
+            if (!getOrderedActions(i).isInitialized()) {
+              
+              return false;
+            }
+          }
+          for (int i = 0; i < getAnytimeActionsCount(); i++) {
+            if (!getAnytimeActions(i).isInitialized()) {
+              
+              return false;
+            }
+          }
+          return true;
+        }
+        
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder(
+              this.getUnknownFields());
+          while (true) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  this.setUnknownFields(unknownFields.build());
+                  onChanged();
+                  return this;
+                }
+                break;
+              }
+              case 10: {
+                org.solemnsilence.fluidity.model.Models.UUID.Builder subBuilder = org.solemnsilence.fluidity.model.Models.UUID.newBuilder();
+                input.readMessage(subBuilder, extensionRegistry);
+                addOrderedActions(subBuilder.buildPartial());
+                break;
+              }
+              case 18: {
+                org.solemnsilence.fluidity.model.Models.UUID.Builder subBuilder = org.solemnsilence.fluidity.model.Models.UUID.newBuilder();
+                input.readMessage(subBuilder, extensionRegistry);
+                addAnytimeActions(subBuilder.buildPartial());
+                break;
+              }
+            }
+          }
+        }
+        
+        private int bitField0_;
+        
+        // repeated .org.solemnsilence.fluidity.model.UUID ordered_actions = 1;
+        private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> orderedActions_ =
+          java.util.Collections.emptyList();
+        private void ensureOrderedActionsIsMutable() {
+          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+            orderedActions_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.UUID>(orderedActions_);
+            bitField0_ |= 0x00000001;
+           }
+        }
+        
+        private com.google.protobuf.RepeatedFieldBuilder<
+            org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> orderedActionsBuilder_;
+        
+        public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getOrderedActionsList() {
+          if (orderedActionsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(orderedActions_);
+          } else {
+            return orderedActionsBuilder_.getMessageList();
+          }
+        }
+        public int getOrderedActionsCount() {
+          if (orderedActionsBuilder_ == null) {
+            return orderedActions_.size();
+          } else {
+            return orderedActionsBuilder_.getCount();
+          }
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID getOrderedActions(int index) {
+          if (orderedActionsBuilder_ == null) {
+            return orderedActions_.get(index);
+          } else {
+            return orderedActionsBuilder_.getMessage(index);
+          }
+        }
+        public Builder setOrderedActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID value) {
+          if (orderedActionsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureOrderedActionsIsMutable();
+            orderedActions_.set(index, value);
+            onChanged();
+          } else {
+            orderedActionsBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        public Builder setOrderedActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
+          if (orderedActionsBuilder_ == null) {
+            ensureOrderedActionsIsMutable();
+            orderedActions_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            orderedActionsBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        public Builder addOrderedActions(org.solemnsilence.fluidity.model.Models.UUID value) {
+          if (orderedActionsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureOrderedActionsIsMutable();
+            orderedActions_.add(value);
+            onChanged();
+          } else {
+            orderedActionsBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        public Builder addOrderedActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID value) {
+          if (orderedActionsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureOrderedActionsIsMutable();
+            orderedActions_.add(index, value);
+            onChanged();
+          } else {
+            orderedActionsBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        public Builder addOrderedActions(
+            org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
+          if (orderedActionsBuilder_ == null) {
+            ensureOrderedActionsIsMutable();
+            orderedActions_.add(builderForValue.build());
+            onChanged();
+          } else {
+            orderedActionsBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        public Builder addOrderedActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
+          if (orderedActionsBuilder_ == null) {
+            ensureOrderedActionsIsMutable();
+            orderedActions_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            orderedActionsBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        public Builder addAllOrderedActions(
+            java.lang.Iterable<? extends org.solemnsilence.fluidity.model.Models.UUID> values) {
+          if (orderedActionsBuilder_ == null) {
+            ensureOrderedActionsIsMutable();
+            super.addAll(values, orderedActions_);
+            onChanged();
+          } else {
+            orderedActionsBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        public Builder clearOrderedActions() {
+          if (orderedActionsBuilder_ == null) {
+            orderedActions_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+            onChanged();
+          } else {
+            orderedActionsBuilder_.clear();
+          }
+          return this;
+        }
+        public Builder removeOrderedActions(int index) {
+          if (orderedActionsBuilder_ == null) {
+            ensureOrderedActionsIsMutable();
+            orderedActions_.remove(index);
+            onChanged();
+          } else {
+            orderedActionsBuilder_.remove(index);
+          }
+          return this;
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID.Builder getOrderedActionsBuilder(
+            int index) {
+          return getOrderedActionsFieldBuilder().getBuilder(index);
+        }
+        public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getOrderedActionsOrBuilder(
+            int index) {
+          if (orderedActionsBuilder_ == null) {
+            return orderedActions_.get(index);  } else {
+            return orderedActionsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+             getOrderedActionsOrBuilderList() {
+          if (orderedActionsBuilder_ != null) {
+            return orderedActionsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(orderedActions_);
+          }
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID.Builder addOrderedActionsBuilder() {
+          return getOrderedActionsFieldBuilder().addBuilder(
+              org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID.Builder addOrderedActionsBuilder(
+            int index) {
+          return getOrderedActionsFieldBuilder().addBuilder(
+              index, org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+        }
+        public java.util.List<org.solemnsilence.fluidity.model.Models.UUID.Builder> 
+             getOrderedActionsBuilderList() {
+          return getOrderedActionsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilder<
+            org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+            getOrderedActionsFieldBuilder() {
+          if (orderedActionsBuilder_ == null) {
+            orderedActionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+                org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder>(
+                    orderedActions_,
+                    ((bitField0_ & 0x00000001) == 0x00000001),
+                    getParentForChildren(),
+                    isClean());
+            orderedActions_ = null;
+          }
+          return orderedActionsBuilder_;
+        }
+        
+        // repeated .org.solemnsilence.fluidity.model.UUID anytime_actions = 2;
+        private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> anytimeActions_ =
+          java.util.Collections.emptyList();
+        private void ensureAnytimeActionsIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            anytimeActions_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.UUID>(anytimeActions_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+        
+        private com.google.protobuf.RepeatedFieldBuilder<
+            org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> anytimeActionsBuilder_;
+        
+        public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getAnytimeActionsList() {
+          if (anytimeActionsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(anytimeActions_);
+          } else {
+            return anytimeActionsBuilder_.getMessageList();
+          }
+        }
+        public int getAnytimeActionsCount() {
+          if (anytimeActionsBuilder_ == null) {
+            return anytimeActions_.size();
+          } else {
+            return anytimeActionsBuilder_.getCount();
+          }
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID getAnytimeActions(int index) {
+          if (anytimeActionsBuilder_ == null) {
+            return anytimeActions_.get(index);
+          } else {
+            return anytimeActionsBuilder_.getMessage(index);
+          }
+        }
+        public Builder setAnytimeActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID value) {
+          if (anytimeActionsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.set(index, value);
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        public Builder setAnytimeActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
+          if (anytimeActionsBuilder_ == null) {
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        public Builder addAnytimeActions(org.solemnsilence.fluidity.model.Models.UUID value) {
+          if (anytimeActionsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.add(value);
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        public Builder addAnytimeActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID value) {
+          if (anytimeActionsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.add(index, value);
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        public Builder addAnytimeActions(
+            org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
+          if (anytimeActionsBuilder_ == null) {
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.add(builderForValue.build());
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        public Builder addAnytimeActions(
+            int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
+          if (anytimeActionsBuilder_ == null) {
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        public Builder addAllAnytimeActions(
+            java.lang.Iterable<? extends org.solemnsilence.fluidity.model.Models.UUID> values) {
+          if (anytimeActionsBuilder_ == null) {
+            ensureAnytimeActionsIsMutable();
+            super.addAll(values, anytimeActions_);
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        public Builder clearAnytimeActions() {
+          if (anytimeActionsBuilder_ == null) {
+            anytimeActions_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.clear();
+          }
+          return this;
+        }
+        public Builder removeAnytimeActions(int index) {
+          if (anytimeActionsBuilder_ == null) {
+            ensureAnytimeActionsIsMutable();
+            anytimeActions_.remove(index);
+            onChanged();
+          } else {
+            anytimeActionsBuilder_.remove(index);
+          }
+          return this;
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID.Builder getAnytimeActionsBuilder(
+            int index) {
+          return getAnytimeActionsFieldBuilder().getBuilder(index);
+        }
+        public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getAnytimeActionsOrBuilder(
+            int index) {
+          if (anytimeActionsBuilder_ == null) {
+            return anytimeActions_.get(index);  } else {
+            return anytimeActionsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+             getAnytimeActionsOrBuilderList() {
+          if (anytimeActionsBuilder_ != null) {
+            return anytimeActionsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(anytimeActions_);
+          }
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID.Builder addAnytimeActionsBuilder() {
+          return getAnytimeActionsFieldBuilder().addBuilder(
+              org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+        }
+        public org.solemnsilence.fluidity.model.Models.UUID.Builder addAnytimeActionsBuilder(
+            int index) {
+          return getAnytimeActionsFieldBuilder().addBuilder(
+              index, org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+        }
+        public java.util.List<org.solemnsilence.fluidity.model.Models.UUID.Builder> 
+             getAnytimeActionsBuilderList() {
+          return getAnytimeActionsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilder<
+            org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
+            getAnytimeActionsFieldBuilder() {
+          if (anytimeActionsBuilder_ == null) {
+            anytimeActionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+                org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder>(
+                    anytimeActions_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            anytimeActions_ = null;
+          }
+          return anytimeActionsBuilder_;
+        }
+        
+        // @@protoc_insertion_point(builder_scope:org.solemnsilence.fluidity.model.Project.ProjectActions)
+      }
+      
+      static {
+        defaultInstance = new ProjectActions(true);
+        defaultInstance.initFields();
+      }
+      
+      // @@protoc_insertion_point(class_scope:org.solemnsilence.fluidity.model.Project.ProjectActions)
+    }
+    
     private int bitField0_;
     // required .org.solemnsilence.fluidity.model.CommonMetadata metadata = 1;
     public static final int METADATA_FIELD_NUMBER = 1;
@@ -5164,46 +5931,46 @@ public final class Models {
       return areasOfFocus_.get(index);
     }
     
-    // repeated .org.solemnsilence.fluidity.model.UUID sequential_next_actions = 11;
-    public static final int SEQUENTIAL_NEXT_ACTIONS_FIELD_NUMBER = 11;
-    private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> sequentialNextActions_;
-    public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getSequentialNextActionsList() {
-      return sequentialNextActions_;
+    // repeated .org.solemnsilence.fluidity.model.Project.ProjectActions active_actions = 11;
+    public static final int ACTIVE_ACTIONS_FIELD_NUMBER = 11;
+    private java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> activeActions_;
+    public java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> getActiveActionsList() {
+      return activeActions_;
     }
-    public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-        getSequentialNextActionsOrBuilderList() {
-      return sequentialNextActions_;
+    public java.util.List<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+        getActiveActionsOrBuilderList() {
+      return activeActions_;
     }
-    public int getSequentialNextActionsCount() {
-      return sequentialNextActions_.size();
+    public int getActiveActionsCount() {
+      return activeActions_.size();
     }
-    public org.solemnsilence.fluidity.model.Models.UUID getSequentialNextActions(int index) {
-      return sequentialNextActions_.get(index);
+    public org.solemnsilence.fluidity.model.Models.Project.ProjectActions getActiveActions(int index) {
+      return activeActions_.get(index);
     }
-    public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getSequentialNextActionsOrBuilder(
+    public org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder getActiveActionsOrBuilder(
         int index) {
-      return sequentialNextActions_.get(index);
+      return activeActions_.get(index);
     }
     
-    // repeated .org.solemnsilence.fluidity.model.UUID unordered_next_actions = 12;
-    public static final int UNORDERED_NEXT_ACTIONS_FIELD_NUMBER = 12;
-    private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> unorderedNextActions_;
-    public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getUnorderedNextActionsList() {
-      return unorderedNextActions_;
+    // repeated .org.solemnsilence.fluidity.model.Project.ProjectActions incubating_actions = 12;
+    public static final int INCUBATING_ACTIONS_FIELD_NUMBER = 12;
+    private java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> incubatingActions_;
+    public java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> getIncubatingActionsList() {
+      return incubatingActions_;
     }
-    public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-        getUnorderedNextActionsOrBuilderList() {
-      return unorderedNextActions_;
+    public java.util.List<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+        getIncubatingActionsOrBuilderList() {
+      return incubatingActions_;
     }
-    public int getUnorderedNextActionsCount() {
-      return unorderedNextActions_.size();
+    public int getIncubatingActionsCount() {
+      return incubatingActions_.size();
     }
-    public org.solemnsilence.fluidity.model.Models.UUID getUnorderedNextActions(int index) {
-      return unorderedNextActions_.get(index);
+    public org.solemnsilence.fluidity.model.Models.Project.ProjectActions getIncubatingActions(int index) {
+      return incubatingActions_.get(index);
     }
-    public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getUnorderedNextActionsOrBuilder(
+    public org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder getIncubatingActionsOrBuilder(
         int index) {
-      return unorderedNextActions_.get(index);
+      return incubatingActions_.get(index);
     }
     
     private void initFields() {
@@ -5217,8 +5984,8 @@ public final class Models {
       waitingForData_ = org.solemnsilence.fluidity.model.Models.Project.WaitingForData.getDefaultInstance();
       subprojects_ = java.util.Collections.emptyList();
       areasOfFocus_ = java.util.Collections.emptyList();
-      sequentialNextActions_ = java.util.Collections.emptyList();
-      unorderedNextActions_ = java.util.Collections.emptyList();
+      activeActions_ = java.util.Collections.emptyList();
+      incubatingActions_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5281,14 +6048,14 @@ public final class Models {
           return false;
         }
       }
-      for (int i = 0; i < getSequentialNextActionsCount(); i++) {
-        if (!getSequentialNextActions(i).isInitialized()) {
+      for (int i = 0; i < getActiveActionsCount(); i++) {
+        if (!getActiveActions(i).isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
       }
-      for (int i = 0; i < getUnorderedNextActionsCount(); i++) {
-        if (!getUnorderedNextActions(i).isInitialized()) {
+      for (int i = 0; i < getIncubatingActionsCount(); i++) {
+        if (!getIncubatingActions(i).isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -5330,11 +6097,11 @@ public final class Models {
       for (int i = 0; i < areasOfFocus_.size(); i++) {
         output.writeMessage(10, areasOfFocus_.get(i));
       }
-      for (int i = 0; i < sequentialNextActions_.size(); i++) {
-        output.writeMessage(11, sequentialNextActions_.get(i));
+      for (int i = 0; i < activeActions_.size(); i++) {
+        output.writeMessage(11, activeActions_.get(i));
       }
-      for (int i = 0; i < unorderedNextActions_.size(); i++) {
-        output.writeMessage(12, unorderedNextActions_.get(i));
+      for (int i = 0; i < incubatingActions_.size(); i++) {
+        output.writeMessage(12, incubatingActions_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -5385,13 +6152,13 @@ public final class Models {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, areasOfFocus_.get(i));
       }
-      for (int i = 0; i < sequentialNextActions_.size(); i++) {
+      for (int i = 0; i < activeActions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, sequentialNextActions_.get(i));
+          .computeMessageSize(11, activeActions_.get(i));
       }
-      for (int i = 0; i < unorderedNextActions_.size(); i++) {
+      for (int i = 0; i < incubatingActions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, unorderedNextActions_.get(i));
+          .computeMessageSize(12, incubatingActions_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5516,8 +6283,8 @@ public final class Models {
           getWaitingForDataFieldBuilder();
           getSubprojectsFieldBuilder();
           getAreasOfFocusFieldBuilder();
-          getSequentialNextActionsFieldBuilder();
-          getUnorderedNextActionsFieldBuilder();
+          getActiveActionsFieldBuilder();
+          getIncubatingActionsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -5574,17 +6341,17 @@ public final class Models {
         } else {
           areasOfFocusBuilder_.clear();
         }
-        if (sequentialNextActionsBuilder_ == null) {
-          sequentialNextActions_ = java.util.Collections.emptyList();
+        if (activeActionsBuilder_ == null) {
+          activeActions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000400);
         } else {
-          sequentialNextActionsBuilder_.clear();
+          activeActionsBuilder_.clear();
         }
-        if (unorderedNextActionsBuilder_ == null) {
-          unorderedNextActions_ = java.util.Collections.emptyList();
+        if (incubatingActionsBuilder_ == null) {
+          incubatingActions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000800);
         } else {
-          unorderedNextActionsBuilder_.clear();
+          incubatingActionsBuilder_.clear();
         }
         return this;
       }
@@ -5694,23 +6461,23 @@ public final class Models {
         } else {
           result.areasOfFocus_ = areasOfFocusBuilder_.build();
         }
-        if (sequentialNextActionsBuilder_ == null) {
+        if (activeActionsBuilder_ == null) {
           if (((bitField0_ & 0x00000400) == 0x00000400)) {
-            sequentialNextActions_ = java.util.Collections.unmodifiableList(sequentialNextActions_);
+            activeActions_ = java.util.Collections.unmodifiableList(activeActions_);
             bitField0_ = (bitField0_ & ~0x00000400);
           }
-          result.sequentialNextActions_ = sequentialNextActions_;
+          result.activeActions_ = activeActions_;
         } else {
-          result.sequentialNextActions_ = sequentialNextActionsBuilder_.build();
+          result.activeActions_ = activeActionsBuilder_.build();
         }
-        if (unorderedNextActionsBuilder_ == null) {
+        if (incubatingActionsBuilder_ == null) {
           if (((bitField0_ & 0x00000800) == 0x00000800)) {
-            unorderedNextActions_ = java.util.Collections.unmodifiableList(unorderedNextActions_);
+            incubatingActions_ = java.util.Collections.unmodifiableList(incubatingActions_);
             bitField0_ = (bitField0_ & ~0x00000800);
           }
-          result.unorderedNextActions_ = unorderedNextActions_;
+          result.incubatingActions_ = incubatingActions_;
         } else {
-          result.unorderedNextActions_ = unorderedNextActionsBuilder_.build();
+          result.incubatingActions_ = incubatingActionsBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -5804,55 +6571,55 @@ public final class Models {
             }
           }
         }
-        if (sequentialNextActionsBuilder_ == null) {
-          if (!other.sequentialNextActions_.isEmpty()) {
-            if (sequentialNextActions_.isEmpty()) {
-              sequentialNextActions_ = other.sequentialNextActions_;
+        if (activeActionsBuilder_ == null) {
+          if (!other.activeActions_.isEmpty()) {
+            if (activeActions_.isEmpty()) {
+              activeActions_ = other.activeActions_;
               bitField0_ = (bitField0_ & ~0x00000400);
             } else {
-              ensureSequentialNextActionsIsMutable();
-              sequentialNextActions_.addAll(other.sequentialNextActions_);
+              ensureActiveActionsIsMutable();
+              activeActions_.addAll(other.activeActions_);
             }
             onChanged();
           }
         } else {
-          if (!other.sequentialNextActions_.isEmpty()) {
-            if (sequentialNextActionsBuilder_.isEmpty()) {
-              sequentialNextActionsBuilder_.dispose();
-              sequentialNextActionsBuilder_ = null;
-              sequentialNextActions_ = other.sequentialNextActions_;
+          if (!other.activeActions_.isEmpty()) {
+            if (activeActionsBuilder_.isEmpty()) {
+              activeActionsBuilder_.dispose();
+              activeActionsBuilder_ = null;
+              activeActions_ = other.activeActions_;
               bitField0_ = (bitField0_ & ~0x00000400);
-              sequentialNextActionsBuilder_ = 
+              activeActionsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getSequentialNextActionsFieldBuilder() : null;
+                   getActiveActionsFieldBuilder() : null;
             } else {
-              sequentialNextActionsBuilder_.addAllMessages(other.sequentialNextActions_);
+              activeActionsBuilder_.addAllMessages(other.activeActions_);
             }
           }
         }
-        if (unorderedNextActionsBuilder_ == null) {
-          if (!other.unorderedNextActions_.isEmpty()) {
-            if (unorderedNextActions_.isEmpty()) {
-              unorderedNextActions_ = other.unorderedNextActions_;
+        if (incubatingActionsBuilder_ == null) {
+          if (!other.incubatingActions_.isEmpty()) {
+            if (incubatingActions_.isEmpty()) {
+              incubatingActions_ = other.incubatingActions_;
               bitField0_ = (bitField0_ & ~0x00000800);
             } else {
-              ensureUnorderedNextActionsIsMutable();
-              unorderedNextActions_.addAll(other.unorderedNextActions_);
+              ensureIncubatingActionsIsMutable();
+              incubatingActions_.addAll(other.incubatingActions_);
             }
             onChanged();
           }
         } else {
-          if (!other.unorderedNextActions_.isEmpty()) {
-            if (unorderedNextActionsBuilder_.isEmpty()) {
-              unorderedNextActionsBuilder_.dispose();
-              unorderedNextActionsBuilder_ = null;
-              unorderedNextActions_ = other.unorderedNextActions_;
+          if (!other.incubatingActions_.isEmpty()) {
+            if (incubatingActionsBuilder_.isEmpty()) {
+              incubatingActionsBuilder_.dispose();
+              incubatingActionsBuilder_ = null;
+              incubatingActions_ = other.incubatingActions_;
               bitField0_ = (bitField0_ & ~0x00000800);
-              unorderedNextActionsBuilder_ = 
+              incubatingActionsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getUnorderedNextActionsFieldBuilder() : null;
+                   getIncubatingActionsFieldBuilder() : null;
             } else {
-              unorderedNextActionsBuilder_.addAllMessages(other.unorderedNextActions_);
+              incubatingActionsBuilder_.addAllMessages(other.incubatingActions_);
             }
           }
         }
@@ -5917,14 +6684,14 @@ public final class Models {
             return false;
           }
         }
-        for (int i = 0; i < getSequentialNextActionsCount(); i++) {
-          if (!getSequentialNextActions(i).isInitialized()) {
+        for (int i = 0; i < getActiveActionsCount(); i++) {
+          if (!getActiveActions(i).isInitialized()) {
             
             return false;
           }
         }
-        for (int i = 0; i < getUnorderedNextActionsCount(); i++) {
-          if (!getUnorderedNextActions(i).isInitialized()) {
+        for (int i = 0; i < getIncubatingActionsCount(); i++) {
+          if (!getIncubatingActions(i).isInitialized()) {
             
             return false;
           }
@@ -6040,15 +6807,15 @@ public final class Models {
               break;
             }
             case 90: {
-              org.solemnsilence.fluidity.model.Models.UUID.Builder subBuilder = org.solemnsilence.fluidity.model.Models.UUID.newBuilder();
+              org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder subBuilder = org.solemnsilence.fluidity.model.Models.Project.ProjectActions.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
-              addSequentialNextActions(subBuilder.buildPartial());
+              addActiveActions(subBuilder.buildPartial());
               break;
             }
             case 98: {
-              org.solemnsilence.fluidity.model.Models.UUID.Builder subBuilder = org.solemnsilence.fluidity.model.Models.UUID.newBuilder();
+              org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder subBuilder = org.solemnsilence.fluidity.model.Models.Project.ProjectActions.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
-              addUnorderedNextActions(subBuilder.buildPartial());
+              addIncubatingActions(subBuilder.buildPartial());
               break;
             }
           }
@@ -6963,376 +7730,376 @@ public final class Models {
         return areasOfFocusBuilder_;
       }
       
-      // repeated .org.solemnsilence.fluidity.model.UUID sequential_next_actions = 11;
-      private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> sequentialNextActions_ =
+      // repeated .org.solemnsilence.fluidity.model.Project.ProjectActions active_actions = 11;
+      private java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> activeActions_ =
         java.util.Collections.emptyList();
-      private void ensureSequentialNextActionsIsMutable() {
+      private void ensureActiveActionsIsMutable() {
         if (!((bitField0_ & 0x00000400) == 0x00000400)) {
-          sequentialNextActions_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.UUID>(sequentialNextActions_);
+          activeActions_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.Project.ProjectActions>(activeActions_);
           bitField0_ |= 0x00000400;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> sequentialNextActionsBuilder_;
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder, org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> activeActionsBuilder_;
       
-      public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getSequentialNextActionsList() {
-        if (sequentialNextActionsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(sequentialNextActions_);
+      public java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> getActiveActionsList() {
+        if (activeActionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(activeActions_);
         } else {
-          return sequentialNextActionsBuilder_.getMessageList();
+          return activeActionsBuilder_.getMessageList();
         }
       }
-      public int getSequentialNextActionsCount() {
-        if (sequentialNextActionsBuilder_ == null) {
-          return sequentialNextActions_.size();
+      public int getActiveActionsCount() {
+        if (activeActionsBuilder_ == null) {
+          return activeActions_.size();
         } else {
-          return sequentialNextActionsBuilder_.getCount();
+          return activeActionsBuilder_.getCount();
         }
       }
-      public org.solemnsilence.fluidity.model.Models.UUID getSequentialNextActions(int index) {
-        if (sequentialNextActionsBuilder_ == null) {
-          return sequentialNextActions_.get(index);
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions getActiveActions(int index) {
+        if (activeActionsBuilder_ == null) {
+          return activeActions_.get(index);
         } else {
-          return sequentialNextActionsBuilder_.getMessage(index);
+          return activeActionsBuilder_.getMessage(index);
         }
       }
-      public Builder setSequentialNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID value) {
-        if (sequentialNextActionsBuilder_ == null) {
+      public Builder setActiveActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions value) {
+        if (activeActionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.set(index, value);
+          ensureActiveActionsIsMutable();
+          activeActions_.set(index, value);
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.setMessage(index, value);
+          activeActionsBuilder_.setMessage(index, value);
         }
         return this;
       }
-      public Builder setSequentialNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
-        if (sequentialNextActionsBuilder_ == null) {
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.set(index, builderForValue.build());
+      public Builder setActiveActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder builderForValue) {
+        if (activeActionsBuilder_ == null) {
+          ensureActiveActionsIsMutable();
+          activeActions_.set(index, builderForValue.build());
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.setMessage(index, builderForValue.build());
+          activeActionsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addSequentialNextActions(org.solemnsilence.fluidity.model.Models.UUID value) {
-        if (sequentialNextActionsBuilder_ == null) {
+      public Builder addActiveActions(org.solemnsilence.fluidity.model.Models.Project.ProjectActions value) {
+        if (activeActionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.add(value);
+          ensureActiveActionsIsMutable();
+          activeActions_.add(value);
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.addMessage(value);
+          activeActionsBuilder_.addMessage(value);
         }
         return this;
       }
-      public Builder addSequentialNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID value) {
-        if (sequentialNextActionsBuilder_ == null) {
+      public Builder addActiveActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions value) {
+        if (activeActionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.add(index, value);
+          ensureActiveActionsIsMutable();
+          activeActions_.add(index, value);
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.addMessage(index, value);
+          activeActionsBuilder_.addMessage(index, value);
         }
         return this;
       }
-      public Builder addSequentialNextActions(
-          org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
-        if (sequentialNextActionsBuilder_ == null) {
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.add(builderForValue.build());
+      public Builder addActiveActions(
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder builderForValue) {
+        if (activeActionsBuilder_ == null) {
+          ensureActiveActionsIsMutable();
+          activeActions_.add(builderForValue.build());
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.addMessage(builderForValue.build());
+          activeActionsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
-      public Builder addSequentialNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
-        if (sequentialNextActionsBuilder_ == null) {
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.add(index, builderForValue.build());
+      public Builder addActiveActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder builderForValue) {
+        if (activeActionsBuilder_ == null) {
+          ensureActiveActionsIsMutable();
+          activeActions_.add(index, builderForValue.build());
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.addMessage(index, builderForValue.build());
+          activeActionsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addAllSequentialNextActions(
-          java.lang.Iterable<? extends org.solemnsilence.fluidity.model.Models.UUID> values) {
-        if (sequentialNextActionsBuilder_ == null) {
-          ensureSequentialNextActionsIsMutable();
-          super.addAll(values, sequentialNextActions_);
+      public Builder addAllActiveActions(
+          java.lang.Iterable<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActions> values) {
+        if (activeActionsBuilder_ == null) {
+          ensureActiveActionsIsMutable();
+          super.addAll(values, activeActions_);
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.addAllMessages(values);
+          activeActionsBuilder_.addAllMessages(values);
         }
         return this;
       }
-      public Builder clearSequentialNextActions() {
-        if (sequentialNextActionsBuilder_ == null) {
-          sequentialNextActions_ = java.util.Collections.emptyList();
+      public Builder clearActiveActions() {
+        if (activeActionsBuilder_ == null) {
+          activeActions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000400);
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.clear();
+          activeActionsBuilder_.clear();
         }
         return this;
       }
-      public Builder removeSequentialNextActions(int index) {
-        if (sequentialNextActionsBuilder_ == null) {
-          ensureSequentialNextActionsIsMutable();
-          sequentialNextActions_.remove(index);
+      public Builder removeActiveActions(int index) {
+        if (activeActionsBuilder_ == null) {
+          ensureActiveActionsIsMutable();
+          activeActions_.remove(index);
           onChanged();
         } else {
-          sequentialNextActionsBuilder_.remove(index);
+          activeActionsBuilder_.remove(index);
         }
         return this;
       }
-      public org.solemnsilence.fluidity.model.Models.UUID.Builder getSequentialNextActionsBuilder(
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder getActiveActionsBuilder(
           int index) {
-        return getSequentialNextActionsFieldBuilder().getBuilder(index);
+        return getActiveActionsFieldBuilder().getBuilder(index);
       }
-      public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getSequentialNextActionsOrBuilder(
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder getActiveActionsOrBuilder(
           int index) {
-        if (sequentialNextActionsBuilder_ == null) {
-          return sequentialNextActions_.get(index);  } else {
-          return sequentialNextActionsBuilder_.getMessageOrBuilder(index);
+        if (activeActionsBuilder_ == null) {
+          return activeActions_.get(index);  } else {
+          return activeActionsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-           getSequentialNextActionsOrBuilderList() {
-        if (sequentialNextActionsBuilder_ != null) {
-          return sequentialNextActionsBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+           getActiveActionsOrBuilderList() {
+        if (activeActionsBuilder_ != null) {
+          return activeActionsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(sequentialNextActions_);
+          return java.util.Collections.unmodifiableList(activeActions_);
         }
       }
-      public org.solemnsilence.fluidity.model.Models.UUID.Builder addSequentialNextActionsBuilder() {
-        return getSequentialNextActionsFieldBuilder().addBuilder(
-            org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder addActiveActionsBuilder() {
+        return getActiveActionsFieldBuilder().addBuilder(
+            org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDefaultInstance());
       }
-      public org.solemnsilence.fluidity.model.Models.UUID.Builder addSequentialNextActionsBuilder(
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder addActiveActionsBuilder(
           int index) {
-        return getSequentialNextActionsFieldBuilder().addBuilder(
-            index, org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+        return getActiveActionsFieldBuilder().addBuilder(
+            index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDefaultInstance());
       }
-      public java.util.List<org.solemnsilence.fluidity.model.Models.UUID.Builder> 
-           getSequentialNextActionsBuilderList() {
-        return getSequentialNextActionsFieldBuilder().getBuilderList();
+      public java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder> 
+           getActiveActionsBuilderList() {
+        return getActiveActionsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-          getSequentialNextActionsFieldBuilder() {
-        if (sequentialNextActionsBuilder_ == null) {
-          sequentialNextActionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder>(
-                  sequentialNextActions_,
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder, org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+          getActiveActionsFieldBuilder() {
+        if (activeActionsBuilder_ == null) {
+          activeActionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.solemnsilence.fluidity.model.Models.Project.ProjectActions, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder, org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder>(
+                  activeActions_,
                   ((bitField0_ & 0x00000400) == 0x00000400),
                   getParentForChildren(),
                   isClean());
-          sequentialNextActions_ = null;
+          activeActions_ = null;
         }
-        return sequentialNextActionsBuilder_;
+        return activeActionsBuilder_;
       }
       
-      // repeated .org.solemnsilence.fluidity.model.UUID unordered_next_actions = 12;
-      private java.util.List<org.solemnsilence.fluidity.model.Models.UUID> unorderedNextActions_ =
+      // repeated .org.solemnsilence.fluidity.model.Project.ProjectActions incubating_actions = 12;
+      private java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> incubatingActions_ =
         java.util.Collections.emptyList();
-      private void ensureUnorderedNextActionsIsMutable() {
+      private void ensureIncubatingActionsIsMutable() {
         if (!((bitField0_ & 0x00000800) == 0x00000800)) {
-          unorderedNextActions_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.UUID>(unorderedNextActions_);
+          incubatingActions_ = new java.util.ArrayList<org.solemnsilence.fluidity.model.Models.Project.ProjectActions>(incubatingActions_);
           bitField0_ |= 0x00000800;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> unorderedNextActionsBuilder_;
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder, org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> incubatingActionsBuilder_;
       
-      public java.util.List<org.solemnsilence.fluidity.model.Models.UUID> getUnorderedNextActionsList() {
-        if (unorderedNextActionsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(unorderedNextActions_);
+      public java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions> getIncubatingActionsList() {
+        if (incubatingActionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(incubatingActions_);
         } else {
-          return unorderedNextActionsBuilder_.getMessageList();
+          return incubatingActionsBuilder_.getMessageList();
         }
       }
-      public int getUnorderedNextActionsCount() {
-        if (unorderedNextActionsBuilder_ == null) {
-          return unorderedNextActions_.size();
+      public int getIncubatingActionsCount() {
+        if (incubatingActionsBuilder_ == null) {
+          return incubatingActions_.size();
         } else {
-          return unorderedNextActionsBuilder_.getCount();
+          return incubatingActionsBuilder_.getCount();
         }
       }
-      public org.solemnsilence.fluidity.model.Models.UUID getUnorderedNextActions(int index) {
-        if (unorderedNextActionsBuilder_ == null) {
-          return unorderedNextActions_.get(index);
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions getIncubatingActions(int index) {
+        if (incubatingActionsBuilder_ == null) {
+          return incubatingActions_.get(index);
         } else {
-          return unorderedNextActionsBuilder_.getMessage(index);
+          return incubatingActionsBuilder_.getMessage(index);
         }
       }
-      public Builder setUnorderedNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID value) {
-        if (unorderedNextActionsBuilder_ == null) {
+      public Builder setIncubatingActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions value) {
+        if (incubatingActionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.set(index, value);
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.set(index, value);
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.setMessage(index, value);
+          incubatingActionsBuilder_.setMessage(index, value);
         }
         return this;
       }
-      public Builder setUnorderedNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
-        if (unorderedNextActionsBuilder_ == null) {
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.set(index, builderForValue.build());
+      public Builder setIncubatingActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder builderForValue) {
+        if (incubatingActionsBuilder_ == null) {
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.set(index, builderForValue.build());
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.setMessage(index, builderForValue.build());
+          incubatingActionsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addUnorderedNextActions(org.solemnsilence.fluidity.model.Models.UUID value) {
-        if (unorderedNextActionsBuilder_ == null) {
+      public Builder addIncubatingActions(org.solemnsilence.fluidity.model.Models.Project.ProjectActions value) {
+        if (incubatingActionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.add(value);
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.add(value);
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.addMessage(value);
+          incubatingActionsBuilder_.addMessage(value);
         }
         return this;
       }
-      public Builder addUnorderedNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID value) {
-        if (unorderedNextActionsBuilder_ == null) {
+      public Builder addIncubatingActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions value) {
+        if (incubatingActionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.add(index, value);
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.add(index, value);
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.addMessage(index, value);
+          incubatingActionsBuilder_.addMessage(index, value);
         }
         return this;
       }
-      public Builder addUnorderedNextActions(
-          org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
-        if (unorderedNextActionsBuilder_ == null) {
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.add(builderForValue.build());
+      public Builder addIncubatingActions(
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder builderForValue) {
+        if (incubatingActionsBuilder_ == null) {
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.add(builderForValue.build());
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.addMessage(builderForValue.build());
+          incubatingActionsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
-      public Builder addUnorderedNextActions(
-          int index, org.solemnsilence.fluidity.model.Models.UUID.Builder builderForValue) {
-        if (unorderedNextActionsBuilder_ == null) {
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.add(index, builderForValue.build());
+      public Builder addIncubatingActions(
+          int index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder builderForValue) {
+        if (incubatingActionsBuilder_ == null) {
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.add(index, builderForValue.build());
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.addMessage(index, builderForValue.build());
+          incubatingActionsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addAllUnorderedNextActions(
-          java.lang.Iterable<? extends org.solemnsilence.fluidity.model.Models.UUID> values) {
-        if (unorderedNextActionsBuilder_ == null) {
-          ensureUnorderedNextActionsIsMutable();
-          super.addAll(values, unorderedNextActions_);
+      public Builder addAllIncubatingActions(
+          java.lang.Iterable<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActions> values) {
+        if (incubatingActionsBuilder_ == null) {
+          ensureIncubatingActionsIsMutable();
+          super.addAll(values, incubatingActions_);
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.addAllMessages(values);
+          incubatingActionsBuilder_.addAllMessages(values);
         }
         return this;
       }
-      public Builder clearUnorderedNextActions() {
-        if (unorderedNextActionsBuilder_ == null) {
-          unorderedNextActions_ = java.util.Collections.emptyList();
+      public Builder clearIncubatingActions() {
+        if (incubatingActionsBuilder_ == null) {
+          incubatingActions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000800);
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.clear();
+          incubatingActionsBuilder_.clear();
         }
         return this;
       }
-      public Builder removeUnorderedNextActions(int index) {
-        if (unorderedNextActionsBuilder_ == null) {
-          ensureUnorderedNextActionsIsMutable();
-          unorderedNextActions_.remove(index);
+      public Builder removeIncubatingActions(int index) {
+        if (incubatingActionsBuilder_ == null) {
+          ensureIncubatingActionsIsMutable();
+          incubatingActions_.remove(index);
           onChanged();
         } else {
-          unorderedNextActionsBuilder_.remove(index);
+          incubatingActionsBuilder_.remove(index);
         }
         return this;
       }
-      public org.solemnsilence.fluidity.model.Models.UUID.Builder getUnorderedNextActionsBuilder(
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder getIncubatingActionsBuilder(
           int index) {
-        return getUnorderedNextActionsFieldBuilder().getBuilder(index);
+        return getIncubatingActionsFieldBuilder().getBuilder(index);
       }
-      public org.solemnsilence.fluidity.model.Models.UUIDOrBuilder getUnorderedNextActionsOrBuilder(
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder getIncubatingActionsOrBuilder(
           int index) {
-        if (unorderedNextActionsBuilder_ == null) {
-          return unorderedNextActions_.get(index);  } else {
-          return unorderedNextActionsBuilder_.getMessageOrBuilder(index);
+        if (incubatingActionsBuilder_ == null) {
+          return incubatingActions_.get(index);  } else {
+          return incubatingActionsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-           getUnorderedNextActionsOrBuilderList() {
-        if (unorderedNextActionsBuilder_ != null) {
-          return unorderedNextActionsBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+           getIncubatingActionsOrBuilderList() {
+        if (incubatingActionsBuilder_ != null) {
+          return incubatingActionsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(unorderedNextActions_);
+          return java.util.Collections.unmodifiableList(incubatingActions_);
         }
       }
-      public org.solemnsilence.fluidity.model.Models.UUID.Builder addUnorderedNextActionsBuilder() {
-        return getUnorderedNextActionsFieldBuilder().addBuilder(
-            org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder addIncubatingActionsBuilder() {
+        return getIncubatingActionsFieldBuilder().addBuilder(
+            org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDefaultInstance());
       }
-      public org.solemnsilence.fluidity.model.Models.UUID.Builder addUnorderedNextActionsBuilder(
+      public org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder addIncubatingActionsBuilder(
           int index) {
-        return getUnorderedNextActionsFieldBuilder().addBuilder(
-            index, org.solemnsilence.fluidity.model.Models.UUID.getDefaultInstance());
+        return getIncubatingActionsFieldBuilder().addBuilder(
+            index, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.getDefaultInstance());
       }
-      public java.util.List<org.solemnsilence.fluidity.model.Models.UUID.Builder> 
-           getUnorderedNextActionsBuilderList() {
-        return getUnorderedNextActionsFieldBuilder().getBuilderList();
+      public java.util.List<org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder> 
+           getIncubatingActionsBuilderList() {
+        return getIncubatingActionsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder> 
-          getUnorderedNextActionsFieldBuilder() {
-        if (unorderedNextActionsBuilder_ == null) {
-          unorderedNextActionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              org.solemnsilence.fluidity.model.Models.UUID, org.solemnsilence.fluidity.model.Models.UUID.Builder, org.solemnsilence.fluidity.model.Models.UUIDOrBuilder>(
-                  unorderedNextActions_,
+          org.solemnsilence.fluidity.model.Models.Project.ProjectActions, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder, org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder> 
+          getIncubatingActionsFieldBuilder() {
+        if (incubatingActionsBuilder_ == null) {
+          incubatingActionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.solemnsilence.fluidity.model.Models.Project.ProjectActions, org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder, org.solemnsilence.fluidity.model.Models.Project.ProjectActionsOrBuilder>(
+                  incubatingActions_,
                   ((bitField0_ & 0x00000800) == 0x00000800),
                   getParentForChildren(),
                   isClean());
-          unorderedNextActions_ = null;
+          incubatingActions_ = null;
         }
-        return unorderedNextActionsBuilder_;
+        return incubatingActionsBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:org.solemnsilence.fluidity.model.Project)
@@ -13500,6 +14267,11 @@ public final class Models {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_solemnsilence_fluidity_model_Project_WaitingForData_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_solemnsilence_fluidity_model_InboxNote_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -13563,83 +14335,85 @@ public final class Models {
       "emnsilence.fluidity.model.NextAction.Ene" +
       "rgyEstimate\"_\n\013AreaOfFocus\022B\n\010metadata\030\001" +
       " \002(\01320.org.solemnsilence.fluidity.model.",
-      "CommonMetadata\022\014\n\004name\030\002 \002(\t\"\334\006\n\nNextAct" +
+      "CommonMetadata\022\014\n\004name\030\002 \002(\t\"\365\005\n\nNextAct" +
       "ion\022B\n\010metadata\030\001 \002(\01320.org.solemnsilenc" +
       "e.fluidity.model.CommonMetadata\022\017\n\007summa" +
-      "ry\030\002 \002(\t\022C\n\006status\030\003 \002(\01623.org.solemnsil" +
-      "ence.fluidity.model.NextAction.Status\022D\n" +
-      "\010priority\030\004 \002(\0162*.org.solemnsilence.flui" +
-      "dity.model.Priority:\006MEDIUM\022H\n\017completio" +
-      "n_time\030\005 \001(\0132/.org.solemnsilence.fluidit" +
-      "y.model.DateTimeStamp\022C\n\nqueue_time\030\006 \001(" +
-      "\0132/.org.solemnsilence.fluidity.model.Dat",
-      "eTimeStamp\022A\n\010due_time\030\007 \001(\0132/.org.solem" +
-      "nsilence.fluidity.model.DateTimeStamp\022\024\n" +
-      "\014HACK_context\030\010 \002(\t\022\035\n\025time_estimate_min" +
-      "utes\030\t \002(\005\022T\n\017energy_estimate\030\n \002(\0162;.or" +
-      "g.solemnsilence.fluidity.model.NextActio" +
-      "n.EnergyEstimate\022\r\n\005notes\030\013 \001(\t\022@\n\021relat" +
-      "ed_resources\030\014 \003(\0132%.org.solemnsilence.f" +
-      "luidity.model.URI\032[\n\007Context\022B\n\010metadata" +
-      "\030\001 \002(\01320.org.solemnsilence.fluidity.mode" +
-      "l.CommonMetadata\022\014\n\004name\030\002 \002(\t\"2\n\006Status",
-      "\022\n\n\006ACTIVE\020\001\022\016\n\nINCUBATING\020\002\022\014\n\010COMPLETE" +
-      "\020\003\"/\n\016EnergyEstimate\022\007\n\003LOW\020\001\022\n\n\006MEDIUM\020" +
-      "\002\022\010\n\004HIGH\020\003\"\312\007\n\007Project\022B\n\010metadata\030\001 \002(" +
-      "\01320.org.solemnsilence.fluidity.model.Com" +
-      "monMetadata\022\017\n\007summary\030\002 \002(\t\022D\n\010priority" +
-      "\030\003 \002(\0162*.org.solemnsilence.fluidity.mode" +
-      "l.Priority:\006MEDIUM\022H\n\017completion_time\030\004 " +
-      "\001(\0132/.org.solemnsilence.fluidity.model.D" +
-      "ateTimeStamp\022C\n\nqueue_time\030\005 \001(\0132/.org.s" +
-      "olemnsilence.fluidity.model.DateTimeStam",
-      "p\022A\n\010due_time\030\006 \001(\0132/.org.solemnsilence." +
-      "fluidity.model.DateTimeStamp\022@\n\006status\030\007" +
-      " \002(\01620.org.solemnsilence.fluidity.model." +
-      "Project.Status\022R\n\020waiting_for_data\030\010 \001(\013" +
-      "28.org.solemnsilence.fluidity.model.Proj" +
-      "ect.WaitingForData\022;\n\013subprojects\030\t \003(\0132" +
-      "&.org.solemnsilence.fluidity.model.UUID\022" +
-      ">\n\016areas_of_focus\030\n \003(\0132&.org.solemnsile" +
-      "nce.fluidity.model.UUID\022G\n\027sequential_ne" +
-      "xt_actions\030\013 \003(\0132&.org.solemnsilence.flu",
-      "idity.model.UUID\022F\n\026unordered_next_actio" +
-      "ns\030\014 \003(\0132&.org.solemnsilence.fluidity.mo" +
-      "del.UUID\032i\n\016WaitingForData\022\017\n\007summary\030\001 " +
+      "ry\030\002 \002(\t\022\020\n\010complete\030\003 \002(\010\022D\n\010priority\030\004" +
+      " \002(\0162*.org.solemnsilence.fluidity.model." +
+      "Priority:\006MEDIUM\022H\n\017completion_time\030\005 \001(" +
+      "\0132/.org.solemnsilence.fluidity.model.Dat" +
+      "eTimeStamp\022C\n\nqueue_time\030\006 \001(\0132/.org.sol" +
+      "emnsilence.fluidity.model.DateTimeStamp\022" +
+      "A\n\010due_time\030\007 \001(\0132/.org.solemnsilence.fl",
+      "uidity.model.DateTimeStamp\022\024\n\014HACK_conte" +
+      "xt\030\010 \002(\t\022\035\n\025time_estimate_minutes\030\t \002(\005\022" +
+      "T\n\017energy_estimate\030\n \002(\0162;.org.solemnsil" +
+      "ence.fluidity.model.NextAction.EnergyEst" +
+      "imate\022\r\n\005notes\030\013 \001(\t\022@\n\021related_resource" +
+      "s\030\014 \003(\0132%.org.solemnsilence.fluidity.mod" +
+      "el.URI\032[\n\007Context\022B\n\010metadata\030\001 \002(\01320.or" +
+      "g.solemnsilence.fluidity.model.CommonMet" +
+      "adata\022\014\n\004name\030\002 \002(\t\"/\n\016EnergyEstimate\022\007\n" +
+      "\003LOW\020\001\022\n\n\006MEDIUM\020\002\022\010\n\004HIGH\020\003\"\366\010\n\007Project",
+      "\022B\n\010metadata\030\001 \002(\01320.org.solemnsilence.f" +
+      "luidity.model.CommonMetadata\022\017\n\007summary\030" +
+      "\002 \002(\t\022D\n\010priority\030\003 \002(\0162*.org.solemnsile" +
+      "nce.fluidity.model.Priority:\006MEDIUM\022H\n\017c" +
+      "ompletion_time\030\004 \001(\0132/.org.solemnsilence" +
+      ".fluidity.model.DateTimeStamp\022C\n\nqueue_t" +
+      "ime\030\005 \001(\0132/.org.solemnsilence.fluidity.m" +
+      "odel.DateTimeStamp\022A\n\010due_time\030\006 \001(\0132/.o" +
+      "rg.solemnsilence.fluidity.model.DateTime" +
+      "Stamp\022@\n\006status\030\007 \002(\01620.org.solemnsilenc",
+      "e.fluidity.model.Project.Status\022R\n\020waiti" +
+      "ng_for_data\030\010 \001(\01328.org.solemnsilence.fl" +
+      "uidity.model.Project.WaitingForData\022;\n\013s" +
+      "ubprojects\030\t \003(\0132&.org.solemnsilence.flu" +
+      "idity.model.UUID\022>\n\016areas_of_focus\030\n \003(\013" +
+      "2&.org.solemnsilence.fluidity.model.UUID" +
+      "\022P\n\016active_actions\030\013 \003(\01328.org.solemnsil" +
+      "ence.fluidity.model.Project.ProjectActio" +
+      "ns\022T\n\022incubating_actions\030\014 \003(\01328.org.sol" +
+      "emnsilence.fluidity.model.Project.Projec",
+      "tActions\032i\n\016WaitingForData\022\017\n\007summary\030\001 " +
       "\002(\t\022F\n\rwaiting_since\030\002 \002(\0132/.org.solemns" +
-      "ilence.fluidity.model.DateTimeStamp\"C\n\006S" +
-      "tatus\022\n\n\006ACTIVE\020\001\022\016\n\nINCUBATING\020\002\022\017\n\013WAI" +
-      "TING_FOR\020\003\022\014\n\010COMPLETE\020\004\"-\n\tInboxNote\022\017\n" +
-      "\007summary\030\001 \002(\t\022\017\n\007details\030\002 \001(\t\"\364\001\n\003Tag\022" +
-      "?\n\004meta\030\001 \002(\01321.org.solemnsilence.fluidi" +
-      "ty.model.Tag.TagMetadata\022\014\n\004name\030\002 \002(\t\022\020",
-      "\n\010alt_name\030\003 \001(\t\032\213\001\n\013TagMetadata\0224\n\004uuid" +
-      "\030\001 \002(\0132&.org.solemnsilence.fluidity.mode" +
-      "l.UUID\022F\n\rcreation_time\030\002 \002(\0132/.org.sole" +
-      "mnsilence.fluidity.model.DateTimeStamp\"\311" +
-      "\001\n\016CommonMetadata\0224\n\004uuid\030\001 \002(\0132&.org.so" +
-      "lemnsilence.fluidity.model.UUID\022F\n\rcreat" +
-      "ion_time\030\002 \002(\0132/.org.solemnsilence.fluid" +
-      "ity.model.DateTimeStamp\0229\n\ttag_uuids\030\003 \003" +
-      "(\0132&.org.solemnsilence.fluidity.model.UU" +
-      "ID\"\355\002\n\017AllFluidityData\022E\n\016areas_of_focus",
-      "\030\001 \003(\0132-.org.solemnsilence.fluidity.mode" +
-      "l.AreaOfFocus\022;\n\010projects\030\002 \003(\0132).org.so" +
-      "lemnsilence.fluidity.model.Project\022B\n\014ne" +
-      "xt_actions\030\003 \003(\0132,.org.solemnsilence.flu" +
-      "idity.model.NextAction\022@\n\013inbox_notes\030\004 " +
-      "\003(\0132+.org.solemnsilence.fluidity.model.I" +
-      "nboxNote\022P\n\032pre_sorted_current_actions\030\005" +
-      " \003(\0132,.org.solemnsilence.fluidity.model." +
-      "NextAction\"\"\n\rDateTimeStamp\022\021\n\ttimestamp" +
-      "\030\001 \002(\005\"|\n\005Image\022\022\n\nimage_data\030\001 \002(\014\022?\n\004t",
-      "ype\030\002 \002(\01621.org.solemnsilence.fluidity.m" +
-      "odel.Image.ImageType\"\036\n\tImageType\022\007\n\003PNG" +
-      "\020\001\022\010\n\004JPEG\020\002\"a\n\003URI\022\013\n\003uri\030\001 \002(\t\022\023\n\013desc" +
-      "ription\030\002 \001(\t\0228\n\007favicon\030\003 \001(\0132\'.org.sol" +
-      "emnsilence.fluidity.model.Image\"\031\n\004UUID\022" +
-      "\021\n\traw_bytes\030\001 \002(\014*)\n\010Priority\022\010\n\004HIGH\020\001" +
-      "\022\n\n\006MEDIUM\020\002\022\007\n\003LOW\020\003"
+      "ilence.fluidity.model.DateTimeStamp\032\222\001\n\016" +
+      "ProjectActions\022?\n\017ordered_actions\030\001 \003(\0132" +
+      "&.org.solemnsilence.fluidity.model.UUID\022" +
+      "?\n\017anytime_actions\030\002 \003(\0132&.org.solemnsil" +
+      "ence.fluidity.model.UUID\"C\n\006Status\022\n\n\006AC" +
+      "TIVE\020\001\022\016\n\nINCUBATING\020\002\022\017\n\013WAITING_FOR\020\003\022" +
+      "\014\n\010COMPLETE\020\004\"-\n\tInboxNote\022\017\n\007summary\030\001 " +
+      "\002(\t\022\017\n\007details\030\002 \001(\t\"\364\001\n\003Tag\022?\n\004meta\030\001 \002",
+      "(\01321.org.solemnsilence.fluidity.model.Ta" +
+      "g.TagMetadata\022\014\n\004name\030\002 \002(\t\022\020\n\010alt_name\030" +
+      "\003 \001(\t\032\213\001\n\013TagMetadata\0224\n\004uuid\030\001 \002(\0132&.or" +
+      "g.solemnsilence.fluidity.model.UUID\022F\n\rc" +
+      "reation_time\030\002 \002(\0132/.org.solemnsilence.f" +
+      "luidity.model.DateTimeStamp\"\311\001\n\016CommonMe" +
+      "tadata\0224\n\004uuid\030\001 \002(\0132&.org.solemnsilence" +
+      ".fluidity.model.UUID\022F\n\rcreation_time\030\002 " +
+      "\002(\0132/.org.solemnsilence.fluidity.model.D" +
+      "ateTimeStamp\0229\n\ttag_uuids\030\003 \003(\0132&.org.so",
+      "lemnsilence.fluidity.model.UUID\"\355\002\n\017AllF" +
+      "luidityData\022E\n\016areas_of_focus\030\001 \003(\0132-.or" +
+      "g.solemnsilence.fluidity.model.AreaOfFoc" +
+      "us\022;\n\010projects\030\002 \003(\0132).org.solemnsilence" +
+      ".fluidity.model.Project\022B\n\014next_actions\030" +
+      "\003 \003(\0132,.org.solemnsilence.fluidity.model" +
+      ".NextAction\022@\n\013inbox_notes\030\004 \003(\0132+.org.s" +
+      "olemnsilence.fluidity.model.InboxNote\022P\n" +
+      "\032pre_sorted_current_actions\030\005 \003(\0132,.org." +
+      "solemnsilence.fluidity.model.NextAction\"",
+      "\"\n\rDateTimeStamp\022\021\n\ttimestamp\030\001 \002(\005\"|\n\005I" +
+      "mage\022\022\n\nimage_data\030\001 \002(\014\022?\n\004type\030\002 \002(\01621" +
+      ".org.solemnsilence.fluidity.model.Image." +
+      "ImageType\"\036\n\tImageType\022\007\n\003PNG\020\001\022\010\n\004JPEG\020" +
+      "\002\"a\n\003URI\022\013\n\003uri\030\001 \002(\t\022\023\n\013description\030\002 \001" +
+      "(\t\0228\n\007favicon\030\003 \001(\0132\'.org.solemnsilence." +
+      "fluidity.model.Image\"\031\n\004UUID\022\021\n\traw_byte" +
+      "s\030\001 \002(\014*)\n\010Priority\022\010\n\004HIGH\020\001\022\n\n\006MEDIUM\020" +
+      "\002\022\007\n\003LOW\020\003"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -13675,7 +14449,7 @@ public final class Models {
           internal_static_org_solemnsilence_fluidity_model_NextAction_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_NextAction_descriptor,
-              new java.lang.String[] { "Metadata", "Summary", "Status", "Priority", "CompletionTime", "QueueTime", "DueTime", "HACKContext", "TimeEstimateMinutes", "EnergyEstimate", "Notes", "RelatedResources", },
+              new java.lang.String[] { "Metadata", "Summary", "Complete", "Priority", "CompletionTime", "QueueTime", "DueTime", "HACKContext", "TimeEstimateMinutes", "EnergyEstimate", "Notes", "RelatedResources", },
               org.solemnsilence.fluidity.model.Models.NextAction.class,
               org.solemnsilence.fluidity.model.Models.NextAction.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_NextAction_Context_descriptor =
@@ -13691,7 +14465,7 @@ public final class Models {
           internal_static_org_solemnsilence_fluidity_model_Project_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_solemnsilence_fluidity_model_Project_descriptor,
-              new java.lang.String[] { "Metadata", "Summary", "Priority", "CompletionTime", "QueueTime", "DueTime", "Status", "WaitingForData", "Subprojects", "AreasOfFocus", "SequentialNextActions", "UnorderedNextActions", },
+              new java.lang.String[] { "Metadata", "Summary", "Priority", "CompletionTime", "QueueTime", "DueTime", "Status", "WaitingForData", "Subprojects", "AreasOfFocus", "ActiveActions", "IncubatingActions", },
               org.solemnsilence.fluidity.model.Models.Project.class,
               org.solemnsilence.fluidity.model.Models.Project.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_Project_WaitingForData_descriptor =
@@ -13702,6 +14476,14 @@ public final class Models {
               new java.lang.String[] { "Summary", "WaitingSince", },
               org.solemnsilence.fluidity.model.Models.Project.WaitingForData.class,
               org.solemnsilence.fluidity.model.Models.Project.WaitingForData.Builder.class);
+          internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_descriptor =
+            internal_static_org_solemnsilence_fluidity_model_Project_descriptor.getNestedTypes().get(1);
+          internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_solemnsilence_fluidity_model_Project_ProjectActions_descriptor,
+              new java.lang.String[] { "OrderedActions", "AnytimeActions", },
+              org.solemnsilence.fluidity.model.Models.Project.ProjectActions.class,
+              org.solemnsilence.fluidity.model.Models.Project.ProjectActions.Builder.class);
           internal_static_org_solemnsilence_fluidity_model_InboxNote_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_org_solemnsilence_fluidity_model_InboxNote_fieldAccessorTable = new

@@ -51,9 +51,9 @@ class JSONEncoder(object):
 
 class ProtobufEncoder(object):
 
-    _DUMP_FNAME = 'fity_engage_data.proto_bytes'
+    _DUMP_FNAME = 'next_action_data.protobytes'
     _LOCAL_DUMP_PATH = os.path.join(defs.USER_DATA_PATH, 
-                                    'fity_engage_data.proto_bytes')
+                                    'next_action_data.protobytes')
     _REMOTE_HOST = "anvil.solemnsilence.org"
     _REMOTE_DUMP_PATH = os.path.join("/home/jensck/workspace/FluidityMobile", 
                                      _DUMP_FNAME)

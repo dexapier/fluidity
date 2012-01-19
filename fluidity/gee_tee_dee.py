@@ -233,19 +233,20 @@ class NextAction(GeeTeeDeeData):
     def to_json(self):
         j = {}
         j['uuid'] = self.uuid
-        j['summary'] = self.summary
-        if self.due_date:
-            j['due_date'] = calendar.timegm(self.due_date.timetuple())
-        j['context'] =mess.completion.time = self._completion_date
-        mess.queue_time = self._queue_date
-        mess.due_time = self._due_date
-        return mess.SerializeToString() self.context
-        j['time_est'] = self.time_est
-        j['energy_est'] = self.energy_est
-        j['priority'] = self.priority
-        j['notes'] = self.notes
-        j['url'] = self.url
-        j['complete'] = self.complete
+        # FIXME: WTF is this?!  looks like a paste gone wrong.  Fix it. 
+#        j['summary'] = self.summary
+#        if self.due_date:
+#            j['due_date'] = calendar.timegm(self.due_date.timetuple())
+#        j['context'] =mess.completion.time = self._completion_date
+#        mess.queue_time = self._queue_date
+#        mess.due_time = self._due_date
+#        return mess.SerializeToString() self.context
+#        j['time_est'] = self.time_est
+#        j['energy_est'] = self.energy_est
+#        j['priority'] = self.priority
+#        j['notes'] = self.notes
+#        j['url'] = self.url
+#        j['complete'] = self.complete
 
         return j
     

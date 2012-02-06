@@ -41,6 +41,7 @@ def next_action_to_protobuf(na):
     proto.metadata.creation_time.timestamp = utils.to_timestamp(na.creation_date)
     proto.summary = na.summary
     proto.priority = _PRIORITY_TO_PROTO_VALUE[na.priority]
+    proto.complete = na.complete
     
     if na.completion_date:
         proto.completion_time.timestamp = utils.to_timestamp(

@@ -8,9 +8,17 @@ message HACK_ExportedNextActions {
 }
 
 message HACK_NextActionSelectionCriteria {
+    // ugh.  what a hack.
+    enum EnergyCriteria {
+        LOW = 1;
+        MEDIUM = 2;
+        HIGH = 3;
+        ANY = 4;
+    }
+
     required string context = 1;
     required int32 timeAvailableInMins = 2;
-    required NextAction.EnergyEstimate energyAvailable = 3;
+    required EnergyCriteria energyAvailable = 3;
 }
 
 // APP MODELS

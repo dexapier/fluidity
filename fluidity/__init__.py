@@ -57,4 +57,3 @@ try:
     fuck_you_too_pygobject()
 except ImportError:
     pass
-

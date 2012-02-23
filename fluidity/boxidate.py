@@ -189,7 +189,7 @@ class RESTInbox(Inbox):
                 pickle.dump(note_dict, pickle_file, pickle.HIGHEST_PROTOCOL)
 
     def _read_auth_info(self):
-        # TOTAL HACK.  just here for now...
+        # TOTAL HACK.  just here for now...  (I'm saying that a lot these days.)
         with open('/home/jensck/.local/share/fluidity/anvil_auth.json', 'r') as anvil_auth_file:
             return json.load(anvil_auth_file)
 

@@ -52,7 +52,7 @@ class JSONEncoder(object):
 class ProtobufEncoder(object):
 
     _DUMP_FNAME = 'next_action_data.protobytes'
-    _LOCAL_DUMP_PATH = os.path.join(defs.USER_DATA_PATH, 
+    _LOCAL_DUMP_PATH = os.path.join(defs.HACK_HACK_HACK_DROPBOX_PATH, 
                                     'next_action_data.protobytes')
     _REMOTE_HOST = "anvil.solemnsilence.org"
     _REMOTE_DUMP_PATH = os.path.join("/home/jensck/workspace/FluidityMobile", 
@@ -66,13 +66,14 @@ class ProtobufEncoder(object):
                                    for na in na_list])
 
         with open(self._LOCAL_DUMP_PATH, 'w') as bytes_file:
+            print("Dumping Action proto bytes to:", self._LOCAL_DUMP_PATH)
             bytes_file.write(proto.SerializeToString())
         
-        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, 
-                                              self._REMOTE_HOST,
-                                              self._REMOTE_DUMP_PATH)
-        print("Running: ", command)
-        subprocess.call(command, shell=True)
+#        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, 
+#                                              self._REMOTE_HOST,
+#                                              self._REMOTE_DUMP_PATH)
+#        print("Running: ", command)
+#        subprocess.call(command, shell=True)
 
     def _sort_na_list(self, na_list):
         # FIXME: sorting this list should live in ONE place - right now 

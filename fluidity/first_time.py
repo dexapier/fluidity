@@ -12,11 +12,13 @@ __author__ = 'Jens Knutson'
 
 import datetime
 import os
+import cPickle as pickle
 import shutil
 
 import yaml
 
 from fluidity import defs
+from fluidity import gee_tee_dee
 
 
 class FirstTimeBot(object):
@@ -24,12 +26,22 @@ class FirstTimeBot(object):
     def __init__(self):
         pass
 
+    def create_initial_data_file(self):
+        top_data = {}
+        top_data['areas_of_focus'] = {u'finances': {u'name': u'Finances', u'projects': []}}
+        top_data['projects'] = {}
+        top_data['single_notes'] = []
+        top_data['queued_singletons'] = []
+        top_data['projects']['singletons'] = gee_tee_dee.Project('singletons')
+        
+        pkl_path = defs.USER_DATA_MAIN_FILE
+        with open(pkl_path, 'w') as pkl_file:
+            pickle.dump(top_data, pkl_file, pickle.HIGHEST_PROTOCOL)
+
     def create_initial_files_and_paths(self):
         # check for initial data file - if missing, copy in the default one
         if not os.path.exists(defs.USER_DATA_MAIN_FILE):
-            shutil.copy(os.path.join(defs.APP_DATA_PATH,
-                                     defs.USER_DATA_MAIN_FNAME),
-                        defs.USER_DATA_MAIN_FILE)
+            self.create_initial_data_file()
         # if no recurrence yaml file exists, create it
         if not os.path.exists(defs.RECURRENCE_DATA):
             self._create_initial_recurrence_file(defs.RECURRENCE_DATA)

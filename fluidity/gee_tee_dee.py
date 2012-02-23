@@ -16,7 +16,6 @@ import calendar
 import datetime
 import uuid
 import fluidity.models
-import fluidity.interfaces
 
 
 from xml.sax import saxutils

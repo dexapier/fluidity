@@ -1,4 +1,4 @@
-#Wed Jan 25 20:14:54 CST 2012
+#Wed Feb 22 20:42:14 CST 2012
 =\=\=\=\=\=\=
 <<<<<<<=Updated upstream
 >>>>>>>=origin/develop
@@ -10,10 +10,12 @@ encoding//fluidity/boxidate.py=utf-8
 encoding//fluidity/dbus_misc.py=utf-8
 encoding//fluidity/defs.py=utf-8
 encoding//fluidity/defs_gui.py=utf-8
-encoding//fluidity/first_time.py=utf-8
 encoding//fluidity/gee_tee_dee.py=utf-8
 encoding//fluidity/gio_fml.py=utf-8
 encoding//fluidity/inbox_items.py=utf-8
+encoding//fluidity/incubator/client.py=utf-8
+encoding//fluidity/incubator/shover.py=utf-8
+encoding//fluidity/incubator/uri.py=utf-8
 encoding//fluidity/magic_machine.py=utf-8
 encoding//fluidity/main_app.py=utf-8
 encoding//fluidity/managers.py=utf-8

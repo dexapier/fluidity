@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='models.proto',
   package='org.solemnsilence.fluidity.model',
-  serialized_pb='\n\x0cmodels.proto\x12 org.solemnsilence.fluidity.model\"p\n\x18HACK_ExportedNextActions\x12\x10\n\x08\x63ontexts\x18\x01 \x03(\t\x12\x42\n\x0cnext_actions\x18\x02 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\"\xf6\x01\n HACK_NextActionSelectionCriteria\x12\x0f\n\x07\x63ontext\x18\x01 \x02(\t\x12\x1b\n\x13timeAvailableInMins\x18\x02 \x02(\x05\x12j\n\x0f\x65nergyAvailable\x18\x03 \x02(\x0e\x32Q.org.solemnsilence.fluidity.model.HACK_NextActionSelectionCriteria.EnergyCriteria\"8\n\x0e\x45nergyCriteria\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\x12\x07\n\x03\x41NY\x10\x04\"_\n\x0b\x41reaOfFocus\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"\xf5\x05\n\nNextAction\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12\x10\n\x08\x63omplete\x18\x03 \x02(\x08\x12\x44\n\x08priority\x18\x04 \x02(\x0e\x32*.org.solemnsilence.fluidity.model.Priority:\x06MEDIUM\x12H\n\x0f\x63ompletion_time\x18\x05 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x43\n\nqueue_time\x18\x06 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x41\n\x08\x64ue_time\x18\x07 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x14\n\x0cHACK_context\x18\x08 \x02(\t\x12\x1d\n\x15time_estimate_minutes\x18\t \x02(\x05\x12T\n\x0f\x65nergy_estimate\x18\n \x02(\x0e\x32;.org.solemnsilence.fluidity.model.NextAction.EnergyEstimate\x12\r\n\x05notes\x18\x0b \x01(\t\x12@\n\x11related_resources\x18\x0c \x03(\x0b\x32%.org.solemnsilence.fluidity.model.URI\x1a[\n\x07\x43ontext\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"/\n\x0e\x45nergyEstimate\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\"\xf6\x08\n\x07Project\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12\x44\n\x08priority\x18\x03 \x02(\x0e\x32*.org.solemnsilence.fluidity.model.Priority:\x06MEDIUM\x12H\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x43\n\nqueue_time\x18\x05 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x41\n\x08\x64ue_time\x18\x06 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12@\n\x06status\x18\x07 \x02(\x0e\x32\x30.org.solemnsilence.fluidity.model.Project.Status\x12R\n\x10waiting_for_data\x18\x08 \x01(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.WaitingForData\x12;\n\x0bsubprojects\x18\t \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12>\n\x0e\x61reas_of_focus\x18\n \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12P\n\x0e\x61\x63tive_actions\x18\x0b \x03(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.ProjectActions\x12T\n\x12incubating_actions\x18\x0c \x03(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.ProjectActions\x1ai\n\x0eWaitingForData\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x46\n\rwaiting_since\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x1a\x92\x01\n\x0eProjectActions\x12?\n\x0fordered_actions\x18\x01 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12?\n\x0f\x61nytime_actions\x18\x02 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\"C\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0f\n\x0bWAITING_FOR\x10\x03\x12\x0c\n\x08\x43OMPLETE\x10\x04\"-\n\tInboxNote\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x65tails\x18\x02 \x01(\t\"\xf4\x01\n\x03Tag\x12?\n\x04meta\x18\x01 \x02(\x0b\x32\x31.org.solemnsilence.fluidity.model.Tag.TagMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x10\n\x08\x61lt_name\x18\x03 \x01(\t\x1a\x8b\x01\n\x0bTagMetadata\x12\x34\n\x04uuid\x18\x01 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\rcreation_time\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\"\xc9\x01\n\x0e\x43ommonMetadata\x12\x34\n\x04uuid\x18\x01 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\rcreation_time\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x39\n\ttag_uuids\x18\x03 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\"\xed\x02\n\x0f\x41llFluidityData\x12\x45\n\x0e\x61reas_of_focus\x18\x01 \x03(\x0b\x32-.org.solemnsilence.fluidity.model.AreaOfFocus\x12;\n\x08projects\x18\x02 \x03(\x0b\x32).org.solemnsilence.fluidity.model.Project\x12\x42\n\x0cnext_actions\x18\x03 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\x12@\n\x0binbox_notes\x18\x04 \x03(\x0b\x32+.org.solemnsilence.fluidity.model.InboxNote\x12P\n\x1apre_sorted_current_actions\x18\x05 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\"\"\n\rDateTimeStamp\x12\x11\n\ttimestamp\x18\x01 \x02(\x05\"|\n\x05Image\x12\x12\n\nimage_data\x18\x01 \x02(\x0c\x12?\n\x04type\x18\x02 \x02(\x0e\x32\x31.org.solemnsilence.fluidity.model.Image.ImageType\"\x1e\n\tImageType\x12\x07\n\x03PNG\x10\x01\x12\x08\n\x04JPEG\x10\x02\"a\n\x03URI\x12\x0b\n\x03uri\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x38\n\x07\x66\x61vicon\x18\x03 \x01(\x0b\x32\'.org.solemnsilence.fluidity.model.Image\"\x19\n\x04UUID\x12\x11\n\traw_bytes\x18\x01 \x02(\x0c*)\n\x08Priority\x12\x08\n\x04HIGH\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x07\n\x03LOW\x10\x03')
+  serialized_pb='\n\x0cmodels.proto\x12 org.solemnsilence.fluidity.model\"p\n\x18HACK_ExportedNextActions\x12\x10\n\x08\x63ontexts\x18\x01 \x03(\t\x12\x42\n\x0cnext_actions\x18\x02 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\"\xf6\x01\n HACK_NextActionSelectionCriteria\x12\x0f\n\x07\x63ontext\x18\x01 \x02(\t\x12\x1b\n\x13timeAvailableInMins\x18\x02 \x02(\x05\x12j\n\x0f\x65nergyAvailable\x18\x03 \x02(\x0e\x32Q.org.solemnsilence.fluidity.model.HACK_NextActionSelectionCriteria.EnergyCriteria\"8\n\x0e\x45nergyCriteria\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\x12\x07\n\x03\x41NY\x10\x04\"_\n\x0b\x41reaOfFocus\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"\x98\x06\n\nNextAction\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12\x10\n\x08\x63omplete\x18\x03 \x02(\x08\x12\x44\n\x08priority\x18\x04 \x02(\x0e\x32*.org.solemnsilence.fluidity.model.Priority:\x06MEDIUM\x12H\n\x0f\x63ompletion_time\x18\x05 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x43\n\nqueue_time\x18\x06 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x41\n\x08\x64ue_time\x18\x07 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x37\n\x07\x63ontext\x18\x08 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x1d\n\x15time_estimate_minutes\x18\t \x02(\x05\x12T\n\x0f\x65nergy_estimate\x18\n \x02(\x0e\x32;.org.solemnsilence.fluidity.model.NextAction.EnergyEstimate\x12\r\n\x05notes\x18\x0b \x01(\t\x12@\n\x11related_resources\x18\x0c \x03(\x0b\x32%.org.solemnsilence.fluidity.model.URI\x1a[\n\x07\x43ontext\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\"/\n\x0e\x45nergyEstimate\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03\"\xf6\x08\n\x07Project\x12\x42\n\x08metadata\x18\x01 \x02(\x0b\x32\x30.org.solemnsilence.fluidity.model.CommonMetadata\x12\x0f\n\x07summary\x18\x02 \x02(\t\x12\x44\n\x08priority\x18\x03 \x02(\x0e\x32*.org.solemnsilence.fluidity.model.Priority:\x06MEDIUM\x12H\n\x0f\x63ompletion_time\x18\x04 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x43\n\nqueue_time\x18\x05 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x41\n\x08\x64ue_time\x18\x06 \x01(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12@\n\x06status\x18\x07 \x02(\x0e\x32\x30.org.solemnsilence.fluidity.model.Project.Status\x12R\n\x10waiting_for_data\x18\x08 \x01(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.WaitingForData\x12;\n\x0bsubprojects\x18\t \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12>\n\x0e\x61reas_of_focus\x18\n \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12P\n\x0e\x61\x63tive_actions\x18\x0b \x03(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.ProjectActions\x12T\n\x12incubating_actions\x18\x0c \x03(\x0b\x32\x38.org.solemnsilence.fluidity.model.Project.ProjectActions\x1ai\n\x0eWaitingForData\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x46\n\rwaiting_since\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x1a\x92\x01\n\x0eProjectActions\x12?\n\x0fordered_actions\x18\x01 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12?\n\x0f\x61nytime_actions\x18\x02 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\"C\n\x06Status\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0e\n\nINCUBATING\x10\x02\x12\x0f\n\x0bWAITING_FOR\x10\x03\x12\x0c\n\x08\x43OMPLETE\x10\x04\"-\n\tInboxNote\x12\x0f\n\x07summary\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x65tails\x18\x02 \x01(\t\"\xf4\x01\n\x03Tag\x12?\n\x04meta\x18\x01 \x02(\x0b\x32\x31.org.solemnsilence.fluidity.model.Tag.TagMetadata\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x10\n\x08\x61lt_name\x18\x03 \x01(\t\x1a\x8b\x01\n\x0bTagMetadata\x12\x34\n\x04uuid\x18\x01 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\rcreation_time\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\"\xc9\x01\n\x0e\x43ommonMetadata\x12\x34\n\x04uuid\x18\x01 \x02(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\x12\x46\n\rcreation_time\x18\x02 \x02(\x0b\x32/.org.solemnsilence.fluidity.model.DateTimeStamp\x12\x39\n\ttag_uuids\x18\x03 \x03(\x0b\x32&.org.solemnsilence.fluidity.model.UUID\"\xed\x02\n\x0f\x41llFluidityData\x12\x45\n\x0e\x61reas_of_focus\x18\x01 \x03(\x0b\x32-.org.solemnsilence.fluidity.model.AreaOfFocus\x12;\n\x08projects\x18\x02 \x03(\x0b\x32).org.solemnsilence.fluidity.model.Project\x12\x42\n\x0cnext_actions\x18\x03 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\x12@\n\x0binbox_notes\x18\x04 \x03(\x0b\x32+.org.solemnsilence.fluidity.model.InboxNote\x12P\n\x1apre_sorted_current_actions\x18\x05 \x03(\x0b\x32,.org.solemnsilence.fluidity.model.NextAction\"\"\n\rDateTimeStamp\x12\x11\n\ttimestamp\x18\x01 \x02(\x05\"|\n\x05Image\x12\x12\n\nimage_data\x18\x01 \x02(\x0c\x12?\n\x04type\x18\x02 \x02(\x0e\x32\x31.org.solemnsilence.fluidity.model.Image.ImageType\"\x1e\n\tImageType\x12\x07\n\x03PNG\x10\x01\x12\x08\n\x04JPEG\x10\x02\"a\n\x03URI\x12\x0b\n\x03uri\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x38\n\x07\x66\x61vicon\x18\x03 \x01(\x0b\x32\'.org.solemnsilence.fluidity.model.Image\"\x19\n\x04UUID\x12\x11\n\traw_bytes\x18\x01 \x02(\x0c*)\n\x08Priority\x12\x08\n\x04HIGH\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x07\n\x03LOW\x10\x03')
 
 _PRIORITY = descriptor.EnumDescriptor(
   name='Priority',
@@ -37,8 +37,8 @@ _PRIORITY = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=3569,
-  serialized_end=3610,
+  serialized_start=3604,
+  serialized_end=3645,
 )
 
 
@@ -97,8 +97,8 @@ _NEXTACTION_ENERGYESTIMATE = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1221,
-  serialized_end=1268,
+  serialized_start=1256,
+  serialized_end=1303,
 )
 
 _PROJECT_STATUS = descriptor.EnumDescriptor(
@@ -126,8 +126,8 @@ _PROJECT_STATUS = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2346,
-  serialized_end=2413,
+  serialized_start=2381,
+  serialized_end=2448,
 )
 
 _IMAGE_IMAGETYPE = descriptor.EnumDescriptor(
@@ -147,8 +147,8 @@ _IMAGE_IMAGETYPE = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=3411,
-  serialized_end=3441,
+  serialized_start=3446,
+  serialized_end=3476,
 )
 
 
@@ -295,8 +295,8 @@ _NEXTACTION_CONTEXT = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1128,
-  serialized_end=1219,
+  serialized_start=1163,
+  serialized_end=1254,
 )
 
 _NEXTACTION = descriptor.Descriptor(
@@ -356,9 +356,9 @@ _NEXTACTION = descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='HACK_context', full_name='org.solemnsilence.fluidity.model.NextAction.HACK_context', index=7,
-      number=8, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=unicode("", "utf-8"),
+      name='context', full_name='org.solemnsilence.fluidity.model.NextAction.context', index=7,
+      number=8, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -401,7 +401,7 @@ _NEXTACTION = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=511,
-  serialized_end=1268,
+  serialized_end=1303,
 )
 
 
@@ -435,8 +435,8 @@ _PROJECT_WAITINGFORDATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2090,
-  serialized_end=2195,
+  serialized_start=2125,
+  serialized_end=2230,
 )
 
 _PROJECT_PROJECTACTIONS = descriptor.Descriptor(
@@ -469,8 +469,8 @@ _PROJECT_PROJECTACTIONS = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2198,
-  serialized_end=2344,
+  serialized_start=2233,
+  serialized_end=2379,
 )
 
 _PROJECT = descriptor.Descriptor(
@@ -574,8 +574,8 @@ _PROJECT = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1271,
-  serialized_end=2413,
+  serialized_start=1306,
+  serialized_end=2448,
 )
 
 
@@ -609,8 +609,8 @@ _INBOXNOTE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2415,
-  serialized_end=2460,
+  serialized_start=2450,
+  serialized_end=2495,
 )
 
 
@@ -644,8 +644,8 @@ _TAG_TAGMETADATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2568,
-  serialized_end=2707,
+  serialized_start=2603,
+  serialized_end=2742,
 )
 
 _TAG = descriptor.Descriptor(
@@ -685,8 +685,8 @@ _TAG = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2463,
-  serialized_end=2707,
+  serialized_start=2498,
+  serialized_end=2742,
 )
 
 
@@ -727,8 +727,8 @@ _COMMONMETADATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2710,
-  serialized_end=2911,
+  serialized_start=2745,
+  serialized_end=2946,
 )
 
 
@@ -783,8 +783,8 @@ _ALLFLUIDITYDATA = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=2914,
-  serialized_end=3279,
+  serialized_start=2949,
+  serialized_end=3314,
 )
 
 
@@ -811,8 +811,8 @@ _DATETIMESTAMP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=3281,
-  serialized_end=3315,
+  serialized_start=3316,
+  serialized_end=3350,
 )
 
 
@@ -847,8 +847,8 @@ _IMAGE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=3317,
-  serialized_end=3441,
+  serialized_start=3352,
+  serialized_end=3476,
 )
 
 
@@ -889,8 +889,8 @@ _URI = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=3443,
-  serialized_end=3540,
+  serialized_start=3478,
+  serialized_end=3575,
 )
 
 
@@ -917,8 +917,8 @@ _UUID = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=3542,
-  serialized_end=3567,
+  serialized_start=3577,
+  serialized_end=3602,
 )
 
 _HACK_EXPORTEDNEXTACTIONS.fields_by_name['next_actions'].message_type = _NEXTACTION
@@ -932,6 +932,7 @@ _NEXTACTION.fields_by_name['priority'].enum_type = _PRIORITY
 _NEXTACTION.fields_by_name['completion_time'].message_type = _DATETIMESTAMP
 _NEXTACTION.fields_by_name['queue_time'].message_type = _DATETIMESTAMP
 _NEXTACTION.fields_by_name['due_time'].message_type = _DATETIMESTAMP
+_NEXTACTION.fields_by_name['context'].message_type = _UUID
 _NEXTACTION.fields_by_name['energy_estimate'].enum_type = _NEXTACTION_ENERGYESTIMATE
 _NEXTACTION.fields_by_name['related_resources'].message_type = _URI
 _NEXTACTION_ENERGYESTIMATE.containing_type = _NEXTACTION;

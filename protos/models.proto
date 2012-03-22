@@ -49,10 +49,7 @@ message NextAction {
     optional DateTimeStamp completion_time = 5;
     optional DateTimeStamp queue_time = 6;
     optional DateTimeStamp due_time = 7;
-    // Using a hack for now -- I need something to work NOW, and the
-    // app isn't set up to support uuids everywhere.
-//    required UUID context = 7;
-    required string HACK_context = 8;
+    required UUID context = 8;
     required int32 time_estimate_minutes = 9;
     required EnergyEstimate energy_estimate = 10;
 
@@ -116,8 +113,9 @@ message Tag {
 
     required TagMetadata meta = 1;
     required string name = 2;
-    // Future use.  I don't actually know what I want to do with this, I just
-    // wanted to put the slot for it here...  since it's optional, it doesn't
+    // Future use.  I don't actually know what I want 
+    // to do with this, I just wanted to put the slot 
+    // for it here...  since it's optional, it doesn't
     // hurt us at all.
     optional string alt_name = 3;
 }
@@ -135,7 +133,6 @@ enum Priority {
     MEDIUM = 2;
     LOW = 3;
 }
-
 
 // "TRANSPORT"/"STORAGE" convenience types
 message AllFluidityData {
@@ -173,7 +170,7 @@ message URI {
 
 
 message UUID {
-    // UUIDs are natively 16 bytes long.  The wrapper class for this
-    // type should validate this.
+    // UUIDs are natively 16 bytes long.  The wrapper class 
+    // for this type should validate this.
     required bytes raw_bytes = 1;
 }

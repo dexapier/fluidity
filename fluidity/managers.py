@@ -1,10 +1,10 @@
 #-*- coding:utf-8 -*-
 #
-# Copyright (C) 2009 - Jens Knutson <jens.knutson at gmail dot com>
+# Copyright (C) 2012 - Jens Knutson <jens.knutson at gmail dot com>
 # This software is licensed under the GNU General Public License
 # version 3 or later (see the file COPYING).
 #pylint: disable-msg=W0201
-"""Collection of "manager" classes, which handle disparate aspects of Fluidity."""
+"""Collection of "manager" classes, which handle various aspects of Fluidity."""
 from __future__ import absolute_import, division, print_function
 
 
@@ -36,6 +36,7 @@ from fluidity import inbox_items
 from fluidity import magic_machine
 from fluidity import app_utils
 from fluidity.first_time import FirstTimeBot
+from fluidity.incubator import new_storage_backend
 from fluidity.note import ProjectNote
 
 
@@ -65,11 +66,11 @@ class DataManager(object):
         self.single_notes = self.top_data['single_notes']
         self.queued_singletons = self.top_data['queued_singletons']
 
-        # I would have called it _file_lickspittle, but that's too verbose
-        # even for *me*.
         self._file_toady = FileSystemManager()
         self._magic_maker = magic_machine.MagicMachine()
         self.rebuild_aof_cache()
+        self._shover = new_storage_backend.Shover().open()
+        self._shover.store_item(new_storage_backend.TEST_KEY, datetime.datetime.now())
 
 # PUBLIC METHODS
     def activate_due_queued(self):
@@ -150,6 +151,7 @@ class DataManager(object):
 
     def cleanup_before_exit(self):
         self.save_data()
+        self._shover.close()
 
     def copy_to_project_folder(self, file_name, prj):
         self._file_toady.copy_to_project_folder(file_name, prj.summary, prj.status)
@@ -260,7 +262,7 @@ class DataManager(object):
         try:
             return self.prjs[prj_key].next_actions
         except AttributeError:
-            return None
+            return []
 
     def get_prj_aof_names(self, prj):
         aof_list = []

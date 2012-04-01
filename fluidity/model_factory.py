@@ -42,19 +42,28 @@ _ENERGY_TO_PROTO_VALUE = {
 _ENERGY_FROM_PROTO_VALUE = utils.invert_dict(_ENERGY_TO_PROTO_VALUE)
 
 
-def next_action_to_protobuf(na):
-    """Convert a gee_tee_dee.NextAction to Protobuf-encoded bytes"""
+
+
+
+
+
+
+
+# ACTUALLY INTERESTING CODE STARTS HERE
+
+
+def next_action_to_proto(na, uuid_map):
+    """Convert a gee_tee_dee.NextAction to a fully populated models.NextAction object"""
     proto = models.NextAction()
-    proto.metadata.uuid.raw_bytes = uuid_lib.UUID(na.uuid).bytes
+    proto.metadata.uuid.raw_bytes = _new_proto_uuid().bytes
     proto.metadata.creation_time.timestamp = utils.to_timestamp(na.creation_date)
     # FIXME: include tags, when we start using them
-    proto.summary = na.summary
+    proto.summary = unicode(na.summary)
     proto.priority = _PRIORITY_TO_PROTO_VALUE[na.priority]
     proto.complete = na.complete
     
     if na.completion_date:
-        proto.completion_time.timestamp = utils.to_timestamp(
-                na.completion_date)
+        proto.completion_time.timestamp = utils.to_timestamp(na.completion_date)
     
     if na.queue_date:
         proto.queue_time.timestamp = utils.to_timestamp(na.queue_date)
@@ -62,10 +71,7 @@ def next_action_to_protobuf(na):
     if na.due_date:
         proto.due_time.timestamp = utils.to_timestamp(na.due_date)
     
-    # WHEREWELEFTOFF: mapping contexts to their values
-    # I think the solution here is to get a value from some dict 
-    # we've built up, and if it's not found, create one.
-    proto.context = na.context
+    proto.context = uuid_map.contexts[na.context]
     
     proto.time_estimate_minutes = int(na.time_est)
     proto.energy_estimate = _ENERGY_TO_PROTO_VALUE[na.energy_est]
@@ -79,8 +85,8 @@ def next_action_to_protobuf(na):
     return proto
 
 
-def project_to_protobuf(prj, uuid_map):
-    """Convert a gee_tee_dee.Project to Protobuf-encoded bytes
+def project_to_proto(prj, uuid_map, na_lists):
+    """Convert a gee_tee_dee.Project to a models.Project object
     
     Args:
         prj: gee_tee_dee.Project to convert
@@ -90,8 +96,7 @@ def project_to_protobuf(prj, uuid_map):
     """
     proto = models.Project()
     # metadata
-    # FIXME: are we sure that every project is going to have this?  I bit no. it won't
-    proto.metadata.uuid.raw_bytes = uuid_map.projects[prj.key_name].uuid.raw_bytes
+    proto.metadata.uuid.raw_bytes = uuid_map.projects[prj.key_name].raw_bytes
     # FIXME: we don't do creation dates in Projects yet
     proto.metadata.creation_time.timestamp = defs.CREATION_EPOCH
 
@@ -110,31 +115,52 @@ def project_to_protobuf(prj, uuid_map):
         proto.waiting_for_data.summary = prj.waiting_for_text
         proto.waiting_for_data.waiting_since = utils.to_timestamp(prj.waiting_for_since)
 
-    proto.subprojects.extend((models.UUID(raw_bytes=uuid.bytes) for uuid in prj.subprojects))
+    proto.subprojects.extend((uuid_map.projects[subprj_key].uuid
+                              for subprj_key in prj.subprojects))
+    
+    proto.areas_of_focus.extend((uuid_map.areas_of_focus[aof_key].uuid
+                                 for aof_key in prj.aofs))
 
-    proto.areas_of_focus.extend((uuid_map.areas_of_focus[aof_key].uuid for aof_key in prj.aofs))
+    proto.active_actions.ordered_actions.extend(na_lists.active)
+    proto.incubating_actions.ordered_actions.extend(na_lists.inactive)
+    
+    return proto
 
-    # FIXME: AOFs: see next_action_to_protobuf() notes re: contexts
+def aof_to_proto(aof_display_name):
+    proto = models.AreaOfFocus()
+    proto.metadata.uuid.raw_bytes = _new_proto_uuid().raw_bytes
+    # FIXME: we never did creation dates for AOFs
+    proto.metadata.creation_time.timestamp = defs.CREATION_EPOCH
+    proto.name = aof_display_name
+    return proto
 
-
-def build_aof_dict_to_proto_mapping(data_mgr):
-    """Returns: {aof_name: model_factory.AreaOfFocus}"""
-    # NOTE: this just generates new UUIDs on every run - it doesn't bother with any
-    # kind of state persistence between runs
-    mapping = {aof_key: AreaOfFocus(aof_key, uuid_lib.uuid4(), **aof_dict) 
-               for aof_key, aof_dict in data_mgr.aofs.iteritems()}
-    return mapping
-
-
-
-class UUIDMap(object):
-
-    def __init__(self, projects_dict, areas_of_focus_dict):
-        self.projects = projects_dict
-        self.areas_of_focus = areas_of_focus_dict
+def context_to_proto(context_str):
 
 
-class AreaOfFocus(object):
+def _build_uuid_map(data_mgr):
+    # NOTE: this just generates new UUIDs for everything on every run - it doesn't bother with any
+    # kind of state persistence between runs, so it's only good for one-time conversions!
+    umap = UUIDMap()
+    umap.projects = {prj_key: _new_proto_uuid() for prj_key in data_mgr.prjs}
+    umap.areas_of_focus = {aof_key: _AreaOfFocus(aof_key, _new_proto_uuid(), **aof_dict) 
+                           for aof_key, aof_dict in data_mgr.aofs.iteritems()}
+    
+    return umap
+
+def _new_proto_uuid():
+    return models.UUID(raw_bytes=uuid_lib.uuid4().bytes)
+
+
+# projects = {gee_tee_dee.Project.key_name: models.UUID}
+# areas_of_focus = {area of focus key (per datamanager): model_factory._AreaOfFocus}
+# contexts = { context name key (per datamanager): models.UUID}
+_UUIDMap = namedtuple('_UUIDMap', 'projects', 'areas_of_focus', 'contexts')
+
+# these fields are the models versions, not the gee_tee_dee ones
+_NextActionLists = namedtuple('_NextActionLists', 'active', 'inactive')
+
+
+class _AreaOfFocus(object):
     """For use in the UUIDMap.areas_of_focus dict's values"""
     
     def __init__(self, key_name, uuid, name="", projects=None):

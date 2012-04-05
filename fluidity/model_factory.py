@@ -13,6 +13,8 @@ __author__ = 'Jens Knutson'
 # renamed so I can have params named "uuid" without ambiguity
 import uuid as uuid_lib
 
+from collections import namedtuple
+
 from fluidity import defs
 from fluidity import models
 from fluidity import utils
@@ -47,15 +49,44 @@ _ENERGY_FROM_PROTO_VALUE = utils.invert_dict(_ENERGY_TO_PROTO_VALUE)
 
 
 
-
-
 # ACTUALLY INTERESTING CODE STARTS HERE
 
 
-def next_action_to_proto(na, uuid_map):
+
+AllTheThings = namedtuple('AllTheThings', ('prjs', 'actions', 'aofs', 'contexts'))
+
+
+
+def uuid_all_the_things(data_mgr):
+    all_the_things = AllTheThings(prjs=[], actions=[], aofs=[], contexts=[])
+    uuid_map = _build_uuid_map(data_mgr)
+    for prj in data_mgr.prjs.values():
+        proto, combined_na_lists = _convert_prj_and_nas(prj, uuid_map)
+        all_the_things.prjs.append(proto)
+        all_the_things.actions.extend(combined_na_lists)
+    
+    all_the_things.aofs.extend(aof.proto for aof in uuid_map.areas_of_focus.values())
+    all_the_things.contexts.extend(proto for proto in uuid_map.contexts.values())
+    
+    return all_the_things
+
+
+def _convert_prj_and_nas(prj, uuid_map):
+    na_lists = _build_na_lists_for_project(prj, uuid_map)
+    prj_proto = _project_to_proto(prj, na_lists, uuid_map)
+    return prj_proto, na_lists.active + na_lists.inactive
+
+def _build_na_lists_for_project(prj, uuid_map):
+    active = [_next_action_to_proto(na, uuid_map) for na in prj._next_actions]
+    inactive = [_next_action_to_proto(na, uuid_map) for na in prj._incubating_next_actions]
+    na_lists = _NextActionLists(active, inactive)
+    return na_lists
+
+
+def _next_action_to_proto(na, uuid_map):
     """Convert a gee_tee_dee.NextAction to a fully populated models.NextAction object"""
     proto = models.NextAction()
-    proto.metadata.uuid.raw_bytes = _new_proto_uuid().bytes
+    proto.metadata.uuid.raw_bytes = _new_proto_uuid().raw_bytes
     proto.metadata.creation_time.timestamp = utils.to_timestamp(na.creation_date)
     # FIXME: include tags, when we start using them
     proto.summary = unicode(na.summary)
@@ -71,7 +102,8 @@ def next_action_to_proto(na, uuid_map):
     if na.due_date:
         proto.due_time.timestamp = utils.to_timestamp(na.due_date)
     
-    proto.context = uuid_map.contexts[na.context]
+    if na.context:
+        proto.context.raw_bytes = uuid_map.contexts[na.context].metadata.uuid.raw_bytes
     
     proto.time_estimate_minutes = int(na.time_est)
     proto.energy_estimate = _ENERGY_TO_PROTO_VALUE[na.energy_est]
@@ -85,7 +117,7 @@ def next_action_to_proto(na, uuid_map):
     return proto
 
 
-def project_to_proto(prj, uuid_map, na_lists):
+def _project_to_proto(prj, na_lists, uuid_map):
     """Convert a gee_tee_dee.Project to a models.Project object
     
     Args:
@@ -98,9 +130,9 @@ def project_to_proto(prj, uuid_map, na_lists):
     # metadata
     proto.metadata.uuid.raw_bytes = uuid_map.projects[prj.key_name].raw_bytes
     # FIXME: we don't do creation dates in Projects yet
-    proto.metadata.creation_time.timestamp = defs.CREATION_EPOCH
+    proto.metadata.creation_time.timestamp = int(defs.CREATION_EPOCH)
 
-    proto.summary = prj.summary
+    proto.summary = unicode(prj.summary)
     proto.priority = _PRIORITY_TO_PROTO_VALUE[prj.priority]
 
     if prj.completion_date:
@@ -112,39 +144,47 @@ def project_to_proto(prj, uuid_map, na_lists):
 
     proto.status = _PROJECT_STATUS_TO_PROTO_VALUE[prj.status]
     if proto.status == models.Project.WAITING_FOR:
-        proto.waiting_for_data.summary = prj.waiting_for_text
-        proto.waiting_for_data.waiting_since = utils.to_timestamp(prj.waiting_for_since)
+        summary = prj.waiting_for_text if prj.waiting_for_text else "(nothing assigned)"
+        proto.waiting_for_data.summary = summary
+        proto.waiting_for_data.waiting_since.timestamp = utils.to_timestamp(prj.waiting_for_since)
 
-    proto.subprojects.extend((uuid_map.projects[subprj_key].uuid
-                              for subprj_key in prj.subprojects))
+    proto.subprojects.extend([uuid_map.projects[subprj_key].uuid
+                              for subprj_key in prj.subprojects])
+    if proto.subprojects:
+        print("Erm.....  WAT.  How do we have subprojects??")
     
-    proto.areas_of_focus.extend((uuid_map.areas_of_focus[aof_key].uuid
-                                 for aof_key in prj.aofs))
+    proto.areas_of_focus.extend([uuid_map.areas_of_focus[aof_key].uuid
+                                 for aof_key in prj.aofs])
 
-    proto.active_actions.ordered_actions.extend(na_lists.active)
-    proto.incubating_actions.ordered_actions.extend(na_lists.inactive)
+    proto.active_actions.ordered_actions.extend([na.metadata.uuid for na in na_lists.active])
+    proto.incubating_actions.ordered_actions.extend([na.metadata.uuid for na in na_lists.inactive])
     
     return proto
 
-def aof_to_proto(aof_display_name):
+
+def _aof_to_proto(aof_display_name):
     proto = models.AreaOfFocus()
     proto.metadata.uuid.raw_bytes = _new_proto_uuid().raw_bytes
     # FIXME: we never did creation dates for AOFs
-    proto.metadata.creation_time.timestamp = defs.CREATION_EPOCH
+    proto.metadata.creation_time.timestamp = int(defs.CREATION_EPOCH)
     proto.name = aof_display_name
     return proto
 
-def context_to_proto(context_str):
-
+def _context_to_proto(context_str):
+    proto = models.NextAction.Context()
+    proto.metadata.uuid.raw_bytes = _new_proto_uuid().raw_bytes
+    proto.metadata.creation_time.timestamp = int(defs.CREATION_EPOCH)
+    proto.name = context_str
+    return proto
 
 def _build_uuid_map(data_mgr):
     # NOTE: this just generates new UUIDs for everything on every run - it doesn't bother with any
     # kind of state persistence between runs, so it's only good for one-time conversions!
-    umap = UUIDMap()
-    umap.projects = {prj_key: _new_proto_uuid() for prj_key in data_mgr.prjs}
-    umap.areas_of_focus = {aof_key: _AreaOfFocus(aof_key, _new_proto_uuid(), **aof_dict) 
+    projects = {prj_key: _new_proto_uuid() for prj_key in data_mgr.prjs}
+    areas_of_focus = {aof_key: _AreaOfFocus(aof_key, _aof_to_proto(aof_dict['name']), **aof_dict)
                            for aof_key, aof_dict in data_mgr.aofs.iteritems()}
-    
+    contexts = {ctx_str: _context_to_proto(ctx_str) for ctx_str in data_mgr.get_contexts()}
+    umap = _UUIDMap(projects, areas_of_focus, contexts)
     return umap
 
 def _new_proto_uuid():
@@ -154,23 +194,31 @@ def _new_proto_uuid():
 # projects = {gee_tee_dee.Project.key_name: models.UUID}
 # areas_of_focus = {area of focus key (per datamanager): model_factory._AreaOfFocus}
 # contexts = { context name key (per datamanager): models.UUID}
-_UUIDMap = namedtuple('_UUIDMap', 'projects', 'areas_of_focus', 'contexts')
+_UUIDMap = namedtuple('_UUIDMap', ('projects', 'areas_of_focus', 'contexts'))
 
 # these fields are the models versions, not the gee_tee_dee ones
-_NextActionLists = namedtuple('_NextActionLists', 'active', 'inactive')
+_NextActionLists = namedtuple('_NextActionLists', ('active', 'inactive'))
 
 
 class _AreaOfFocus(object):
     """For use in the UUIDMap.areas_of_focus dict's values"""
     
-    def __init__(self, key_name, uuid, name="", projects=None):
+    def __init__(self, key_name, proto, name="", projects=None):
         # `projects` arg default should be an iterable, but Python's weirdness around 
         # collections created in function/method definitions means that's a bad 
         # idea, so it's None instead.  bleh.
         self.key_name = key_name
-        self.uuid = uuid
+        self.proto = proto
+        self.uuid = proto.metadata.uuid
         self.name = name
         self.project_keys = projects if projects else set()
     
     def __getitem__(self, name):
         return self.__dict__.__getitem__(name)
+
+
+if __name__ == '__main__':
+    import fluidity.managers    
+    lumbergh = fluidity.managers.DataManager()
+    dont_print_this_to_console = uuid_all_the_things(lumbergh)
+    print("Done.")

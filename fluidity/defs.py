@@ -142,6 +142,8 @@ IGNORED_INBOX_PATHS = [
 
 
 # ugh, this file is getting INSANE.
+
+# These are basically enums.  Gotta find one of the better solutions to this though.
 class Priority:
     HIGH = 1
     MEDIUM = 2

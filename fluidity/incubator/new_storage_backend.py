@@ -20,7 +20,7 @@ from fluidity import defs
 
 
 SHOVE_PATH = pathlib.Path(defs.USER_DATA_PATH).join('shove_ftw.shove')
-TEST_KEY = uuid.UUID(bytes=bytes('\x12\x34\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF'))
+TEST_KEY = uuid.UUID('12340000-0000-4000-0000-0000deadbeef')
 
 
 class Shover(object):

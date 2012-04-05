@@ -63,9 +63,10 @@ message Project {
 
     enum Status {
         ACTIVE = 1;
-        INCUBATING = 2;
+        QUEUED = 2;
         WAITING_FOR = 3;
-        COMPLETE = 4;
+        INCUBATING = 4;
+        COMPLETE = 5;
     }
 
     message WaitingForData {
@@ -91,8 +92,8 @@ message Project {
 
     repeated UUID subprojects = 9;
     repeated UUID areas_of_focus = 10;
-    repeated ProjectActions active_actions = 11;
-    repeated ProjectActions incubating_actions = 12;
+    required ProjectActions active_actions = 11;
+    required ProjectActions incubating_actions = 12;
 }
 
 
@@ -113,8 +114,8 @@ message Tag {
 
     required TagMetadata meta = 1;
     required string name = 2;
-    // Future use.  I don't actually know what I want 
-    // to do with this, I just wanted to put the slot 
+    // Future use.  I don't actually know what I want
+    // to do with this, I just wanted to put the slot
     // for it here...  since it's optional, it doesn't
     // hurt us at all.
     optional string alt_name = 3;
@@ -170,7 +171,7 @@ message URI {
 
 
 message UUID {
-    // UUIDs are natively 16 bytes long.  The wrapper class 
+    // UUIDs are natively 16 bytes long.  The wrapper class
     // for this type should validate this.
     required bytes raw_bytes = 1;
 }

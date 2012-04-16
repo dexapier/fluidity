@@ -6,14 +6,15 @@ I would really like to hear from you.)
 ****** ############  VERY IMPORTANT - DO NOT IGNORE!!  ############
 
 Fluidity is currently a BETA release!  I have not personally had 
-any data loss problems in using Fluidity for over a year, but that doesn't mean
+any data loss problems in using Fluidity for over 3 years, but that doesn't mean
 there aren't any data-destroying bugs hiding somewhere.  Don't sweat it too 
 hard - your data files get backed up to ~/.local/share/fluidity/backups/ 
 so if you do regular backups of your home folder, you'll be fine.
 
 (If you don't currently do regular backups, I recommend CrashPlan* or Deja Dup)
 
-* http://crashplan.com -- full disclosure: I work for Code42, the makers of CrashPlan
+* http://crashplan.com -- full disclosure: I work for Code 42 Software, 
+  the makers of CrashPlan
 ******
 
 Now on to less unpleasant things...

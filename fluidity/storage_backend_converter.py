@@ -45,30 +45,28 @@ _ENERGY_FROM_PROTO_VALUE = utils.invert_dict(_ENERGY_TO_PROTO_VALUE)
 
 
 
-
-
-
-
 # ACTUALLY INTERESTING CODE STARTS HERE
-
-
 
 AllTheThings = namedtuple('AllTheThings', ('prjs', 'actions', 'aofs', 'contexts'))
 
 
-
-def uuid_all_the_things(data_mgr):
-    all_the_things = AllTheThings(prjs=[], actions=[], aofs=[], contexts=[])
-    uuid_map = _build_uuid_map(data_mgr)
+def uuid_all_the_things(data_mgr, uuid_mapping=None):
+    all_the_things_lists = AllTheThings(prjs=[], actions=[], aofs=[], contexts=[])
+    uuid_map = uuid_mapping if uuid_mapping else _build_uuid_map(data_mgr)
     for prj in data_mgr.prjs.values():
         proto, combined_na_lists = _convert_prj_and_nas(prj, uuid_map)
-        all_the_things.prjs.append(proto)
-        all_the_things.actions.extend(combined_na_lists)
+        all_the_things_lists.prjs.append(proto)
+        all_the_things_lists.actions.extend(combined_na_lists)
     
-    all_the_things.aofs.extend(aof.proto for aof in uuid_map.areas_of_focus.values())
-    all_the_things.contexts.extend(proto for proto in uuid_map.contexts.values())
-    
-    return all_the_things
+    all_the_things_lists.aofs.extend(aof.proto for aof in uuid_map.areas_of_focus.values())
+    all_the_things_lists.contexts.extend(proto for proto in uuid_map.contexts.values())
+
+    return all_the_things_lists
+
+
+def uuid_things_plus_uuid_map(data_mgr):
+    uuid_mapping = _build_uuid_map(data_mgr)
+    return uuid_all_the_things(data_mgr), uuid_mapping
 
 
 def _convert_prj_and_nas(prj, uuid_map):

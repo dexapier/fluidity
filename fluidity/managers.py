@@ -36,7 +36,6 @@ from fluidity import inbox_items
 from fluidity import magic_machine
 from fluidity import app_utils
 from fluidity.first_time import FirstTimeBot
-from fluidity.incubator import new_storage_backend
 from fluidity.note import ProjectNote
 
 
@@ -69,7 +68,6 @@ class DataManager(object):
         self._file_toady = FileSystemManager()
         self._magic_maker = magic_machine.MagicMachine()
         self.rebuild_aof_cache()
-        self._shover = new_storage_backend.Shover().open()
 
 # PUBLIC METHODS
     def activate_due_queued(self):
@@ -843,7 +841,6 @@ class BackupJesus(object):
         return dt < datetime.datetime.now() - datetime.timedelta(weeks=9)
 
 
-# pylint: disable-msg=R0903
 class CategoryRow(object):
 
     def __init__(self, summary):

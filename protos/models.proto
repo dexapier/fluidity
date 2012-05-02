@@ -171,7 +171,7 @@ message URI {
 
 
 message UUID {
-    // UUIDs are natively 16 bytes long.  The wrapper class
-    // for this type should validate this.
+    // UUIDs are natively 16 bytes long.  The wrapper class for this type
+    // should validate this.
     required bytes raw_bytes = 1;
 }

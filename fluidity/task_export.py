@@ -14,15 +14,8 @@ import json
 import operator
 import os
 import subprocess
-import time
 
-from xml.sax import saxutils
-
-from fluidity import app_utils
-from fluidity import dbus_misc
 from fluidity import defs
-from fluidity import models
-from fluidity import model_factory
 
 
 class JSONEncoder(object):
@@ -59,15 +52,16 @@ class ProtobufEncoder(object):
     _UPLOAD_COMMAND = "scp {0} {1}:{2}"
     
     def export_next_actions(self, na_list):
-        proto = models.HACK_ExportedNextActions(
-            contexts=sorted(set([na.context for na in na_list])))
-        proto.next_actions.extend([model_factory.next_action_to_protobuf(na) 
-                                   for na in na_list])
-
-        with open(self._LOCAL_DUMP_PATH, 'w') as bytes_file:
-            print("Dumping Action proto bytes to:", self._LOCAL_DUMP_PATH)
-            bytes_file.write(proto.SerializeToString())
-        
+        print("\n\nRE-IMPLEMENT ME!\n\n")
+#        proto = models.HACK_ExportedNextActions(
+#            contexts=sorted(set([na.context for na in na_list])))
+#        proto.next_actions.extend([storage_backend_converter._next_action_to_protobuf(na) 
+#                                   for na in na_list])
+#
+#        with open(self._LOCAL_DUMP_PATH, 'w') as bytes_file:
+#            print("Dumping Action proto bytes to:", self._LOCAL_DUMP_PATH)
+#            bytes_file.write(proto.SerializeToString())
+#        
 #        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, 
 #                                              self._REMOTE_HOST,
 #                                              self._REMOTE_DUMP_PATH)

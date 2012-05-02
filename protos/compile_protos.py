@@ -18,13 +18,17 @@ def fix_protobuf_warnings():
     with open(OUTPUT_FILE, 'w') as models:
         models.write(models_text.replace(BASE_HEADER, NEW_HEADER))
 
+def main():
+    subprocess.call("protoc --python_out=. --java_out=. *.proto", shell=True)
+    print "Killing stupid PyLint warnings in the generated protobuf code..."
+    fix_protobuf_warnings()
 
-subprocess.call("protoc --python_out=. --java_out=. *.proto", shell=True)
-print "Fixing protobuf warning crap..."
-fix_protobuf_warnings()
+    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    dest_path = os.path.join(parent_dir, 'fluidity/models.py')
+    print "Moving generated model proto file to: " + dest_path
+    shutil.move('models_pb2.py', dest_path)
 
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-dest_path = os.path.join(parent_dir, 'fluidity/models.py')
-print "Moving generated model proto file to: " + dest_path
-shutil.move('models_pb2.py', dest_path)
+
+if __name__ == "__main__":
+    main()
 

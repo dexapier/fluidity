@@ -27,4 +27,5 @@ def to_timestamp(date_obj):
     
     Returns: a UNIX timestamp, as an int
     """
+    # how is this not part of the stdlib?
     return calendar.timegm(date_obj.timetuple())

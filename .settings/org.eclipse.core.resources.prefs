@@ -1,4 +1,4 @@
-#Wed Feb 22 20:42:14 CST 2012
+#Wed May 02 00:32:30 GMT 2012
 =\=\=\=\=\=\=
 <<<<<<<=Updated upstream
 >>>>>>>=origin/develop
@@ -14,13 +14,14 @@ encoding//fluidity/gee_tee_dee.py=utf-8
 encoding//fluidity/gio_fml.py=utf-8
 encoding//fluidity/inbox_items.py=utf-8
 encoding//fluidity/incubator/client.py=utf-8
-encoding//fluidity/incubator/shover.py=utf-8
+encoding//fluidity/incubator/new_data_manager.py=utf-8
 encoding//fluidity/incubator/uri.py=utf-8
 encoding//fluidity/magic_machine.py=utf-8
 encoding//fluidity/main_app.py=utf-8
 encoding//fluidity/managers.py=utf-8
 encoding//fluidity/note.py=utf-8
 encoding//fluidity/slider.py=utf-8
+encoding//fluidity/storage_backend_converter.py=utf-8
 encoding//fluidity/task_export.py=utf-8
 encoding//fluidity/tools/fity_data_conversion_helper.py=utf-8
 encoding//fluidity/tools/fity_data_debug_converter.py=utf-8
@@ -28,4 +29,5 @@ encoding//fluidity/tools/fity_data_hunter.py=utf-8
 encoding//fluidity/ui/__init__.py=utf-8
 encoding//fluidity/ui/dialogs.py=utf-8
 encoding//fluidity/utils.py=utf-8
+encoding/launch_fluidity=utf-8
 encoding/setup.py=utf-8

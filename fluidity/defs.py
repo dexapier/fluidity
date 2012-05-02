@@ -20,8 +20,9 @@ from xdg import BaseDirectory
 
 
 # Py3K compat.
-if not hasattr(string, 'lowercase'):
-    string.lowercase = string.ascii_lowercase
+if not hasattr(string, 'ascii_lowercase'):
+    # yep, we're monkey patching.  deal with it.
+    string.ascii_lowercase = string.lowercase
 
 
 def _find_app_data_path():
@@ -57,6 +58,8 @@ def _get_read_review_path():
 APP_NAME = 'Fluidity'
 DBUS_BUS_NAME = 'org.solemnsilence.Fluidity'
 DBUS_OBJECT_PATH = '/org/solemnsilence/Fluidity'
+UUID_NAMESPACE_URL = "http://solemnsilence.org/fluidity" 
+# FIXME: should be datetime objs.  grr.
 FITY_EPOCH = 1230768000.0
 CREATION_EPOCH = 1262325600.0
 
@@ -84,7 +87,7 @@ UNRECOGNIZED_DATE_TEXT = "(date unrecognized)"
 NO_AOF_ASSIGNED = "No AOF Assigned"
 ENGAGE_TOTALS_TEMPLATE = "Tasks shown: {0}   Total time: {1}h:{2}m"
 ARCHIVED_SINGLETONS_TIME_TMPLT = '-%Y-%m-%d-%H:%M'
-SANITARY_CHARS = string.lowercase + string.digits + " "
+SANITARY_CHARS = string.ascii_lowercase + string.digits + " "
 
 ### PATHS ###
 HOME_DIR = os.path.expanduser("~")
@@ -136,3 +139,27 @@ IGNORED_INBOX_PATHS = [
     "2 - Receipts to process",
     "90 Day Storage",
 ]
+
+
+# ugh, this file is getting INSANE.
+
+# These are basically enums.  Gotta find one of the better solutions to this though.
+class Priority:
+    HIGH = 1
+    MEDIUM = 2
+    LOW = 3
+
+class EnergyEstimate:
+    LOW = 0
+    MEDIUM = 1
+    HIGH = 2
+
+class ProjectStatus:
+    # this is an "enum" - if you write to these values, I will hurt you.
+    # (eventually we should pick a Python enum class that's useful and 
+    # agreeable, but until then, just *pretend* those are read-only values.
+    ACTIVE = 'active'
+    INCUBATING = 'incubating'
+    WAITING_FOR = 'waiting_for'
+    QUEUED = 'queued'
+    COMPLETED = 'completed'

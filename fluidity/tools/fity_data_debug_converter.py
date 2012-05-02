@@ -29,8 +29,7 @@ ORIGINAL_WORKING_DIR = os.path.abspath(os.curdir)
 # depending on the situation.  bah.
 sys.path.append("/home/jensck/workspace/Fluidity")
 import fluidity.defs as defs
-import fluidity.gee_tee_dee   # pylint: disable-msg=W0611
-
+import fluidity.gee_tee_dee  #@UnusedImport  # pylint: disable-msg=W0611
 
 DEFAULT_FILE_BASE_NAME = 'fity_data'
 DEFAULT_YAML_FNAME = DEFAULT_FILE_BASE_NAME + '.yaml'

@@ -12,42 +12,42 @@ __author__ = 'Jens Knutson'
 
 
 import abc
-import calendar
 import datetime
 import uuid
-import fluidity.models
-
 
 from xml.sax import saxutils
 
 from fluidity import app_utils
 from fluidity import defs
 from fluidity import defs_gui
+from fluidity import models
 from fluidity import utils
 
 
+# FIXME: try to remove this, we don't use it anywhere, it may just be stored in
+# the pickle data
 TOP_LEVEL_PROJECT_LEGACY = '00000000-0000-0000-0000-000000000000'
 TOP_LEVEL_PROJECT_UUID = uuid.UUID(
         bytes='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xCA\xFE\xD0\x0D')
 
-# FIXME: use dependency injection to handle this for now.
-
-ENERGY_LABELS_TO_VALUES = {"High": 2, "Normal": 1, "Low": 0}
+# the Actions and Prjs use the same priority values (at least for now)
+ENERGY_LABELS_TO_VALUES = {"High": defs.EnergyEstimate.HIGH,
+                           "Normal": defs.EnergyEstimate.MEDIUM,
+                           "Low": defs.EnergyEstimate.LOW}
 ENERGY_VALUES_TO_LABELS = utils.invert_dict(ENERGY_LABELS_TO_VALUES)
-PRIORITY_LABELS_TO_VALUES = {"High": 1, "Normal": 2, "Low": 3}
+PRIORITY_LABELS_TO_VALUES = {"High": defs.Priority.HIGH,
+                             "Normal": defs.Priority.MEDIUM,
+                             "Low": defs.Priority.LOW}
 PRIORITY_VALUES_TO_LABELS = utils.invert_dict(PRIORITY_LABELS_TO_VALUES)
 
 
 class GeeTeeDeeData(object):
 
-    # Not currently being used -- consider removing.
-    __metaclass__ = abc.ABCMeta
-
     def __init__(self, summary):
         self.summary = summary
         self.creation_date = datetime.datetime.now()
-        self.priority = 2
-        self.uuid = str(uuid.uuid4())   # uuid4() -- i.e.: just a random UUID
+        self.priority = models.MEDIUM
+        self.uuid = str(uuid.uuid1())
         self._completion_date = None
         self._queue_date = None
         self._due_date = None
@@ -102,12 +102,13 @@ class GeeTeeDeeData(object):
     def priority(self, value):
         error = "priority must be 1, 2, or 3, representing 'High', " + \
                 "'Normal', & 'Low', respectively."
-        assert value in [1, 2, 3], error
+        assert value in PRIORITY_VALUES_TO_LABELS.keys(), error
         self._priority = value
 
     @property
     def queue_date(self):
         if isinstance(self._queue_date, int):
+            # work around a past mistake in how I stored date info
             self._queue_date = datetime.date.fromordinal(self._queue_date)
         return self._queue_date
     @queue_date.setter
@@ -125,7 +126,7 @@ class NextAction(GeeTeeDeeData):
     def __init__(self, summary):
         super(NextAction, self).__init__(summary)
         self.complete = False
-        self.energy_est = 1
+        self.energy_est = models.NextAction.MEDIUM
         self.time_est = 10.0
         self._context = ""
         self._notes = None
@@ -162,7 +163,7 @@ class NextAction(GeeTeeDeeData):
     def energy_est(self, value):
         error = "energy_est must be 0, 1, or 2, representing 'Low', " + \
                 "'Normal', & 'High', respectively."
-        assert value in [0, 1, 2], error
+        assert value in ENERGY_VALUES_TO_LABELS.keys(), error
         self._energy_est = value
 
     @property
@@ -194,8 +195,9 @@ class NextAction(GeeTeeDeeData):
 
 
     # DISPLAY/UI-RELATED BITS
-    # FIXME: this is gheeeeeeeeetttoooooooooooooo.  icky icky icky icky icky.
-    # I think this can be done properly with Kiwi's column format setting?
+    # FIXME: this is waaaaaayy ghetto.
+    # I think this can be done properly with Kiwi's column format setting?  Doesn't matter,
+    # we're ditching Kiwi. :-/
     @property
     def formatted_summary(self):
         fs = saxutils.escape(self.summary)
@@ -229,54 +231,21 @@ class NextAction(GeeTeeDeeData):
         icon = defs_gui.URL_ICON_PIXBUF if self.url else defs_gui.FAKE_ICON_PIXBUF
         return icon
 
-    def to_json(self):
-        j = {}
-        j['uuid'] = self.uuid
-        # FIXME: WTF is this?!  looks like a paste gone wrong.  Fix it. 
-#        j['summary'] = self.summary
-#        if self.due_date:
-#            j['due_date'] = calendar.timegm(self.due_date.timetuple())
-#        j['context'] =mess.completion.time = self._completion_date
-#        mess.queue_time = self._queue_date
-#        mess.due_time = self._due_date
-#        return mess.SerializeToString() self.context
-#        j['time_est'] = self.time_est
-#        j['energy_est'] = self.energy_est
-#        j['priority'] = self.priority
-#        j['notes'] = self.notes
-#        j['url'] = self.url
-#        j['complete'] = self.complete
-
-        return j
-    
-    def to_protobuf_bytes(self):
-        mess = fluidity.models.NextAction()
-        mess.completion_time = fluidity.models.DateTimeStamp()
-        mess.completion_time.timestamp = calendar.timegm(self.completion_date.timetuple())
-        mess.queue_time = fluidity.models.DateTimeStamp()
-        mess.queue_time.timestamp = calendar.timegm(self.queue_date.timetuple())
-        mess.due_time = fluidity.models.DateTimeStamp()
-        mess.due_time.timestamp = calendar.timegm(self.due_date.timetuple())
-        return mess.SerializeToString()
-    
-    def populate_from_protobuf_bytes(self, protobuf_bytes):
-        mess = fluidity.models.NextAction()
-        mess.CopyFromString(protobuf_bytes)
-        self.completion_date(mess.completion_time.timestamp)
-        self.queue_date(mess.queue_time.timestamp)
-        self.due_date(mess.due_time.timestamp)
 
 class Project(GeeTeeDeeData):
 
     def __init__(self, summary):
         super(Project, self).__init__(summary)
-        #self.subprojects = []
         self.status = 'active'
         self.waiting_for_text = None
         self._aofs = []
         self._incubating_next_actions = []
         self._next_actions = []
         self.parent_project = TOP_LEVEL_PROJECT_LEGACY
+        # FIXME: create a special observable list which notifies observers
+        # of addition, replacement, deletion, etc - would keep a "natural", 
+        # Pythonic interface, but would allow some controller-like behavior
+        # for the owner of the list. 
         self.subprojects = []
         self._waiting_for_since = None
 
@@ -338,24 +307,8 @@ class Project(GeeTeeDeeData):
 
     @property
     def formatted_summary(self):
-        formats = {1: '<b>{0}</b>', 2: '{0}', 3: '<span weight="light">{0}</span>'}
+        formats = {1: '<b>{0}</b>', 
+                   2: '{0}', 
+                   3: '<span weight="light">{0}</span>'}
         fs = saxutils.escape(self.summary)
         return formats[self.priority].format(fs)
-    
-    def to_protobuf_bytes(self):
-        mess = fluidity.models.Project()
-        mess.completion_time = fluidity.models.DateTimeStamp()
-        mess.completion_time.timestamp = calendar.timegm(self.completion_date.timetuple())
-        mess.queue_time = fluidity.models.DateTimeStamp()
-        mess.queue_time.timestamp = calendar.timegm(self.queue_date.timetuple())
-        mess.due_time = fluidity.models.DateTimeStamp()
-        mess.due_time.timestamp = calendar.timegm(self.due_date.timetuple())
-        return mess.SerializeToString()
-    
-    def populate_from_protobuf_bytes(self, protobuf_bytes):
-        mess = fluidity.models.Project()
-        mess.MergeFromString(self, protobuf_bytes)
-        self.completion_date(mess.completion_time.timestamp)
-        self.queue_date(mess.queue_time.timestamp)
-        self.due_date(mess.due_time.timestamp)
-

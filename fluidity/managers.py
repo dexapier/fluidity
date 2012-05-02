@@ -1,10 +1,10 @@
 #-*- coding:utf-8 -*-
 #
-# Copyright (C) 2009 - Jens Knutson <jens.knutson at gmail dot com>
+# Copyright (C) 2012 - Jens Knutson <jens.knutson at gmail dot com>
 # This software is licensed under the GNU General Public License
 # version 3 or later (see the file COPYING).
 #pylint: disable-msg=W0201
-"""Collection of "manager" classes, which handle disparate aspects of Fluidity."""
+"""Collection of "manager" classes, which handle various aspects of Fluidity."""
 from __future__ import absolute_import, division, print_function
 
 
@@ -65,8 +65,6 @@ class DataManager(object):
         self.single_notes = self.top_data['single_notes']
         self.queued_singletons = self.top_data['queued_singletons']
 
-        # I would have called it _file_lickspittle, but that's too verbose
-        # even for *me*.
         self._file_toady = FileSystemManager()
         self._magic_maker = magic_machine.MagicMachine()
         self.rebuild_aof_cache()
@@ -150,6 +148,7 @@ class DataManager(object):
 
     def cleanup_before_exit(self):
         self.save_data()
+        self._shover.close()
 
     def copy_to_project_folder(self, file_name, prj):
         self._file_toady.copy_to_project_folder(file_name, prj.summary, prj.status)
@@ -260,7 +259,7 @@ class DataManager(object):
         try:
             return self.prjs[prj_key].next_actions
         except AttributeError:
-            return None
+            return []
 
     def get_prj_aof_names(self, prj):
         aof_list = []
@@ -280,9 +279,8 @@ class DataManager(object):
                 if prj.status != "completed":
                     prj_list.append(prj)
         else:
-            if area == "All":
-                [prj_list.append(prj) for prj in self.prjs.values()
-                 if prj.status == review_filter]
+            if area == "All":                
+                prj_list.extend([prj for prj in self.prjs.values() if prj.status == review_filter])
             elif area == defs.NO_AOF_ASSIGNED:
                 for p in sorted(self.prjs.keys()):
                     prj = self.prjs[p]
@@ -292,10 +290,8 @@ class DataManager(object):
                 area_key = app_utils.format_for_dict_key(area)
                 if self.aofs[area_key]['projects']:
                     prj_keys = self.aofs[area_key]['projects']
-                    # FIXME: this is hideous.
-                    [prj_list.append(prj) for prj in self.prjs.values()
-                     if prj.status == review_filter
-                         and prj.key_name in prj_keys]
+                    prj_list.extend([prj for prj in self.prjs.values() 
+                                     if prj.status == review_filter and prj.key_name in prj_keys])
         return sorted(prj_list, key=operator.attrgetter('summary'))
 
     def get_project_folder_uri(self, prj):
@@ -353,8 +349,7 @@ class DataManager(object):
                     if score > 0.4:
                         # fuck me, this is ugly: "flat is better than nested."
                         summary_formatted = magic_machine.format_common_substrings(
-                                na.summary, query,
-                                format_match=formatter)
+                                na.summary, query, format_match=formatter)
                         results.append(
                                 SearchResult(na.summary, summary_formatted,
                                              prj.key_name, score, na.uuid))
@@ -846,7 +841,6 @@ class BackupJesus(object):
         return dt < datetime.datetime.now() - datetime.timedelta(weeks=9)
 
 
-# pylint: disable-msg=R0903
 class CategoryRow(object):
 
     def __init__(self, summary):

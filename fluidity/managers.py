@@ -70,7 +70,6 @@ class DataManager(object):
         self._magic_maker = magic_machine.MagicMachine()
         self.rebuild_aof_cache()
         self._shover = new_storage_backend.Shover().open()
-        self._shover.store_item(new_storage_backend.TEST_KEY, datetime.datetime.now())
 
 # PUBLIC METHODS
     def activate_due_queued(self):
@@ -282,9 +281,8 @@ class DataManager(object):
                 if prj.status != "completed":
                     prj_list.append(prj)
         else:
-            if area == "All":
-                [prj_list.append(prj) for prj in self.prjs.values()
-                 if prj.status == review_filter]
+            if area == "All":                
+                prj_list.extend([prj for prj in self.prjs.values() if prj.status == review_filter])
             elif area == defs.NO_AOF_ASSIGNED:
                 for p in sorted(self.prjs.keys()):
                     prj = self.prjs[p]
@@ -294,10 +292,8 @@ class DataManager(object):
                 area_key = app_utils.format_for_dict_key(area)
                 if self.aofs[area_key]['projects']:
                     prj_keys = self.aofs[area_key]['projects']
-                    # FIXME: this is hideous.
-                    [prj_list.append(prj) for prj in self.prjs.values()
-                     if prj.status == review_filter
-                         and prj.key_name in prj_keys]
+                    prj_list.extend([prj for prj in self.prjs.values() 
+                                     if prj.status == review_filter and prj.key_name in prj_keys])
         return sorted(prj_list, key=operator.attrgetter('summary'))
 
     def get_project_folder_uri(self, prj):
@@ -355,8 +351,7 @@ class DataManager(object):
                     if score > 0.4:
                         # fuck me, this is ugly: "flat is better than nested."
                         summary_formatted = magic_machine.format_common_substrings(
-                                na.summary, query,
-                                format_match=formatter)
+                                na.summary, query, format_match=formatter)
                         results.append(
                                 SearchResult(na.summary, summary_formatted,
                                              prj.key_name, score, na.uuid))

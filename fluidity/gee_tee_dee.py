@@ -43,9 +43,6 @@ PRIORITY_VALUES_TO_LABELS = utils.invert_dict(PRIORITY_LABELS_TO_VALUES)
 
 class GeeTeeDeeData(object):
 
-    # Not currently being used -- consider removing.
-    __metaclass__ = abc.ABCMeta
-
     def __init__(self, summary):
         self.summary = summary
         self.creation_date = datetime.datetime.now()

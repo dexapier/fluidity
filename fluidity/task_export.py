@@ -14,31 +14,15 @@ import json
 import operator
 import os
 import subprocess
+import time
 
+from xml.sax import saxutils
+
+from fluidity import app_utils
+from fluidity import dbus_misc
 from fluidity import defs
-
-
-class JSONEncoder(object):
-
-    _DUMP_FNAME = 'fity_engage_data.json'
-    _LOCAL_DUMP_PATH = defs.USER_DATA_PATH + '/fity_engage_data.json'
-    _REMOTE_HOST = "anvil.solemnsilence.org"
-    _REMOTE_DUMP_PATH = "/home/jensck/workspace/FluidityMobile" + "/" + _DUMP_FNAME
-    _UPLOAD_COMMAND = "scp {0} {1}:{2}"
-    
-    def export_next_actions(self, na_list):
-        contexts = sorted(set([na.context for na in na_list]))
-        nas_as_json = [na.to_json() for na in na_list]
-        
-        json_data = {'contexts': contexts, 'nas': nas_as_json}
-        
-        with open(self._LOCAL_DUMP_PATH, 'w') as jsonfile:
-            json.dump(json_data, jsonfile)
-        
-        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH, self._REMOTE_HOST,
-                                             self._REMOTE_DUMP_PATH)
-        print("Running: ", command)
-        subprocess.call(command, shell=True)
+from fluidity import models
+from fluidity import model_factory
 
 
 class ProtobufEncoder(object):
@@ -77,6 +61,7 @@ class ProtobufEncoder(object):
                          reverse=True)
         na_list = sorted(na_list, key=operator.attrgetter('sort_date', 'priority'))
         return na_list
+
 
 
 #class TomboyTest(object):

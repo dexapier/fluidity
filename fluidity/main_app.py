@@ -285,10 +285,7 @@ class Fluidity(object):
 #        candidate_nas.sort(key=operator.attrgetter('foo', 'bar'), reverse=True)
 #        candidate_nas.sort(key=operator.attrgetter('foo', 'bar'))
 
-        candidate_nas.sort(key=operator.attrgetter('context'))
-        candidate_nas.sort(key=operator.attrgetter('age', 'time_est', 'energy_est'),
-                                                   reverse=True)
-        candidate_nas.sort(key=operator.attrgetter('sort_date', 'priority'))
+        candidate_nas = self.sort_actions(candidate_nas)
 
         # Clear the list and re-populate it appropriately
         self.engage_na_list.clear()
@@ -307,6 +304,14 @@ class Fluidity(object):
         self.engage_current_totals_w.set_text(
                 defs.ENGAGE_TOTALS_TEMPLATE.format(tasks_count, hours, mins))
         self.engage_na_list.select_paths([0])
+
+    def sort_actions(self, active_actions_to_sort):
+        # first line we make a copy of the list; then we just modify it in place for convenience
+        active_actions_to_sort = sorted(active_actions_to_sort, key=operator.attrgetter('context'))
+        active_actions_to_sort.sort(key=operator.attrgetter('age', 'time_est', 'energy_est'),
+                                    reverse=True)
+        active_actions_to_sort.sort(key=operator.attrgetter('sort_date', 'priority'))
+        return active_actions_to_sort
 
     def fill_na_list_w(self, prj=None):
         if not prj:
@@ -795,12 +800,8 @@ class Fluidity(object):
             pd.add_files_to_files_list(stuff_obj.path)
 
     def sync_nas_and_notes(self):
-        na_list = self.data_lumbergh.get_na_for_each_active_prj()
-        na_list.sort(key=operator.attrgetter('time_est', 'energy_est'),
-                                             reverse=True)
-        na_list.sort(key=operator.attrgetter('sort_date', 'priority', 'context'))
-
-        task_export.ProtobufEncoder().export_next_actions(na_list)
+        sorted_nas = self.sort_actions(self.data_lumbergh.get_na_for_each_active_prj())
+        task_export.ProtoExporter().export_next_actions(sorted_nas, self.data_lumbergh)
 
     def temporarily_disable_widget(self, widget):
         if widget.get_property('sensitive'):

@@ -2,8 +2,13 @@ package org.solemnsilence.fluidity.model;
 
 
 // Fugly hacks to ditch ASAP
+message HACK_Context {
+    required UUID uuid = 1;
+    required string name = 2;
+}
+
 message HACK_ExportedNextActions {
-    repeated string contexts = 1;
+    repeated HACK_Context contexts = 1;
     repeated NextAction next_actions = 2;
 }
 

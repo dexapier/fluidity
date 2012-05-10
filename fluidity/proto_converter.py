@@ -48,6 +48,7 @@ _ENERGY_FROM_PROTO_VALUE = utils.invert_dict(_ENERGY_TO_PROTO_VALUE)
 # ACTUALLY INTERESTING CODE STARTS HERE
 
 AllTheThings = namedtuple('AllTheThings', ('prjs', 'actions', 'aofs', 'contexts'))
+DualKey = namedtuple('DualKey', ('uuid_key', 'oldschool_key'))
 
 
 def uuid_all_the_things(data_mgr, uuid_mapping=None):
@@ -66,7 +67,7 @@ def uuid_all_the_things(data_mgr, uuid_mapping=None):
 
 def uuid_things_plus_uuid_map(data_mgr):
     uuid_mapping = _build_uuid_map(data_mgr)
-    return uuid_all_the_things(data_mgr), uuid_mapping
+    return uuid_all_the_things(data_mgr, uuid_mapping), uuid_mapping
 
 
 def _convert_prj_and_nas(prj, uuid_map):
@@ -74,8 +75,13 @@ def _convert_prj_and_nas(prj, uuid_map):
     prj_proto = _project_to_proto(prj, na_lists, uuid_map)
     return prj_proto, na_lists.active + na_lists.inactive
 
+
 def _build_na_lists_for_project(prj, uuid_map):
-    active = [_next_action_to_proto(na, uuid_map) for na in prj._next_actions]
+    active = []
+    for na in prj._next_actions:
+        as_proto = _next_action_to_proto(na, uuid_map)
+        active.append(as_proto)
+        uuid_map.active_next_actions[na.summary] = as_proto.metadata.uuid
     inactive = [_next_action_to_proto(na, uuid_map) for na in prj._incubating_next_actions]
     na_lists = _NextActionLists(active, inactive)
     return na_lists
@@ -168,12 +174,14 @@ def _aof_to_proto(aof_display_name):
     proto.name = aof_display_name
     return proto
 
+
 def _context_to_proto(context_str):
     proto = models.NextAction.Context()
     proto.metadata.uuid.raw_bytes = _new_proto_uuid().raw_bytes
     proto.metadata.creation_time.timestamp = int(defs.CREATION_EPOCH)
     proto.name = context_str
     return proto
+
 
 def _build_uuid_map(data_mgr):
     # NOTE: this just generates new UUIDs for everything on every run - it doesn't bother with any
@@ -182,8 +190,10 @@ def _build_uuid_map(data_mgr):
     areas_of_focus = {aof_key: _AreaOfFocus(aof_key, _aof_to_proto(aof_dict['name']), **aof_dict)
                            for aof_key, aof_dict in data_mgr.aofs.iteritems()}
     contexts = {ctx_str: _context_to_proto(ctx_str) for ctx_str in data_mgr.get_contexts()}
-    umap = _UUIDMap(projects, areas_of_focus, contexts)
+    next_actions = {}
+    umap = _UUIDMap(projects, areas_of_focus, contexts, next_actions)
     return umap
+
 
 def _new_proto_uuid():
     return models.UUID(raw_bytes=uuid_lib.uuid4().bytes)
@@ -192,7 +202,8 @@ def _new_proto_uuid():
 # projects = {gee_tee_dee.Project.key_name: models.UUID}
 # areas_of_focus = {area of focus key (per datamanager): model_factory._AreaOfFocus}
 # contexts = { context name key (per datamanager): models.UUID}
-_UUIDMap = namedtuple('_UUIDMap', ('projects', 'areas_of_focus', 'contexts'))
+# active_next_actions = { next action summary: models.UUID}
+_UUIDMap = namedtuple('_UUIDMap', ('projects', 'areas_of_focus', 'contexts', 'active_next_actions'))
 
 # these fields are the models versions, not the gee_tee_dee ones
 _NextActionLists = namedtuple('_NextActionLists', ('active', 'inactive'))

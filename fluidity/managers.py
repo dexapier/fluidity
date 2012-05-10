@@ -148,7 +148,6 @@ class DataManager(object):
 
     def cleanup_before_exit(self):
         self.save_data()
-        self._shover.close()
 
     def copy_to_project_folder(self, file_name, prj):
         self._file_toady.copy_to_project_folder(file_name, prj.summary, prj.status)

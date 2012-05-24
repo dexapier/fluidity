@@ -230,7 +230,7 @@ class NewProjectDialog(GeeTeeDeeDialog):
         #set the prj name and the areas of focus
         self._name_w.set_text(prj_name)
         #HACK: oh god...  so, so sad.  One day I'll learn proper OO design.  *sigh*
-        self._caller.fill_aofs_w(self._aof_w, self._data_lumbergh.aof_names, False)
+        self._caller.fill_aofs_w(self._aof_w, self._data_lumbergh.aof_names(), False)
         if aof != "":
             self._aof_w.select_item_by_label(aof)
         self._init_files_list_w(self._files_list_w)

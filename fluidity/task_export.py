@@ -38,7 +38,7 @@ class ProtoExporter(object):
         exports_proto.next_actions.extend([proto_converter._next_action_to_proto(gtd_na, uuid_map)
                                            for gtd_na in na_list])
 
-        with open(self._LOCAL_DUMP_PATH, 'w') as bytes_file:
+        with open(self._LOCAL_DUMP_PATH.as_posix(), 'w') as bytes_file:
             print("Dumping NEW HACK_ExportedNextActions protobytes to:", self._LOCAL_DUMP_PATH)
             bytes_file.write(exports_proto.SerializeToString())
 

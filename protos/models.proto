@@ -21,9 +21,9 @@ message HACK_NextActionSelectionCriteria {
         ANY = 4;
     }
 
-    required string context = 1;
-    required int32 timeAvailableInMins = 2;
-    required EnergyCriteria energyAvailable = 3;
+    required int32 timeAvailableInMins = 1;
+    required EnergyCriteria energyAvailable = 2;
+    optional UUID context = 3;
 }
 
 // APP MODELS

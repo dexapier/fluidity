@@ -825,7 +825,8 @@ class Fluidity(object):
                 obj_list.select_paths([row_num])
                 url = obj_list.get_selected().url
                 if url is not None:
-                    gtk.show_uri(gtk.gdk.Screen(), url, event.time)
+                    _fity_show_uri(url, event.time)
+                    
             if col.attribute == 'notes_icon':
                 obj_list.select_paths([row_num])
                 if obj_list.get_selected().notes is not None:
@@ -946,8 +947,7 @@ class Fluidity(object):
                                   status="queued")
 
     def clarify_stuff_details_open_w_clicked_cb(self, widget, data=None):
-        gtk.show_uri(gtk.gdk.Screen(), self.stuff_tree_w.get_selected().uri,
-                     int(time.time()))
+        _fity_show_uri(self.stuff_tree_w.get_selected().uri)
 
     def clarify_trash_stuff_w_clicked_cb(self, widget, data=None):
         self._inbox_manager.complete_processing(self.stuff_tree_w.get_selected())
@@ -1064,8 +1064,7 @@ class Fluidity(object):
 
     def open_project_support_folder_w_clicked_cb(self, widget, data=None):
         prj = self.prj_list_w.get_selected()
-        uri = self.data_lumbergh.get_project_folder_uri(prj)
-        gtk.show_uri(gtk.gdk.Screen(), uri, int(time.time()))
+        _fity_show_uri(self.data_lumbergh.get_project_folder_uri(prj))
 
     def prj_add_file_w_clicked_cb(self, widget, data=None):
         self.add_file_to_prj(self.prj_list_w.get_selected())
@@ -1145,7 +1144,7 @@ class Fluidity(object):
         # don't do anything if multiple files are selected
         if len(selected) == 1:
             path = selected[0].full_path
-            gtk.show_uri(gtk.gdk.Screen(), header + path, int(time.time()))
+            _fity_show_uri(header + path)
 
     def prj_waiting_for_w_clicked_cb(self, widget, data=None):
         self.mark_project_as_waiting_for(self.prj_list_w.get_selected())
@@ -1206,7 +1205,7 @@ class Fluidity(object):
         # understand how AccelGroups work. ;-P
         na = self.engage_na_list.get_selected()
         if na.url:
-            gtk.show_uri(gtk.gdk.Screen(), na.url, int(time.time()))
+            _fity_show_uri(na.url)
 
     def clarify_consolidate_inboxes_w_clicked_cb(self, widget, data=None):
         self.consolidate_inboxes(widget)
@@ -1275,6 +1274,17 @@ class Fluidity(object):
 
     def _engage_due_today_filter_w_toggled_cb(self, widget, data=None):
         self.fill_engage_na_list()
+
+
+def _fity_show_uri(uri, time_arg=None):
+    if uri.startswith('note:'):
+        # HACK: Tomboy has a stupid bug where it won't handle opening notes via URI
+        # from the command line if the app's already open
+        ProjectNote(uri=uri).show()
+    else:
+        time_arg = time_arg if time_arg else int(time.time())    
+        gtk.show_uri(gtk.gdk.Screen(), uri, time_arg)
+
 
 
 def _run():

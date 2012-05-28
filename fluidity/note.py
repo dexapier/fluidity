@@ -236,14 +236,18 @@ class ProjectNote(Note):
         if prj:
             title = self.PROJECT_NOTE_TITLE_TEMPLATE + prj.summary
             self.prj = prj
-        elif not title.startswith(self.PROJECT_NOTE_TITLE_TEMPLATE):
+        elif title and not title.startswith(self.PROJECT_NOTE_TITLE_TEMPLATE):
             title = self.PROJECT_NOTE_TITLE_TEMPLATE + title
-        # FIXME: I've no idea where this problem is being introduced, but I
-        # have approximately zero desire to figure it out right now.  bah!
-        title = title.replace("  ", " ")
+            # FIXME: I've no idea where this problem is being introduced, but I
+            # have approximately zero desire to figure it out right now.  bah!
+        if title:
+            title = title.replace("  ", " ")
 
         try:
-            super(ProjectNote, self).__init__(title, uri)
+            if uri:
+                super(ProjectNote, self).__init__(uri=uri)
+            else:
+                super(ProjectNote, self).__init__(title=title)            
         except AssertionError:
             msg = "One of: 'title', 'uri', or 'prj' must be specified."
             assert prj is not None, msg
@@ -253,9 +257,8 @@ class ProjectNote(Note):
             remote.FindNote(defs.NEW_PROJECT_NOTE_TEMPLATE_NOTE_TITLE)
 
         if notes_for_new_prj:
-            assert prj is not None, ("You must specify a Project object in "
-                                     "ProjectNote.__init__ to use "
-                                     "notes_for_new_prj")
+            assert prj is not None, ("To use `notes_for_new_prj`, a Project object "
+                                     "must be passed to ProjectNote.__init__ ")
             self.title = title
             self.create_note()
             remote.AddTagToNote(self.uri,

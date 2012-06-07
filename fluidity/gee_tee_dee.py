@@ -42,7 +42,7 @@ PRIORITY_VALUES_TO_LABELS = utils.invert_dict(PRIORITY_LABELS_TO_VALUES)
 
 class GeeTeeDeeData(object):
 
-    def __init__(self, summary):
+    def __init__(self, summary, data_manager):
         self.summary = summary
         self.creation_date = datetime.datetime.now()
         self.priority = models.MEDIUM
@@ -50,6 +50,7 @@ class GeeTeeDeeData(object):
         self._completion_date = None
         self._queue_date = None
         self._due_date = None
+        self._data_manager = data_manager
 
     @property
     def summary(self):
@@ -122,8 +123,8 @@ class GeeTeeDeeData(object):
 
 class NextAction(GeeTeeDeeData):
 
-    def __init__(self, summary):
-        super(NextAction, self).__init__(summary)
+    def __init__(self, summary, data_manager):
+        super(NextAction, self).__init__(summary, data_manager)
         self.complete = False
         self.energy_est = models.NextAction.MEDIUM
         self.time_est = 10.0
@@ -233,8 +234,8 @@ class NextAction(GeeTeeDeeData):
 
 class Project(GeeTeeDeeData):
 
-    def __init__(self, summary):
-        super(Project, self).__init__(summary)
+    def __init__(self, summary, data_manager):
+        super(Project, self).__init__(summary, data_manager)
         self.status = 'active'
         self.waiting_for_text = None
         self._aofs = []

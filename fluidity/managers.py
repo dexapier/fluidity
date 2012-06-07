@@ -667,7 +667,7 @@ class RecurrenceManager(object):
             self._save_data(defs.RECURRENCE_DATA)
 
     def _create_na(self, task):
-        na = gee_tee_dee.NextAction(task['summary'])
+        na = gee_tee_dee.NextAction(task['summary'], self._data_lumbergh)
         na_attrs = ('priority', 'context', 'notes', 'url', 'time_est',
                     'energy_est')
         for attr in na_attrs:

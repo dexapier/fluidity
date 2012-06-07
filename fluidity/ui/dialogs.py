@@ -259,7 +259,8 @@ class NewProjectDialog(GeeTeeDeeDialog):
     def _set_na_list(self):
         if self._new_prj_na_summary_w.props.text:
             # i.e.: we haven't appended our NA yet
-            n = gee_tee_dee.NextAction(self._new_prj_na_summary_w.props.text)
+            n = gee_tee_dee.NextAction(self._new_prj_na_summary_w.props.text, 
+                                       self._data_lumbergh)
             mt = self._magical.get_magic_task(n.summary)
             for name in mt.keys():
                 try:
@@ -383,7 +384,7 @@ class NewNextActionDialog(GeeTeeDeeDialog):
     def start_new_na(self, summary, prj, na_notes=None, status=None,
                      incubate=False, stuff=None):
         self._prj = prj
-        self._na = gee_tee_dee.NextAction(summary)
+        self._na = gee_tee_dee.NextAction(summary, self._data_lumbergh)
         self.status = status
         self.incubate_flag = incubate
         self.stuff = stuff

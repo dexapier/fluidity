@@ -125,7 +125,7 @@ class Slider(object):
         na = None
         summary = self.summary_w.get_text()
         if summary:
-            na = gee_tee_dee.NextAction(summary)                     # set summary
+            na = gee_tee_dee.NextAction(summary, self.data_lumbergh) # set summary
             na.context = self.context_w.get_text()       # set context
             na.time_est = self.time_est_w.get_value()    # set time_est
             na.energy_est = self._na_energy_est          # set energy_est
@@ -173,7 +173,7 @@ class Slider(object):
         # NextAction; adding it back in now so we can use it as a generic attr list
         magic_keys.append('url')
         if has_magic:
-            na = gee_tee_dee.NextAction(mt['summary'])
+            na = gee_tee_dee.NextAction(mt['summary'], self.data_lumbergh)
             for key in mt.keys():
                 if key in magic_keys:
                     na.__setattr__(key, mt[key])

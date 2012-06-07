@@ -788,7 +788,7 @@ class Fluidity(object):
             aofs = self.aof_filter_w.get_selected()
         else:
             aofs = defs.NO_AOF_ASSIGNED
-        project = gee_tee_dee.Project(new_prj_name)
+        project = gee_tee_dee.Project(new_prj_name, self.data_lumbergh)
         pd = dialogs.NewProjectDialog(self, self.data_lumbergh)
         exit_hooks = []
         if status == "waiting_for":

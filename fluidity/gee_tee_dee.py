@@ -120,6 +120,11 @@ class GeeTeeDeeData(object):
     def _mark_complete(self):
         self.completion_date = datetime.datetime.now()
 
+    def __getstate__(self):
+        state = self.__dict__.copy()  # copy the dict since we modify it below
+        del state['_data_manager']    # remove datamanager
+        return state
+
 
 class NextAction(GeeTeeDeeData):
 

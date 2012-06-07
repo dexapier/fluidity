@@ -46,7 +46,7 @@ class GeeTeeDeeData(object):
         self.summary = summary
         self.creation_date = datetime.datetime.now()
         self.priority = models.MEDIUM
-        self.uuid = str(uuid.uuid1())
+        self.uuid = str(uuid.uuid4())
         self._completion_date = None
         self._queue_date = None
         self._due_date = None

@@ -187,8 +187,8 @@ class Slider(object):
 
     def _init_prj_list_w(self, obj_list):
         obj_list.set_columns([Column('formatted_summary', title='Summary',
-                                       data_type=str, use_markup=True,
-                                       searchable=True, expand=True),
+                                     data_type=str, use_markup=True,
+                                     searchable=True, expand=True),
                               Column('status', data_type=str)])
 
     def _init_ui(self):

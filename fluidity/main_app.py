@@ -783,8 +783,8 @@ class Fluidity(object):
     def start_new_prj(self, new_prj_name, status=None, notes=None, stuff_obj=None):
         if not status:
             status = self.get_prj_review_status_filter()
-        if self.aof_filter_w.get_selected() != "All" and \
-                            self.b.get_object("show_review_tab").get_active():
+        if (self.aof_filter_w.get_selected() != "All" and 
+                self.b.get_object("show_review_tab").get_active()):
             aofs = self.aof_filter_w.get_selected()
         else:
             aofs = defs.NO_AOF_ASSIGNED

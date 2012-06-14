@@ -1,19 +1,19 @@
 #!/usr/bin/python
-"""Dead-simple (but a little braindead), reasonably safe persistent dictionary
-classes for use with Python 2.7 and 3.x, on Linux, OS X, and even Android (using SL4A)
+"""Dead-simple (but mildly braindead), safe, persistent dictionary
+classes for use with Python 2.7 and 3.x, on Linux, OS X, and even Android (via SL4A)
 
 NOT performance-optimized.  These are for getting your app off the ground and being
 reasonably well assured that your data won't disappear on you.
 
 Requires the excellent 'pathlib', because paths-as-strings is awkward and 
-phenomenally error-prone.  ;-P
+ridiculously error-prone.  ;-P
 """
 from __future__ import print_function
 
 
 __author__ = 'Jens Knutson <jens.knutson@gmail.com>'
 __copyright__ = 'Copyright (c) 2012 Jens Knutson'
-__license__ = 'LGPLv3+'  # Cry me a river.
+__license__ = 'LGPLv3+'
 __version__ = '0.0.2'
 
 
@@ -54,7 +54,7 @@ def ez_perdi(app_namespace, allow_keyless=True):
 
 
 class _SuperPerdi(collections.Mapping):
-    """Generic interface for persistant dictionaries."""
+    """Generic base class for persistent dictionaries."""
 
     __metaclass__ = abc.ABCMeta
         
@@ -136,6 +136,7 @@ class PerdiShove(_SuperPerdi):
     """Decorator pattern impl. around a Shove or Shelve datastore, with an API 
     better suited to my needs."""
     
+    # FIXME: implement such that LevelDB can be easily used, too.
     SHOVE_URI_TEMPLATE = "sqlite:///{0}"
     
     def open(self):
@@ -243,7 +244,7 @@ class _PerdiTester(object):
         print("WRITE test: done!")
 
 
-def _full_test(delete_existing=False):
+def _crappy_little_test(delete_existing=False):
     tester = _PerdiTester()
     tester.start()
     if delete_existing:

@@ -35,7 +35,7 @@ from fluidity import gee_tee_dee
 from fluidity import inbox_items
 from fluidity import magic_machine
 from fluidity import app_utils
-from fluidity.first_time import FirstTimeBot
+from fluidity.initializers import FirstTimeBot
 from fluidity.note import ProjectNote
 
 
@@ -49,17 +49,19 @@ class DataManager(object):
             bot = FirstTimeBot()
             bot.create_initial_files_and_paths()
             del(bot)  # Thank you for your service, bot.  Rest in peace.
+
         try:
             with open(self.pickle_path, 'r') as pfile:
                 self.top_data = pickle.load(pfile)
         except EOFError:
-            # probably the main app in the middle of saving its file.
+            # Might be in the main app in the middle of saving its file(?)
             # Wait a couple seconds, then try again.
             time.sleep(2)
-            # If it _still_ fails, something is really screwed - not
-            # accommodating this, at least not yet.
+            # If it _still_ fails, something is _really_ screwed - I'm not
+            # accommodating this yet.
             with open(self.pickle_path, 'r') as pfile:
                 self.top_data = pickle.load(pfile)
+
         self.aofs = self.top_data['areas_of_focus']
         self.prjs = self.top_data['projects']
         self.single_notes = self.top_data['single_notes']
@@ -68,6 +70,8 @@ class DataManager(object):
         self._file_toady = FileSystemManager()
         self._magic_maker = magic_machine.MagicMachine()
         self.rebuild_aof_cache()
+
+        self._shove_store = self._open_new_datastore()
 
 # PUBLIC METHODS
     def activate_due_queued(self):
@@ -323,11 +327,6 @@ class DataManager(object):
         self._file_toady.remove_from_project_folder(file_name, prj.summary,
                                                     prj.status)
 
-    def reparent_project(self, prj, new_parent):
-        """Make `new_parent` the parent object of `prj`."""
-        new_parent.subprojects.append(prj.uuid)
-        prj.parent_project = new_parent.uuid
-
     def save_data(self):
 #        utils.log_line("Saving main data file.", datetime.datetime.now())
         backup_path = os.path.join(defs.BACKUPS_PATH,
@@ -435,12 +434,14 @@ class DataManager(object):
         # FIXME: this ought to throw an exception, really
         return False
 
+    def _open_new_datastore(self):
+        from fluidity.incubator import perdi
+        shove_store = perdi.PerdiShove(defs.PRIMARY_USER_DATA_PATH)
+        return shove_store.open()
+
 
 class FileSystemManager(object):
     """Filesystem manager for Fluidity"""
-
-    def __init__(self):
-        pass
 
     def copy_to_project_folder(self, fname, prj_summary, prj_status):
         full_path = self._get_path_for_type(prj_status) + \

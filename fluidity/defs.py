@@ -103,7 +103,13 @@ PROCESSED_STUFF_FILE_NAME = 'processed_stuff.pkl'
 BACKUPS_PATH = os.path.join(USER_DATA_PATH, "backups")
 ARCHIVED_SINGLETONS_FNAME = 'archived_singletons{0}.pkl'
 
+# for Shove and the new backend
+PRIMARY_USER_DATA_FILENAME = "fluidity.shove_sqlite"
+PRIMARY_USER_DATA_PATH = pathlib.Path(USER_DATA_PATH).join(PRIMARY_USER_DATA_FILENAME)
+
+
 HACK_HACK_HACK_DROPBOX_PATH = pathlib.Path(HOME_DIR, "Dropbox", "Fluidity")
+
 
 # PROJECT SUPPORT FILE PATHS
 READ_REVIEW_PATH = _get_read_review_path()

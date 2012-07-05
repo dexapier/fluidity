@@ -49,6 +49,18 @@ class Slider(object):
         self._map_fields_to_instance_names()
         self._init_ui()
         
+    def _init_ui(self):
+        self._init_prj_list_w(self.prj_list_w)
+        self._builder.get_object("energy_w").select_item_by_position(1)
+        self._builder.get_object("priority_w").select_item_by_position(1)
+        self._builder.get_object("time_est_w").set_value(defs.DEFAULT_TIME_EST)
+        # set "Create Next Action" as the default mode
+        self.create_na_w.clicked()
+        # give the date fields their date name, as None
+        self.due_date_w.date = None
+        self.queue_to_w.date = None
+        self._set_ui_mode(self.create_na_w)
+        
     def _map_fields_to_instance_names(self):
         self.add_na_label = self._builder.get_object("add_na_label")
 #        self.add_note_label = self._builder.get_object("add_note_label")

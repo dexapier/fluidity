@@ -112,7 +112,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="DO_IT-w">
+                  <object class="GtkButton" id="DO_IT_w">
                     <property name="label">gtk-add</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -263,7 +263,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkRadioButton" id="create_inbox_note_">
+                                  <object class="GtkRadioButton" id="create_inbox_note_w">
                                     <property name="label" translatable="yes">Create _Inbox note</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>

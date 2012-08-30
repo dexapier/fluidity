@@ -1,3 +1,8 @@
+'''
+Simple demo program to provide store of Next Actions
+and top-level window to allow demonstration of
+NextActionsView display widget.
+'''
 import gtk
 import pygtk
 pygtk.require('2.0')
@@ -10,6 +15,14 @@ class NextAction(object):
         self.summary = summary
         self.priority = priority
         self.context = context
+        
+    def convert_to_list(self):
+        item = list()
+        item.append(self.complete)
+        item.append(self.summary)
+        item.append(self.priority)
+        item.append(self.context)
+        return item
         
 class NextActionDemo(gtk.Window):
     def __init__(self):
@@ -36,7 +49,7 @@ def _formatDataStore(next_actions):
     
     liststore = gtk.ListStore(bool, str, int, str)
     for na in next_actions:
-        liststore.append([na.complete, na.summary, na.priority, na.context])
+        liststore.append(na.convert_to_list())
     return liststore
 
 if __name__ == "__main__":

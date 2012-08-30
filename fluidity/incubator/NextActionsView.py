@@ -2,9 +2,8 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import pango
-import NextActionsModel
         
-def format_func(column, cell, model, my_iter):
+def _format_func(column, cell, model, my_iter):
     '''
     Function to format gtk.TreeView cells according to priority
     and completion status of Next Actions.
@@ -32,20 +31,16 @@ def format_func(column, cell, model, my_iter):
         cell.set_property("weight", pango.WEIGHT_ULTRALIGHT)
     else:
         cell.set_property("weight", pango.WEIGHT_NORMAL)
-        
-class NextActionView(gtk.Window):
+
+class NextActionsView(gtk.VBox):
     '''
     Simple class for display of Next Actions
     '''
     
-    def __init__(self):
-        gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
-        self.connect("delete-event", self.on_window_delete)
-        self.box = gtk.VBox()
-        self.add(self.box)
-        
+    def __init__(self, liststore):
+        super(NextActionsView, self).__init__(liststore)
         treeview = gtk.TreeView()
-        treeview.set_model(NextActionsModel.ProvideDataStore())
+        treeview.set_model(liststore)
         '''
         Although this module requires a gtk.ListStore with a fixed format
         (bool, str, int, str), the code for supplying that ListStore
@@ -56,27 +51,14 @@ class NextActionView(gtk.Window):
         summary_cell = gtk.CellRendererText()
         summary_column = gtk.TreeViewColumn("Summary", summary_cell, text = 1)
         treeview.append_column(summary_column)
-        summary_column.set_cell_data_func(summary_cell, format_func, data = None)
+        summary_column.set_cell_data_func(summary_cell, _format_func, data = None)
         priority_cell = gtk.CellRendererText()        
         priority_column = gtk.TreeViewColumn("Priority", priority_cell, text = 2)
         treeview.append_column(priority_column)
-        priority_column.set_cell_data_func(priority_cell, format_func, data = None)
+        priority_column.set_cell_data_func(priority_cell, _format_func, data = None)
         context_cell = gtk.CellRendererText()
         context_cell.set_property("font", "Sans 12")
         context_column = gtk.TreeViewColumn("Context", context_cell, text = 3)
         treeview.append_column(context_column)
-        self.box.pack_start(treeview, True, True, 0)
-        self.show_all()
+        self.pack_start(treeview, True, True, 0)
         
-    def on_window_delete(self, widget, event):
-        self.destroy()
-        gtk.main_quit()
-
-
-if __name__ == "__main__":
-    win = NextActionView()
-    gtk.main()
-        
-        
-        
-    

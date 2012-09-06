@@ -801,8 +801,8 @@
                         <property name="secondary_icon_activatable">False</property>
                         <property name="primary_icon_sensitive">True</property>
                         <property name="secondary_icon_sensitive">True</property>
-                        <accelerator key="f" signal="grab-focus" modifiers="GDK_CONTROL_MASK"/>
                         <accelerator key="F3" signal="grab-focus"/>
+                        <accelerator key="f" signal="grab-focus" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="search_w_activate_cb" swapped="no"/>
                         <signal name="grab-focus" handler="search_w_grab_focus_cb" swapped="no"/>
                       </object>
@@ -2642,32 +2642,30 @@
                                                 <property name="can_focus">False</property>
                                                 <property name="spacing">6</property>
                                                 <child>
-                                                  <object class="GtkButton" id="edit_na_w">
+                                                  <object class="GtkButton" id="move_to_unordered_actions_w">
+                                                    <property name="label" translatable="yes">---&gt;</property>
                                                     <property name="use_action_appearance">False</property>
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">True</property>
                                                     <property name="receives_default">True</property>
-                                                    <property name="image">edit_button_image</property>
-                                                    <signal name="clicked" handler="edit_na_w_clicked_cb" swapped="no"/>
                                                   </object>
                                                   <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
+                                                    <property name="expand">True</property>
+                                                    <property name="fill">True</property>
                                                     <property name="position">0</property>
                                                   </packing>
                                                 </child>
                                                 <child>
-                                                  <object class="GtkButton" id="remove_na_w">
+                                                  <object class="GtkButton" id="move_to_ordered_actions_w">
+                                                    <property name="label" translatable="yes">&lt;---</property>
                                                     <property name="use_action_appearance">False</property>
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">True</property>
                                                     <property name="receives_default">True</property>
-                                                    <property name="image">remove_button_image</property>
-                                                    <signal name="clicked" handler="remove_na_w_clicked_cb" swapped="no"/>
                                                   </object>
                                                   <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
+                                                    <property name="expand">True</property>
+                                                    <property name="fill">True</property>
                                                     <property name="position">1</property>
                                                   </packing>
                                                 </child>

@@ -87,9 +87,10 @@ class DataManager(object):
 
     def activate_nas(self, nas, prj_key):
         """Move the given NextActions to the Project's next_actions list"""
-        for na in nas:
-            self.prjs[prj_key].next_actions.append(na)
-            self.prjs[prj_key].incubating_next_actions.remove(na)
+        project = self.prjs[prj_key]
+        self.__move_na(nas, project.next_actions, 
+                       (project.unordered_next_actions, 
+                        project.incubating_next_actions))
 
     def add_na_to_prj(self, na, prj_key):
         self.prjs[prj_key].next_actions.append(na)
@@ -298,9 +299,30 @@ class DataManager(object):
 
     def incubate_nas(self, nas, prj_key):
         """Move the given NextActions to the Project's incubating_next_actions."""
+        project = self.prjs[prj_key]
+        self.__move_na(nas, project.incubating_next_actions, 
+                       (project.next_actions, project.unordered_next_actions))
+
+    def move_nas_to_ordered_actions(self, nas, prj_key):
+        project = self.prjs[prj_key]
+        self.__move_na(nas, project.ordered_next_actions, 
+                       (project.unordered_next_actions, project.incubating_next_actions))
+
+    def move_nas_to_unordered_actions(self, nas, prj_key):
+        project = self.prjs[prj_key]
+        self.__move_na(nas, project.unordered_next_actions, 
+                       (project.next_actions, project.incubating_next_actions))
+
+    def __move_na(self, nas, add_to, remove_from):
         for na in nas:
-            self.prjs[prj_key].incubating_next_actions.append(na)
-            self.prjs[prj_key].next_actions.remove(na)
+            add_to.append(na)
+            for na_list in remove_from:
+                try:
+                    na_list.remove(na)
+                except ValueError:
+                    # HACK to work around the fact that we don't know which
+                    # list it's coming _from_.
+                    pass
 
     def queue_singleton_na(self, na, queue_date_str):
         try:

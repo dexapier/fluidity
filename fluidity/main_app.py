@@ -539,60 +539,71 @@ class Fluidity(object):
         """Collection of one-liners to set up convenient names for UI elements"""
         self.window = self.b.get_object("main_window")
         self.aof_filter_w = self.b.get_object("aof_filter_w")
-        self.clarify_add_to_read_review_w = \
-                self.b.get_object("clarify_add_to_read_review_w")
-        self.clarify_file_as_reference_w = \
-                self.b.get_object("clarify_file_as_reference_w")
+        self.clarify_add_to_read_review_w =  self.b.get_object(
+                "clarify_add_to_read_review_w")
+        self.clarify_file_as_reference_w =  self.b.get_object(
+                "clarify_file_as_reference_w")
         self.clarify_image_preview = self.b.get_object("clarify_image_preview")
         self.clarify_nb = self.b.get_object("clarify_notebook")
-        self.clarify_notes_copy_summary_w = \
-                self.b.get_object("clarify_notes_copy_summary_w")
-        self.clarify_notes_details_details_w = \
-                self.b.get_object("clarify_notes_details_details_w")
-        self.clarify_notes_details_summary_w = \
-                self.b.get_object("clarify_notes_details_summary_w")
-        self.clarify_stuff_details_notebook = \
-                self.b.get_object("clarify_stuff_details_notebook")
+        self.clarify_notes_copy_summary_w =  self.b.get_object(
+                "clarify_notes_copy_summary_w")
+        self.clarify_notes_details_details_w =  self.b.get_object(
+                "clarify_notes_details_details_w")
+        self.clarify_notes_details_summary_w =  self.b.get_object(
+                "clarify_notes_details_summary_w")
+        self.clarify_stuff_details_notebook =  self.b.get_object(
+                "clarify_stuff_details_notebook")
         self.engage_context_w = self.b.get_object("engage_context_w")
-        self.engage_current_totals_w = \
-                self.b.get_object("engage_current_totals_w")
+        self.engage_current_totals_w =  self.b.get_object(
+                "engage_current_totals_w")
         self.engage_energy_level_w = self.b.get_object("engage_energy_level_w")
         self.engage_na_list = self.b.get_object("engage_na_list")
-        self.engage_due_today_filter_w = \
-                self.b.get_object("engage_due_today_filter_w")
-        self.engage_time_available_w = \
-                self.b.get_object("engage_time_available_w")
+        self.engage_due_today_filter_w =  self.b.get_object(
+                "engage_due_today_filter_w")
+        self.engage_time_available_w = self.b.get_object(
+                 "engage_time_available_w")
+        self.move_na_to_unordered_actions_w = self.b.get_object(
+                "move_na_to_unordered_actions_w")
         self.new_prj_d = self.b.get_object("new_prj_dialog")
         self.prj_details_aofs_w = self.b.get_object("prj_details_aofs_w")
         self.prj_details_due_date_w = self.b.get_object("prj_details_due_date_w")
-        self.prj_details_incubating_na_list_w = \
-                self.b.get_object("prj_details_incubating_na_list_w")
+        self.prj_details_incubating_na_list_w =  self.b.get_object(
+                "prj_details_incubating_na_list_w")
         self.prj_details_na_list_w = self.b.get_object("prj_details_na_list_w")
         self.prj_details_priority_w = self.b.get_object("prj_details_priority_w")
-        self.prj_details_queue_date_w = \
-                self.b.get_object("prj_details_queue_date_w")
+        self.prj_details_queue_date_w =  self.b.get_object(
+                "prj_details_queue_date_w")
         self.prj_list_w = self.b.get_object("prj_list_w")
         self.prj_queue_date_hbox = self.b.get_object("prj_queue_date_hbox")
         self.prj_support_files_w = self.b.get_object("prj_support_files_w")
-        self.prj_details_waiting_for_w = \
-                self.b.get_object("prj_details_waiting_for_w")
-        self.prj_details_waiting_for_since_w = \
-                self.b.get_object("prj_details_waiting_for_since_w")
-        self.review_project_status_filter_w = \
-                self.b.get_object("review_project_status_filter_w")
+        self.prj_details_waiting_for_w =  self.b.get_object(
+                "prj_details_waiting_for_w")
+        self.prj_details_waiting_for_since_w =  self.b.get_object(
+                "prj_details_waiting_for_since_w")
+        self.review_project_status_filter_w =  self.b.get_object(
+                "review_project_status_filter_w")
         self.stuff_tree_w = self.b.get_object("stuff_tree_w")
         self.waiting_for_table = self.b.get_object("waiting_for_table")
         self.workflow_nb = self.b.get_object("workflow_notebook")
 
-        self.clarify_file_details_name_w = self.b.get_object("clarify_file_details_name_w")
-        self.clarify_file_details_type_w = self.b.get_object("clarify_file_details_type_w")
-        self.clarify_file_details_size_w = self.b.get_object("clarify_file_details_size_w")
-        self.clarify_file_details_path_w = self.b.get_object("clarify_file_details_path_w")
-        self.clarify_file_details_notes_w = self.b.get_object("clarify_file_details_notes_w")
-        self.clarify_file_details_mime_nb_w = self.b.get_object("clarify_file_details_mime_nb_w")
-        self.clarify_file_details_icon_w = self.b.get_object("clarify_file_details_icon_w")
-        self.clarify_file_info_text_preview_w = self.b.get_object("clarify_file_info_text_preview_w")
-        self.clarify_file_info_image_thumbnail_w = self.b.get_object("clarify_file_info_image_thumbnail_w")
+        self.clarify_file_details_name_w = self.b.get_object(
+                "clarify_file_details_name_w")
+        self.clarify_file_details_type_w = self.b.get_object(
+                "clarify_file_details_type_w")
+        self.clarify_file_details_size_w = self.b.get_object(
+                "clarify_file_details_size_w")
+        self.clarify_file_details_path_w = self.b.get_object(
+                "clarify_file_details_path_w")
+        self.clarify_file_details_notes_w = self.b.get_object(
+                "clarify_file_details_notes_w")
+        self.clarify_file_details_mime_nb_w = self.b.get_object(
+                "clarify_file_details_mime_nb_w")
+        self.clarify_file_details_icon_w = self.b.get_object(
+                "clarify_file_details_icon_w")
+        self.clarify_file_info_text_preview_w = self.b.get_object(
+                "clarify_file_info_text_preview_w")
+        self.clarify_file_info_image_thumbnail_w = self.b.get_object(
+                "clarify_file_info_image_thumbnail_w")
 
     def move_na_position(self, objlist, prj, position):
         nas = objlist.get_selected_rows()

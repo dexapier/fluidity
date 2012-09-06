@@ -4,7 +4,7 @@ to allow demonstration of NextActionsView display widget.
 import gobject
 import gtk
 
-from NextActionsView import NextActionsView
+from next_actions_view import NextActionsView
 
 
 class NextAction(object):

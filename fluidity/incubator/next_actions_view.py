@@ -18,23 +18,21 @@ class NextActionsView(gtk.VBox):
         # we're assuming that a checkbox in a list of tasks, along with the 
         # strikethrough text for completed actions, will be enough to let the 
         # user know what the column is, instead of trying to fit the longer label
-        done_column = gtk.TreeViewColumn('', gtk.CellRendererToggle(), active=0)
+        done_column = gtk.TreeViewColumn(None, gtk.CellRendererToggle(), active=0)
 
         summary_cell = gtk.CellRendererText()
-        summary_column = gtk.TreeViewColumn("Summary", summary_cell, text=1)
+        summary_column = gtk.TreeViewColumn(None, summary_cell, text=1)
         summary_column.set_cell_data_func(summary_cell, _format_func, data=None)
 
-        priority_cell = gtk.CellRendererText()        
-        priority_column = gtk.TreeViewColumn("Priority", priority_cell, text=2)
-        priority_column.set_cell_data_func(priority_cell, _format_func, data=None)
-
         context_cell = gtk.CellRendererText()
-        context_cell.set_property("font", "Sans 11")
-        context_column = gtk.TreeViewColumn("Context", context_cell, text=3)
-
-        for col in done_column, summary_column, priority_column, context_column:
+        context_column = gtk.TreeViewColumn(None, context_cell, text=3)
+        context_column.props.sizing = gtk.TREE_VIEW_COLUMN_AUTOSIZE
+        
+        for col in done_column, context_column, summary_column:
             self._treeview.append_column(col)
         
+        self._treeview.props.headers_visible = False
+        self._treeview.props.rules_hint = True
         self.pack_start(self._treeview, True, True, 0)
 
     def set_actions(self, actions):
@@ -63,7 +61,7 @@ def _format_func(column, cell, model, my_iter):
     """
     # Using this font makes the UltraHeavy, Normal, and UltraLight text 
     # weights clearly distinguishable from one another.
-    cell.set_property("font", "Sans 12")
+#    cell.set_property("font", "Sans 12")
     if (model.get_value(my_iter, 0) == True):
         # First check completion status of task (column 0 of the model)
         # and set "strikethrough" for display of completed tasks.
@@ -73,7 +71,7 @@ def _format_func(column, cell, model, my_iter):
     
     if model.get_value(my_iter, 2) == 1:
         # Now check priority of task and set text weight accordingly.
-        cell.set_property("weight", pango.WEIGHT_ULTRAHEAVY)
+        cell.set_property("weight", pango.WEIGHT_HEAVY)
     elif model.get_value(my_iter, 2) == 3:
         cell.set_property("weight", pango.WEIGHT_ULTRALIGHT)
     else:

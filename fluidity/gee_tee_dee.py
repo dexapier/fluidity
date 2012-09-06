@@ -240,6 +240,7 @@ class Project(GeeTeeDeeData):
         self._aofs = []
         self._incubating_next_actions = []
         self._next_actions = []
+        self._unordered_next_actions = []
         self.parent_project = TOP_LEVEL_PROJECT_LEGACY
         # FIXME: create a special observable list which notifies observers
         # of addition, replacement, deletion, etc - would keep a "natural", 
@@ -261,6 +262,14 @@ class Project(GeeTeeDeeData):
     def incubating_next_actions(self):
         # FIXME: lame -- replace this property with a regular attribute
         return self._incubating_next_actions
+
+    @property
+    def unordered_next_actions(self):
+        try:
+            return self._unordered_next_actions
+        except NameError:
+            self._unordered_next_actions = []
+            return self._unordered_next_actions
 
     @property
     def key_name(self):

@@ -125,7 +125,7 @@ class NextAction(GeeTeeDeeData):
     def __init__(self, summary):
         super(NextAction, self).__init__(summary)
         self.complete = False
-        self.energy_est = models.NextAction.MEDIUM
+        self.energy_est = defs.Priority.MEDIUM
         self.time_est = 10.0
         self._context = ""
         self._notes = None

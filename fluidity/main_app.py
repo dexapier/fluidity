@@ -40,6 +40,7 @@ from fluidity import inbox_items
 from fluidity import managers
 from fluidity import task_export
 from fluidity import ui
+from fluidity.incubator import next_actions_view
 from fluidity.magic_machine import MagicMachine
 from fluidity.note import ProjectNote
 
@@ -63,6 +64,7 @@ class Fluidity(object):
         self.b.connect_signals(self)
 
         self.map_fields_to_instance_names()
+        self.unordered_actions_list_w = next_actions_view.NextActionsView()
 
         app_utils.validate_paths()
 
@@ -83,7 +85,7 @@ class Fluidity(object):
         self.clipboard = gtk.clipboard_get()
 
         self.init_ui()
-
+        
         gobject.timeout_add_seconds(defs.AUTOSAVE_INTERVAL,
                                     self.data_lumbergh.autosave)
         self._run_daily_tasks(False)
@@ -353,6 +355,9 @@ class Fluidity(object):
         self.prj_details_incubating_na_list_w.clear()
         for n in prj.incubating_next_actions:
             self.prj_details_incubating_na_list_w.append(n)
+        # FIXME (?) fill in the list we'll eventually use for
+        # unordered actions
+        self.unordered_actions_list_w.set_actions(prj.next_actions)
 
     def fill_prj_list_w(self, area_name=None, rfilter=None):
         if area_name == None:
@@ -511,6 +516,12 @@ class Fluidity(object):
         self.clarify_file_details_mime_nb_w.set_show_tabs(False)
         self.clarify_file_details_mime_nb_w.hide()
 
+        self.project_actions_panes_w.pack2(self.unordered_actions_list_w)
+        self.unordered_actions_list_w.show_all()
+#        foo = gtk.Label("GODDAMMIT")
+#        self.project_actions_panes_w.pack2(foo)
+#        foo.show()
+
     def jump_to_search_result(self, prj_key, na_uuid=None):
         status_widget_map = (("active", "review_active_w"),
                              ("incubating", "review_incubating_w"),
@@ -604,6 +615,8 @@ class Fluidity(object):
                 "clarify_file_info_text_preview_w")
         self.clarify_file_info_image_thumbnail_w = self.b.get_object(
                 "clarify_file_info_image_thumbnail_w")
+        self.project_actions_panes_w = self.b.get_object(
+                 "project_actions_panes_w")
 
     def move_na_position(self, objlist, prj, position):
         nas = objlist.get_selected_rows()
@@ -1052,6 +1065,13 @@ class Fluidity(object):
         self._inbox_manager.complete_processing(stuff)
 
     def incubate_na_w_clicked_cb(self, widget, data=None):
+        nas = self.prj_details_na_list_w.get_selected_rows()
+        if len(nas) > 0:
+            prj = self.prj_list_w.get_selected()
+            self.data_lumbergh.incubate_nas(nas, prj.key_name)
+            self.fill_prj_details_na_list_w(prj)
+
+    def move_na_to_unordered_actions_w_clicked_cb(self, widget, data=None):
         nas = self.prj_details_na_list_w.get_selected_rows()
         if len(nas) > 0:
             prj = self.prj_list_w.get_selected()

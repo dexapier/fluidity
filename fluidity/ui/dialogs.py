@@ -11,6 +11,7 @@ from __future__ import absolute_import, division, print_function
 __author__ = 'Jens Knutson'
 
 
+import abc
 import datetime
 import os
 import time
@@ -31,6 +32,8 @@ from fluidity.note import ProjectNote
 
 
 class GeeTeeDeeDialog(object):
+    
+    __metaclass__ = abc.ABCMeta
 
     GTK_BUILDER_FILENAME = None
 
@@ -72,6 +75,10 @@ class GeeTeeDeeDialog(object):
             else:
                 #FIXME: hmm... that's kinda... goofy.  review later
                 self._set_date_w_values(widget.date, widget)
+
+    @abc.abstractmethod
+    def _map_fields_to_instance_names(self):
+        pass
 
 
 class NewProjectDialog(GeeTeeDeeDialog):

@@ -2614,40 +2614,25 @@
                                         <property name="can_focus">False</property>
                                         <property name="spacing">6</property>
                                         <child>
-                                          <object class="GtkHBox" id="hbox9">
+                                          <object class="GtkHPaned" id="project_actions_panes_w">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="spacing">6</property>
+                                            <property name="can_focus">True</property>
                                             <child>
-                                              <object class="ObjectList" id="prj_details_na_list_w">
-                                                <property name="visible">True</property>
-                                                <property name="can_focus">True</property>
-                                                <property name="hscrollbar_policy">automatic</property>
-                                                <property name="vscrollbar_policy">automatic</property>
-                                                <property name="shadow_type">etched-in</property>
-                                                <property name="selection_mode">multiple</property>
-                                                <signal name="key-press-event" handler="prj_details_na_list_w_key_press_event_cb" swapped="no"/>
-                                                <signal name="row-activated" handler="prj_details_na_list_w_row_activated_cb" swapped="no"/>
-                                                <signal name="cell-edited" handler="prj_details_na_list_w_cell_edited_cb" swapped="no"/>
-                                              </object>
-                                              <packing>
-                                                <property name="expand">True</property>
-                                                <property name="fill">True</property>
-                                                <property name="position">0</property>
-                                              </packing>
-                                            </child>
-                                            <child>
-                                              <object class="GtkVBox" id="vbox11">
+                                              <object class="GtkHBox" id="hbox9">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
                                                 <property name="spacing">6</property>
                                                 <child>
-                                                  <object class="GtkButton" id="move_to_unordered_actions_w">
-                                                    <property name="label" translatable="yes">---&gt;</property>
-                                                    <property name="use_action_appearance">False</property>
+                                                  <object class="ObjectList" id="prj_details_na_list_w">
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">True</property>
-                                                    <property name="receives_default">True</property>
+                                                    <property name="hscrollbar_policy">automatic</property>
+                                                    <property name="vscrollbar_policy">automatic</property>
+                                                    <property name="shadow_type">etched-in</property>
+                                                    <property name="selection_mode">multiple</property>
+                                                    <signal name="key-press-event" handler="prj_details_na_list_w_key_press_event_cb" swapped="no"/>
+                                                    <signal name="row-activated" handler="prj_details_na_list_w_row_activated_cb" swapped="no"/>
+                                                    <signal name="cell-edited" handler="prj_details_na_list_w_cell_edited_cb" swapped="no"/>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">True</property>
@@ -2656,89 +2641,117 @@
                                                   </packing>
                                                 </child>
                                                 <child>
-                                                  <object class="GtkButton" id="move_to_ordered_actions_w">
-                                                    <property name="label" translatable="yes">&lt;---</property>
-                                                    <property name="use_action_appearance">False</property>
+                                                  <object class="GtkVBox" id="vbox11">
                                                     <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="spacing">6</property>
+                                                    <child>
+                                                      <object class="GtkButton" id="move_to_unordered_actions_w">
+                                                        <property name="label" translatable="yes">---&gt;</property>
+                                                        <property name="use_action_appearance">False</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="receives_default">True</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkButton" id="move_to_ordered_actions_w">
+                                                        <property name="label" translatable="yes">&lt;---</property>
+                                                        <property name="use_action_appearance">False</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="receives_default">True</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkButton" id="move_na_last_w">
+                                                        <property name="use_action_appearance">False</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="receives_default">True</property>
+                                                        <property name="image">bottom_button_image</property>
+                                                        <signal name="clicked" handler="move_na_last_w_clicked_cb" swapped="no"/>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">False</property>
+                                                        <property name="pack_type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkButton" id="move_na_up_w">
+                                                        <property name="use_action_appearance">False</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="receives_default">True</property>
+                                                        <property name="image">up_image_button</property>
+                                                        <signal name="clicked" handler="move_na_up_w_clicked_cb" swapped="no"/>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">False</property>
+                                                        <property name="pack_type">end</property>
+                                                        <property name="position">3</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkButton" id="move_na_first_w">
+                                                        <property name="use_action_appearance">False</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="receives_default">True</property>
+                                                        <property name="image">top_button_image</property>
+                                                        <signal name="clicked" handler="move_na_first_w_clicked_cb" swapped="no"/>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">False</property>
+                                                        <property name="pack_type">end</property>
+                                                        <property name="position">4</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkButton" id="move_na_down_w">
+                                                        <property name="use_action_appearance">False</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="receives_default">True</property>
+                                                        <property name="image">down_button_image</property>
+                                                        <signal name="clicked" handler="move_na_down_w_clicked_cb" swapped="no"/>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">False</property>
+                                                        <property name="pack_type">end</property>
+                                                        <property name="position">5</property>
+                                                      </packing>
+                                                    </child>
                                                   </object>
                                                   <packing>
-                                                    <property name="expand">True</property>
-                                                    <property name="fill">True</property>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">False</property>
                                                     <property name="position">1</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkButton" id="move_na_last_w">
-                                                    <property name="use_action_appearance">False</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">True</property>
-                                                    <property name="image">bottom_button_image</property>
-                                                    <signal name="clicked" handler="move_na_last_w_clicked_cb" swapped="no"/>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="pack_type">end</property>
-                                                    <property name="position">2</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkButton" id="move_na_up_w">
-                                                    <property name="use_action_appearance">False</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">True</property>
-                                                    <property name="image">up_image_button</property>
-                                                    <signal name="clicked" handler="move_na_up_w_clicked_cb" swapped="no"/>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="pack_type">end</property>
-                                                    <property name="position">3</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkButton" id="move_na_first_w">
-                                                    <property name="use_action_appearance">False</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">True</property>
-                                                    <property name="image">top_button_image</property>
-                                                    <signal name="clicked" handler="move_na_first_w_clicked_cb" swapped="no"/>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="pack_type">end</property>
-                                                    <property name="position">4</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkButton" id="move_na_down_w">
-                                                    <property name="use_action_appearance">False</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">True</property>
-                                                    <property name="image">down_button_image</property>
-                                                    <signal name="clicked" handler="move_na_down_w_clicked_cb" swapped="no"/>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="pack_type">end</property>
-                                                    <property name="position">5</property>
                                                   </packing>
                                                 </child>
                                               </object>
                                               <packing>
-                                                <property name="expand">False</property>
-                                                <property name="fill">False</property>
-                                                <property name="position">1</property>
+                                                <property name="resize">False</property>
+                                                <property name="shrink">True</property>
                                               </packing>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
                                             </child>
                                           </object>
                                           <packing>

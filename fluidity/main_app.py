@@ -76,9 +76,7 @@ class Fluidity(object):
         self._rec_manager = managers.RecurrenceManager(self.data_lumbergh)
         gobject.idle_add(self._rec_manager.place_recurring_tasks)
 
-        jesus = managers.BackupJesus()
-        gobject.idle_add(jesus.kill_stale_backups)
-        del(jesus)
+        gobject.idle_add(managers.BackupJesus().kill_stale_backups)
 
         self._search_window = dialogs.JumptoSearchDialog(self.data_lumbergh, self)
 

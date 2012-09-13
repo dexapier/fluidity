@@ -267,7 +267,7 @@ class Project(GeeTeeDeeData):
     def unordered_next_actions(self):
         try:
             return self._unordered_next_actions
-        except NameError:
+        except AttributeError:
             self._unordered_next_actions = []
             return self._unordered_next_actions
 

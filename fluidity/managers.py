@@ -241,7 +241,7 @@ class DataManager(object):
     def get_inbox_notes(self):
         return self.single_notes
 
-    def get_na_for_each_active_prj(self):
+    def get_current_nas_for_each_active_prj(self):
         active_nas = []
         for p in self.prjs.keys():
             prj = self.prjs[p]
@@ -250,6 +250,8 @@ class DataManager(object):
                     if not na.complete:
                         active_nas.append(na)
                         break
+                active_nas.extend([na for na in prj.unordered_next_actions
+                                   if not na.complete])
         for na in self.prjs['singletons'].next_actions:
             if not na.complete:
                 active_nas.append(na)

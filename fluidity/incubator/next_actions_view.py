@@ -38,6 +38,11 @@ class NextActionsView(gtk.VBox):
         self._treeview.props.rules_hint = True
         self.pack_start(self._treeview, True, True, 0)
 
+    def get_selected_model_objects(self):
+        """Return the selected *objects*, ala Kiwi's ObjectList."""
+        model, selected_rows = self._treeview.get_selection().get_selected_rows()
+        return [self._actions[i] for i in selected_rows]
+
     def set_actions(self, actions):
         self.clear()
         self._actions.extend(actions)

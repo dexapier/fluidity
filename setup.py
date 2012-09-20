@@ -24,8 +24,7 @@ def build_data_files():
             'COPYING', 'README', 'INSTALL', 'THANKS']
     data_files.append((DOCS_DIR, docs))
 
-    misc_data = [os.path.join('data', fname) for fname in os.listdir('data')
-                 if fname is not 'Glade_and_Kiwi_integration']
+    misc_data = [os.path.join('data', fname) for fname in os.listdir('data')]
         
     data_files.append((DATA_DIR, misc_data))
 
@@ -54,15 +53,16 @@ setup(
             * you are serious about getting to the "mind like water" state,
               through a complete, painless-as-possible GTD system
             * you have ever spent an hour or more trying to process ALL your
-              inboxes (like the sign says, this is for *black belts*, people!)
-            * you have gotten frustrated with the nitpicky details of shuffling
-              projects between your Active and Someday/Maybe lists while still
-              keeping your system current and air-tight
+              inboxes and got frustrated, but didn't just decide to throw out the
+              concept of empty inboxes
+            * you're tired of the nitpicky mechanics of shuffling
+              projects between your Active and Someday/Maybe project lists while 
+              still keeping your system current and air-tight
             * you have actually read/listened to all of David Allen's "Getting
-              Things Done" and have a reasonable understanding of it, or are
-              working on getting there (if you don't understand what a project
-              or next action really mean in GTD terms, Fluidity might seem a bit
-              overwhelming.)
+              Things Done" book and have a reasonable understanding of it, or are
+              working on getting there (i.e.: if you understand what a 
+              project and next action really mean in GTD terms; otherwise 
+              Fluidity might be a bit overwhelming.)
 
         ...then Fluidity might just be what you're looking for.  If you like it,
         or have any constructive feedback, I would love to hear it.""")),

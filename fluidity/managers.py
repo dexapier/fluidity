@@ -307,7 +307,7 @@ class DataManager(object):
 
     def move_nas_to_ordered_actions(self, nas, prj_key):
         project = self.prjs[prj_key]
-        self.__move_na(nas, project.ordered_next_actions, 
+        self.__move_na(nas, project.next_actions, 
                        (project.unordered_next_actions, project.incubating_next_actions))
 
     def move_nas_to_unordered_actions(self, nas, prj_key):

@@ -9,6 +9,7 @@ class NextActionsView(gtk.VBox):
         super(NextActionsView, self).__init__()
         self._liststore = gtk.ListStore(bool, str, int, str)
         self._treeview = gtk.TreeView()
+        self._treeview.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
         self._treeview.set_model(self._liststore)
         self._actions = []
         
@@ -38,7 +39,10 @@ class NextActionsView(gtk.VBox):
     def get_selected_model_objects(self):
         """Return the selected *objects*, ala Kiwi's ObjectList."""
         model, selected_rows = self._treeview.get_selection().get_selected_rows()
-        return [self._actions[i] for i in selected_rows]
+        # have to do this goofy i[0] because .get_selected_rows() returns
+        # *tuples* (representing "paths" in GTK-speak) with the first member
+        # as the index of the row
+        return [self._actions[i[0]] for i in selected_rows]
 
     def set_actions(self, actions):
         self.clear()

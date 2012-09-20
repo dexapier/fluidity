@@ -19,7 +19,10 @@ class NextActionsView(gtk.VBox):
         # we're assuming that a checkbox in a list of tasks, along with the 
         # strikethrough text for completed actions, will be enough to let the 
         # user know what the column is, instead of trying to fit the longer label
-        done_column = gtk.TreeViewColumn(None, gtk.CellRendererToggle(), active=0)
+        done_renderer = gtk.CellRendererToggle()
+        done_renderer.set_property("activatable", True)
+        done_renderer.connect("toggled", self.on_done_toggled)
+        done_column = gtk.TreeViewColumn(None, done_renderer, active=0)
 
         summary_cell = gtk.CellRendererText()
         summary_column = gtk.TreeViewColumn(None, summary_cell, text=1)
@@ -53,6 +56,14 @@ class NextActionsView(gtk.VBox):
     def clear(self):
         self._actions = []  # Gross.  Why don't Python lists have a .clear()?
         self._liststore.clear()
+        
+    def on_done_toggled(self, cell_renderer, path, data = None):
+        if cell_renderer.get_active() == True:
+            cell_renderer.set_active(False) 
+            self._liststore[path][0] = False
+        else:
+            cell_renderer.set_active(True)
+            self._liststore[path][0] = True
 
 
 def _convert_na_to_iterable(na):

@@ -1311,6 +1311,13 @@ class Fluidity(object):
                 prj.key_name)
         self.fill_prj_details_na_list_w(prj)
 
+    def move_to_ordered_actions_w_clicked_cb(self, widget, data=None):
+        prj = self.prj_list_w.get_selected()
+        self.data_lumbergh.move_nas_to_ordered_actions(
+                self.unordered_actions_list_w.get_selected_model_objects(),
+                prj.key_name)
+        self.fill_prj_details_na_list_w(prj)
+
 
 def _fity_show_uri(uri, time_arg=None):
     if uri.startswith('note:'):

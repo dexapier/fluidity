@@ -256,7 +256,7 @@ class Fluidity(object):
                 max_time = float(max_time)
         context = self.engage_context_w.get_selected()
         candidate_nas = []
-        active_nas = self.data_lumbergh.get_na_for_each_active_prj()
+        active_nas = self.data_lumbergh.get_current_nas_for_each_active_prj()
         # and of those, get all the ones which meet our filter criteria
         for n in active_nas:
             if (context == "Any" and 'agenda' not in n.context.lower() or
@@ -822,7 +822,7 @@ class Fluidity(object):
             pd.add_files_to_files_list(stuff_obj.path)
 
     def sync_nas_and_notes(self):
-        sorted_nas = self.sort_actions(self.data_lumbergh.get_na_for_each_active_prj())
+        sorted_nas = self.sort_actions(self.data_lumbergh.get_current_nas_for_each_active_prj())
         task_export.ProtoExporter().export_next_actions(sorted_nas, self.data_lumbergh)
 
     def temporarily_disable_widget(self, widget):

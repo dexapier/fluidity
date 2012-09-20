@@ -40,6 +40,7 @@ from fluidity import inbox_items
 from fluidity import managers
 from fluidity import task_export
 from fluidity import ui
+from fluidity.incubator import next_actions_view
 from fluidity.magic_machine import MagicMachine
 from fluidity.note import ProjectNote
 
@@ -63,6 +64,7 @@ class Fluidity(object):
         self.b.connect_signals(self)
 
         self.map_fields_to_instance_names()
+        self.unordered_actions_list_w = next_actions_view.NextActionsView()
 
         app_utils.validate_paths()
 
@@ -74,16 +76,14 @@ class Fluidity(object):
         self._rec_manager = managers.RecurrenceManager(self.data_lumbergh)
         gobject.idle_add(self._rec_manager.place_recurring_tasks)
 
-        jesus = managers.BackupJesus()
-        gobject.idle_add(jesus.kill_stale_backups)
-        del(jesus)
+        gobject.idle_add(managers.BackupJesus().kill_stale_backups)
 
         self._search_window = dialogs.JumptoSearchDialog(self.data_lumbergh, self)
 
         self.clipboard = gtk.clipboard_get()
 
         self.init_ui()
-
+        
         gobject.timeout_add_seconds(defs.AUTOSAVE_INTERVAL,
                                     self.data_lumbergh.autosave)
         self._run_daily_tasks(False)
@@ -256,7 +256,7 @@ class Fluidity(object):
                 max_time = float(max_time)
         context = self.engage_context_w.get_selected()
         candidate_nas = []
-        active_nas = self.data_lumbergh.get_na_for_each_active_prj()
+        active_nas = self.data_lumbergh.get_current_nas_for_each_active_prj()
         # and of those, get all the ones which meet our filter criteria
         for n in active_nas:
             if (context == "Any" and 'agenda' not in n.context.lower() or
@@ -353,6 +353,9 @@ class Fluidity(object):
         self.prj_details_incubating_na_list_w.clear()
         for n in prj.incubating_next_actions:
             self.prj_details_incubating_na_list_w.append(n)
+        # FIXME (?) fill in the list we'll eventually use for
+        # unordered actions
+        self.unordered_actions_list_w.set_actions(prj.unordered_next_actions)
 
     def fill_prj_list_w(self, area_name=None, rfilter=None):
         if area_name == None:
@@ -511,6 +514,12 @@ class Fluidity(object):
         self.clarify_file_details_mime_nb_w.set_show_tabs(False)
         self.clarify_file_details_mime_nb_w.hide()
 
+        self.project_actions_panes_w.pack2(self.unordered_actions_list_w)
+        self.unordered_actions_list_w.show_all()
+#        foo = gtk.Label("GODDAMMIT")
+#        self.project_actions_panes_w.pack2(foo)
+#        foo.show()
+
     def jump_to_search_result(self, prj_key, na_uuid=None):
         status_widget_map = (("active", "review_active_w"),
                              ("incubating", "review_incubating_w"),
@@ -539,60 +548,73 @@ class Fluidity(object):
         """Collection of one-liners to set up convenient names for UI elements"""
         self.window = self.b.get_object("main_window")
         self.aof_filter_w = self.b.get_object("aof_filter_w")
-        self.clarify_add_to_read_review_w = \
-                self.b.get_object("clarify_add_to_read_review_w")
-        self.clarify_file_as_reference_w = \
-                self.b.get_object("clarify_file_as_reference_w")
+        self.clarify_add_to_read_review_w =  self.b.get_object(
+                "clarify_add_to_read_review_w")
+        self.clarify_file_as_reference_w =  self.b.get_object(
+                "clarify_file_as_reference_w")
         self.clarify_image_preview = self.b.get_object("clarify_image_preview")
         self.clarify_nb = self.b.get_object("clarify_notebook")
-        self.clarify_notes_copy_summary_w = \
-                self.b.get_object("clarify_notes_copy_summary_w")
-        self.clarify_notes_details_details_w = \
-                self.b.get_object("clarify_notes_details_details_w")
-        self.clarify_notes_details_summary_w = \
-                self.b.get_object("clarify_notes_details_summary_w")
-        self.clarify_stuff_details_notebook = \
-                self.b.get_object("clarify_stuff_details_notebook")
+        self.clarify_notes_copy_summary_w =  self.b.get_object(
+                "clarify_notes_copy_summary_w")
+        self.clarify_notes_details_details_w =  self.b.get_object(
+                "clarify_notes_details_details_w")
+        self.clarify_notes_details_summary_w =  self.b.get_object(
+                "clarify_notes_details_summary_w")
+        self.clarify_stuff_details_notebook =  self.b.get_object(
+                "clarify_stuff_details_notebook")
         self.engage_context_w = self.b.get_object("engage_context_w")
-        self.engage_current_totals_w = \
-                self.b.get_object("engage_current_totals_w")
+        self.engage_current_totals_w =  self.b.get_object(
+                "engage_current_totals_w")
         self.engage_energy_level_w = self.b.get_object("engage_energy_level_w")
         self.engage_na_list = self.b.get_object("engage_na_list")
-        self.engage_due_today_filter_w = \
-                self.b.get_object("engage_due_today_filter_w")
-        self.engage_time_available_w = \
-                self.b.get_object("engage_time_available_w")
+        self.engage_due_today_filter_w =  self.b.get_object(
+                "engage_due_today_filter_w")
+        self.engage_time_available_w = self.b.get_object(
+                 "engage_time_available_w")
+        self.move_na_to_unordered_actions_w = self.b.get_object(
+                "move_na_to_unordered_actions_w")
         self.new_prj_d = self.b.get_object("new_prj_dialog")
         self.prj_details_aofs_w = self.b.get_object("prj_details_aofs_w")
         self.prj_details_due_date_w = self.b.get_object("prj_details_due_date_w")
-        self.prj_details_incubating_na_list_w = \
-                self.b.get_object("prj_details_incubating_na_list_w")
+        self.prj_details_incubating_na_list_w =  self.b.get_object(
+                "prj_details_incubating_na_list_w")
         self.prj_details_na_list_w = self.b.get_object("prj_details_na_list_w")
         self.prj_details_priority_w = self.b.get_object("prj_details_priority_w")
-        self.prj_details_queue_date_w = \
-                self.b.get_object("prj_details_queue_date_w")
+        self.prj_details_queue_date_w =  self.b.get_object(
+                "prj_details_queue_date_w")
         self.prj_list_w = self.b.get_object("prj_list_w")
         self.prj_queue_date_hbox = self.b.get_object("prj_queue_date_hbox")
         self.prj_support_files_w = self.b.get_object("prj_support_files_w")
-        self.prj_details_waiting_for_w = \
-                self.b.get_object("prj_details_waiting_for_w")
-        self.prj_details_waiting_for_since_w = \
-                self.b.get_object("prj_details_waiting_for_since_w")
-        self.review_project_status_filter_w = \
-                self.b.get_object("review_project_status_filter_w")
+        self.prj_details_waiting_for_w =  self.b.get_object(
+                "prj_details_waiting_for_w")
+        self.prj_details_waiting_for_since_w =  self.b.get_object(
+                "prj_details_waiting_for_since_w")
+        self.review_project_status_filter_w =  self.b.get_object(
+                "review_project_status_filter_w")
         self.stuff_tree_w = self.b.get_object("stuff_tree_w")
         self.waiting_for_table = self.b.get_object("waiting_for_table")
         self.workflow_nb = self.b.get_object("workflow_notebook")
 
-        self.clarify_file_details_name_w = self.b.get_object("clarify_file_details_name_w")
-        self.clarify_file_details_type_w = self.b.get_object("clarify_file_details_type_w")
-        self.clarify_file_details_size_w = self.b.get_object("clarify_file_details_size_w")
-        self.clarify_file_details_path_w = self.b.get_object("clarify_file_details_path_w")
-        self.clarify_file_details_notes_w = self.b.get_object("clarify_file_details_notes_w")
-        self.clarify_file_details_mime_nb_w = self.b.get_object("clarify_file_details_mime_nb_w")
-        self.clarify_file_details_icon_w = self.b.get_object("clarify_file_details_icon_w")
-        self.clarify_file_info_text_preview_w = self.b.get_object("clarify_file_info_text_preview_w")
-        self.clarify_file_info_image_thumbnail_w = self.b.get_object("clarify_file_info_image_thumbnail_w")
+        self.clarify_file_details_name_w = self.b.get_object(
+                "clarify_file_details_name_w")
+        self.clarify_file_details_type_w = self.b.get_object(
+                "clarify_file_details_type_w")
+        self.clarify_file_details_size_w = self.b.get_object(
+                "clarify_file_details_size_w")
+        self.clarify_file_details_path_w = self.b.get_object(
+                "clarify_file_details_path_w")
+        self.clarify_file_details_notes_w = self.b.get_object(
+                "clarify_file_details_notes_w")
+        self.clarify_file_details_mime_nb_w = self.b.get_object(
+                "clarify_file_details_mime_nb_w")
+        self.clarify_file_details_icon_w = self.b.get_object(
+                "clarify_file_details_icon_w")
+        self.clarify_file_info_text_preview_w = self.b.get_object(
+                "clarify_file_info_text_preview_w")
+        self.clarify_file_info_image_thumbnail_w = self.b.get_object(
+                "clarify_file_info_image_thumbnail_w")
+        self.project_actions_panes_w = self.b.get_object(
+                 "project_actions_panes_w")
 
     def move_na_position(self, objlist, prj, position):
         nas = objlist.get_selected_rows()
@@ -800,7 +822,7 @@ class Fluidity(object):
             pd.add_files_to_files_list(stuff_obj.path)
 
     def sync_nas_and_notes(self):
-        sorted_nas = self.sort_actions(self.data_lumbergh.get_na_for_each_active_prj())
+        sorted_nas = self.sort_actions(self.data_lumbergh.get_current_nas_for_each_active_prj())
         task_export.ProtoExporter().export_next_actions(sorted_nas, self.data_lumbergh)
 
     def temporarily_disable_widget(self, widget):
@@ -1047,6 +1069,13 @@ class Fluidity(object):
             self.data_lumbergh.incubate_nas(nas, prj.key_name)
             self.fill_prj_details_na_list_w(prj)
 
+    def move_na_to_unordered_actions_w_clicked_cb(self, widget, data=None):
+        nas = self.prj_details_na_list_w.get_selected_rows()
+        if len(nas) > 0:
+            prj = self.prj_list_w.get_selected()
+            self.data_lumbergh.incubate_nas(nas, prj.key_name)
+            self.fill_prj_details_na_list_w(prj)
+
     def incubate_prj_w_clicked_cb(self, widget, data=None):
         self.incubate_project(self.prj_list_w.get_selected())
 
@@ -1274,6 +1303,20 @@ class Fluidity(object):
 
     def _engage_due_today_filter_w_toggled_cb(self, widget, data=None):
         self.fill_engage_na_list()
+
+    def move_to_unordered_actions_w_clicked_cb(self, widget, data=None):
+        prj = self.prj_list_w.get_selected()
+        self.data_lumbergh.move_nas_to_unordered_actions(
+                self.prj_details_na_list_w.get_selected_rows(),
+                prj.key_name)
+        self.fill_prj_details_na_list_w(prj)
+
+    def move_to_ordered_actions_w_clicked_cb(self, widget, data=None):
+        prj = self.prj_list_w.get_selected()
+        self.data_lumbergh.move_nas_to_ordered_actions(
+                self.unordered_actions_list_w.get_selected_model_objects(),
+                prj.key_name)
+        self.fill_prj_details_na_list_w(prj)
 
 
 def _fity_show_uri(uri, time_arg=None):

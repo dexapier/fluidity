@@ -81,7 +81,7 @@ setup(
                    'Topic :: Desktop Environment :: File Managers',
                    'Topic :: Desktop Environment :: Gnome',
                    'Topic :: Office/Business',],
-    packages = ['fluidity', 'fluidity.ui', 'fluidity.tools'],
+    packages = ['fluidity', 'fluidity.ui'],
     scripts = ["bin/fluidity", "bin/slider"],
     provides = ["fluidity"],
     data_files = build_data_files()

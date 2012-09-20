@@ -24,9 +24,9 @@ def build_data_files():
             'COPYING', 'README', 'INSTALL', 'THANKS']
     data_files.append((DOCS_DIR, docs))
 
-    misc_data = []
-    for fname in os.listdir('data'):
-        misc_data.append(os.path.join('data', fname))
+    misc_data = [os.path.join('data', fname) for fname in os.listdir('data')
+                 if fname is not 'Glade_and_Kiwi_integration']
+        
     data_files.append((DATA_DIR, misc_data))
 
     for size in ('16', '24', '32', '48'):

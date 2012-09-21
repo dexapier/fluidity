@@ -59,7 +59,7 @@ class NextActionsView(gtk.VBox):
         
     def on_done_toggled(self, cell_renderer, path, data = None):
         action = self._actions[int(path[0])]
-        action.complete = not cell_renderer.get_active()
+        action.complete = not action.complete
     #    self._liststore.row_changed(path, self._liststore.get_iter(path))
     #    cell_renderer.set_active(action.complete)
         self._liststore[path][0] = action.complete

@@ -61,7 +61,7 @@ class NextActionsView(gtk.VBox):
         action = self._actions[int(path[0])]
         action.complete = not cell_renderer.get_active()
     #    self._liststore.row_changed(path, self._liststore.get_iter(path))
-        cell_renderer.set_active(action.complete)
+    #    cell_renderer.set_active(action.complete)
         self._liststore[path][0] = action.complete
 
 

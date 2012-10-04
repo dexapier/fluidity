@@ -514,11 +514,8 @@ class Fluidity(object):
         self.clarify_file_details_mime_nb_w.set_show_tabs(False)
         self.clarify_file_details_mime_nb_w.hide()
 
-        self.project_actions_panes_w.pack2(self.unordered_actions_list_w)
+        self.unordered_actions_parent_w.pack_end(self.unordered_actions_list_w)
         self.unordered_actions_list_w.show_all()
-#        foo = gtk.Label("GODDAMMIT")
-#        self.project_actions_panes_w.pack2(foo)
-#        foo.show()
 
     def jump_to_search_result(self, prj_key, na_uuid=None):
         status_widget_map = (("active", "review_active_w"),
@@ -613,8 +610,8 @@ class Fluidity(object):
                 "clarify_file_info_text_preview_w")
         self.clarify_file_info_image_thumbnail_w = self.b.get_object(
                 "clarify_file_info_image_thumbnail_w")
-        self.project_actions_panes_w = self.b.get_object(
-                 "project_actions_panes_w")
+        self.unordered_actions_parent_w = self.b.get_object(
+                "unordered_actions_parent_w")
 
     def move_na_position(self, objlist, prj, position):
         nas = objlist.get_selected_rows()

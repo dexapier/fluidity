@@ -21,7 +21,7 @@ from fluidity import defs, models, utils
 def format_for_dict_key(orig_string):
     """Return a cleaned up version of `orig_string` which will work as a dict key.
 
-    In line with Python's rules & guidelines about dict key naming, orig_string
+    In line with Python's rules & guidelines about attribute naming, orig_string
     is stripped of everything but lowercase ascii characters a-z & digits 0-9,
     with spaces converted to underscores.
     """

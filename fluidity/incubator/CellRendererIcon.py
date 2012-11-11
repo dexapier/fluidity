@@ -1,5 +1,8 @@
-from gi.repository import Gtk
-from gi.repository import GObject
+'''
+Simple class to transform a Gtk Pixbuf into a clickable icon
+'''
+from gi.repository import Gtk       #@UnresolvedImport pylint: disable-msg=E0611
+from gi.repository import GObject   #@UnresolvedImport pylint: disable-msg=E0611
 
 class CellRendererIcon(Gtk.CellRendererPixbuf):
     __gsignals__    = { 'clicked' : (GObject.SIGNAL_RUN_LAST,
@@ -10,13 +13,13 @@ class CellRendererIcon(Gtk.CellRendererPixbuf):
     '''
     def __init__(self):
         Gtk.CellRendererPixbuf.__init__(self)
-        self.set_property('mode', Gtk.CellRendererMode.ACTIVATABLE)
+        self.set_property('mode', Gtk.CellRendererMode.ACTIVATABLE) #pylint: disable-msg=E1101
         '''
         Set mode of CellRenderer to Activatable - inherited from
         Gtk.CellRenderer. The default is INERT. This is necessary
         for the CellRendererIcon to respond to mouse clicks.
         '''
-        self.set_property('follow-state', True)
+        self.set_property('follow-state', True) #pylint: disable-msg=E1101
         '''
         Colorize icons according to CellRendererState - inherited from
         Gtk.CellRendererPixBuf
@@ -26,4 +29,4 @@ class CellRendererIcon(Gtk.CellRendererPixbuf):
         '''
         Override do_activate from Gtk.CellRendererPixbuf to emit the "clicked" signal
         '''
-        self.emit('clicked', path)
+        self.emit('clicked', path)  #pylint: disable-msg=E1101

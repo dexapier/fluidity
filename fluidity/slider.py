@@ -35,6 +35,16 @@ from fluidity.magic_machine import MagicMachine
 from fluidity.managers import DataManager
 
 
+def create_inbox_note(summary, details):
+    """Create an inbox note with the usual path and format."""
+    note = {'summary': summary, 'details': details}
+    file_name = (note['summary'][:50].replace(os.sep, '') + 
+                 str(time.time()) + "-note.pkl")
+    file_path = os.path.join(defs.NOTE_SLIDER_FOLDER, file_name)
+    with open(file_path, 'wb') as pickle_file:
+        pickle.dump(note, pickle_file, pickle.HIGHEST_PROTOCOL)
+
+
 class Slider(object):
 
     def __init__(self, separate_process=False):
@@ -78,13 +88,8 @@ class Slider(object):
         widget.set_text(context)
 
     def _create_inbox_note(self):
-        note = {'summary': self.summary_w.get_text(),
-                'details': self.note_details_w.get_buffer().props.text}
-        file_name = (note['summary'][:50].replace(os.sep, '') +
-                     str(time.time()) + "-note.pkl")
-        file_path = os.path.join(defs.NOTE_SLIDER_FOLDER, file_name)
-        with open(file_path, 'wb') as pickle_file:
-            pickle.dump(note, pickle_file, pickle.HIGHEST_PROTOCOL)
+        create_inbox_note(self.summary_w.get_text(), 
+                          self.note_details_w.get_buffer().props.text)
         self._quit()
 
     def _create_incoming_na(self, na):

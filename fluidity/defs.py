@@ -93,6 +93,7 @@ SANITARY_CHARS = string.ascii_lowercase + string.digits + " "
 
 ### PATHS ###
 HOME_DIR = os.path.expanduser("~")
+HOME_PATH = pathlib.Path(HOME_DIR)
 APP_DATA_PATH = _find_app_data_path()
 USER_DATA_PATH = BaseDirectory.save_data_path("fluidity")
 LOG_FILE_PATH = os.path.join(USER_DATA_PATH, 'fluidity_debug.log')
@@ -103,7 +104,11 @@ PROCESSED_STUFF_FILE_NAME = 'processed_stuff.pkl'
 BACKUPS_PATH = os.path.join(USER_DATA_PATH, "backups")
 ARCHIVED_SINGLETONS_FNAME = 'archived_singletons{0}.pkl'
 
-HACK_HACK_HACK_DROPBOX_PATH = pathlib.Path(HOME_DIR, "Dropbox", "Fluidity")
+DROPBOX_PATH = pathlib.Path(HOME_PATH, 'Dropbox')
+DROPBOX_INBOX_PATH = pathlib.Path(DROPBOX_PATH, 'Inbox')
+
+
+HACK_HACK_HACK_DROPBOX_PATH = pathlib.Path(DROPBOX_PATH, "Fluidity")
 
 # PROJECT SUPPORT FILE PATHS
 READ_REVIEW_PATH = _get_read_review_path()

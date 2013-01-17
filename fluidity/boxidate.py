@@ -14,6 +14,7 @@ import abc
 import datetime
 import json
 import os
+import pathlib
 import pickle
 import shutil
 import string  # IGNORE:W0402  # the string module is not deprecated!
@@ -32,6 +33,7 @@ from fluidity import app_utils
 from fluidity import defs
 from fluidity import dbus_misc
 from fluidity import gio_fml
+from fluidity import slider
 
 
 INBOXES = ()
@@ -54,7 +56,15 @@ def consolidate():
         else:
             inboxes.append(MountableInbox(ibx))
 
-    inboxes.extend((RESTInbox(), TomboyInbox()))
+    inboxes.extend((
+        # CONFIG FOR WHICH INBOXES GET USED AND WHICH DON'T
+        # terrible place for it, but this is the kind of thing
+        # that's going away when I finally get around to 
+        # refactoring all this
+#        RESTInbox(), 
+        DropboxInbox(),
+        TomboyInbox(),  # this should probably always be the last one.
+    ))
     for i in inboxes:
         i.consolidate()
 
@@ -234,7 +244,9 @@ class TomboyInbox(Inbox):
         el = len(self.TB_CONTENT_START)
         for n in notelist:
             n = os.path.join(self.MAIN_INBOX, n)
-            c = open(n, 'r').read()
+            opened = open(n, 'r')
+            c = opened.read()
+            opened.close()
             c_begin = c.find(self.TB_CONTENT_START) + el
             c_end = c.find(self.TB_CONTENT_END)
             aggregate += c[c_begin:c_end] + self.PADDING
@@ -322,6 +334,37 @@ class TomboyInbox(Inbox):
             inboxfile_again.write(new_contents)
 
         return personal_content
+
+
+class DropboxInbox(Inbox):
+
+    NOTE_GLOB = 'inbox_note*.protobytes'
+
+    def consolidate(self):
+        for note_path in defs.DROPBOX_INBOX_PATH.glob(DropboxInbox.NOTE_GLOB):
+            self._process_android_inbox_note(note_path)
+        # now handle the remaining files.
+        for path in defs.DROPBOX_INBOX_PATH.glob('*'):
+            # leave dotfiles alone, for stuff like dropsync
+            if not str(path).startswith('.'):
+                self._process_android_inbox_note(note_path)
+    
+    def _process_regular_file(self, path):
+        print("Processing regular file:", path)
+        shutil.move(str(path), defs.INBOX_FOLDER)
+
+    def _process_android_inbox_note(self, note_path):
+        print("Processing note:", note_path)
+        abs_path = str(note_path.absolute())
+        with open(abs_path, 'r') as notefile:
+            note_text = notefile.read()
+        
+        # the android inbox app takes no 'details' info yet.
+        slider.create_inbox_note(note_text, "")
+        
+        # we're done with the file, ditch it.
+        gf = gio.File(abs_path)
+        gf.trash()
 
 
 class BoxidatorOld(object):
@@ -573,3 +616,13 @@ def _convert_xml_to_text(xml_str, content_element_name, namespaces=None):
 # #        sftp.put(to_upload, remote_path + basename)
 # #        sftp.close()
 #===================================================================================
+
+
+def main():
+    di = DropboxInbox()
+    di.consolidate()
+
+
+if __name__ == '__main__':
+    main()
+

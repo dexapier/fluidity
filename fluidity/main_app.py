@@ -157,16 +157,11 @@ class Fluidity(object):
         self.fill_prj_list_w()
 
     def consolidate_inboxes(self, widget):
-        # FIXME: this shit really belongs in DataManager
-        # Also, it needs to actually work for other people... *cough*
-        if os.environ.get("USER") != "jensck":
-            pass
-        else:
-            self.temporarily_disable_widget(widget)
-            boxidate.consolidate()
-            self._inbox_manager.gather_slider_items()
-            self._inbox_manager.add_actual_shit_to_columns()
-            self.temporarily_disable_widget(widget)
+        self.temporarily_disable_widget(widget)
+        boxidate.consolidate()
+        self._inbox_manager.gather_slider_items()
+        self._inbox_manager.add_actual_shit_to_columns()
+        self.temporarily_disable_widget(widget)
 
     def create_new_aof(self):
         d = self.b.get_object("new_aof_dialog")

@@ -228,6 +228,9 @@ class TomboyInbox(Inbox):
         self.tbus = dbus_misc.notes_proxy
 
     def consolidate(self):
+        # FIXME: REMOVE LATER
+        if os.environ.get("USER") not in ("jensck", "jknutson"):
+            return
         notelist = self.build_note_list(self.MAIN_INBOX)
         agg_xml = self.build_aggregate_note(notelist)
         self._back_up_SH()

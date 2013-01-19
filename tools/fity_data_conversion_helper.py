@@ -21,6 +21,7 @@ import yaml
 import fluidity
 
 from collections import namedtuple
+from fluidity import defs
 
 
 GTD_NT = namedtuple("GTDDefaults", "default proper_type convert_func")
@@ -59,7 +60,7 @@ def dump(data, path, overwrite=False):
     """Format should be a string, either 'yaml' or 'pkl'."""
     ext = os.path.splitext(path)[1].strip('.')
     dumpers = {
-        'yaml': lambda d, s: yaml.dump(d, s, yaml.CDumper, default_flow_style=False),
+        'yaml': lambda d, s: yaml.dump(d, s, defs.YAML_DUMPER, default_flow_style=False),
         'pkl': lambda d, s: pickle.dump(d, s, protocol=pickle.HIGHEST_PROTOCOL)}
     if not overwrite and os.path.exists(path):
         raise IOError("File already exists; cowardly refusing to overwrite")
@@ -76,7 +77,7 @@ def get_dump_path(orig_path):
 def load(path):
     """Format should be either 'yaml' or 'pkl'."""
     ext = os.path.splitext(path)[1].strip('.')
-    loaders = {'yaml': lambda stream: yaml.load(stream, Loader=yaml.CLoader),
+    loaders = {'yaml': lambda stream: yaml.load(stream, Loader=defs.YAML_LOADER),
                'pkl': lambda stream: pickle.load(stream)}
     with open(path, 'r') as lfile:
         data = loaders[ext](lfile)

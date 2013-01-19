@@ -73,14 +73,14 @@ def convert_fity_data_file(orig_path, new_path, delete_original=False):
 #    print "well, we got this far...."
     if orig_path.endswith('.yaml') and new_path.endswith('.pkl'):
         with open(orig_path, 'r') as orig_file:
-            fity_data = yaml.load(orig_file, Loader=yaml.CLoader)
+            fity_data = yaml.load(orig_file, Loader=defs.YAML_LOADER)
         with open(new_path, 'w') as new_file:
             pickle.dump(fity_data, new_file, protocol=pickle.HIGHEST_PROTOCOL)
     elif orig_path.endswith('.pkl') and new_path.endswith('.yaml'):
         with open(orig_path, 'r') as orig_file:
             fity_data = pickle.load(orig_file)
         with open(new_path, 'w') as new_file:
-            yaml.dump(fity_data, new_file, Dumper=yaml.CDumper,
+            yaml.dump(fity_data, new_file, Dumper=defs.YAML_DUMPER,
                       default_flow_style=False)
     else:
         fail()

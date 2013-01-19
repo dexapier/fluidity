@@ -779,13 +779,13 @@ class RecurrenceManager(object):
         #FIXME: create a backup copy?
         with open(data_file_path, 'w') as yfile:
             print("Saving recurrence data")
-            yaml.dump(self._recur_data, yfile, Dumper=yaml.CDumper,
+            yaml.dump(self._recur_data, yfile, Dumper=defs.YAML_DUMPER,
                       default_flow_style=False)
 
     def _yloader(self, yfile_path):
         with open(yfile_path, 'r') as yfile:
             print("calling yaml.load()")
-            ycontent = yaml.load(yfile, Loader=yaml.CLoader)
+            ycontent = yaml.load(yfile, Loader=defs.YAML_LOADER)
         return ycontent
 
 

@@ -63,4 +63,5 @@ class FirstTimeBot(object):
                 'last_run': datetime.date.today()}
         print("Creating initial recurrence file...")
         with open(full_path, 'w') as yfile:
-            yaml.dump(data, yfile, Dumper=yaml.CDumper, default_flow_style=False)
+            yaml.dump(data, yfile, Dumper=defs.YAML_DUMPER, default_flow_style=False)
+

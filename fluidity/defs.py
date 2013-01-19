@@ -57,6 +57,17 @@ def _get_read_review_path():
     return path
 
 
+def _get_yaml_loader_dumper():
+    # WTF?  How can a Fedora install NOT have the YAML C dumper?!
+    # I can't wait for the day when Android is usable as a full workstation.
+    # Desktop Linux: the only things that suck even harder than this are 
+    # the alternatives.
+    try:
+        return yaml.CLoader, yaml.CDumper
+    except AttributeError:
+        return yaml.Loader, yaml.Dumper
+
+
 APP_NAME = 'Fluidity'
 DBUS_BUS_NAME = 'org.solemnsilence.Fluidity'
 DBUS_OBJECT_PATH = '/org/solemnsilence/Fluidity'
@@ -69,6 +80,7 @@ CREATION_EPOCH = 1262325600.0
 FAKE_CONTEXT_UUID = uuid.UUID(
        bytes='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xDE\xAD\xBE\xEF')
 
+YAML_LOADER, YAML_DUMPER = _get_yaml_loader_dumper()
 
 ### NOTES APP STUFF ###
 # FIXME: this is lame.  Figure out /real/ Tomboy vs. Gnote handling later

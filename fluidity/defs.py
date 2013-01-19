@@ -17,6 +17,7 @@ import sys
 import uuid
 
 import pathlib
+import yaml
 
 from xdg import BaseDirectory
 

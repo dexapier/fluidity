@@ -63,7 +63,7 @@ def consolidate():
         # refactoring all this
 #        RESTInbox(), 
         DropboxInbox(),
-        TomboyInbox(),  # this should probably always be the last one.
+#        TomboyInbox(),  # this should probably always be the last one.
     ))
     for i in inboxes:
         i.consolidate()
@@ -350,8 +350,8 @@ class DropboxInbox(Inbox):
         for path in defs.DROPBOX_INBOX_PATH.glob('*'):
             # leave dotfiles alone, for stuff like dropsync
             if not str(path).startswith('.'):
-                self._process_android_inbox_note(path)
-    
+                self._process_regular_file(path)
+
     def _process_regular_file(self, path):
         print("Processing regular file:", path)
         shutil.move(str(path), defs.INBOX_FOLDER)

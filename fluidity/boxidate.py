@@ -350,7 +350,7 @@ class DropboxInbox(Inbox):
         for path in defs.DROPBOX_INBOX_PATH.glob('*'):
             # leave dotfiles alone, for stuff like dropsync
             if not str(path).startswith('.'):
-                self._process_android_inbox_note(note_path)
+                self._process_android_inbox_note(path)
     
     def _process_regular_file(self, path):
         print("Processing regular file:", path)

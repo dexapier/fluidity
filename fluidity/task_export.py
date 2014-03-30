@@ -42,8 +42,9 @@ class ProtoExporter(object):
             print("Dumping NEW HACK_ExportedNextActions protobytes to:", self._LOCAL_DUMP_PATH)
             bytes_file.write(exports_proto.SerializeToString())
 
-        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH.as_posix(), 
-                                              self._REMOTE_HOST,
-                                              self._REMOTE_DUMP_PATH.as_posix())
-        print("Running:", command)
-        subprocess.call(command, shell=True)
+#        command = self._UPLOAD_COMMAND.format(self._LOCAL_DUMP_PATH.as_posix(), 
+#                                              self._REMOTE_HOST,
+#                                              self._REMOTE_DUMP_PATH.as_posix())
+#        print("Running:", command)
+#        subprocess.call(command, shell=True)
+
